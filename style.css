@@ -3781,3 +3781,277 @@ section, [id] {
   z-index: 5;
   backdrop-filter: blur(4px);
 }
+
+/* ==========================================================================
+   SECTION: శ్రీ లక్ష్మీ గణపతి స్వామివారి వైభవం & మహత్యం
+   ========================================================================== */
+.vaibhavam-section {
+  background: linear-gradient(180deg, #fdfbf7 0%, #fff9ee 100%);
+}
+
+.vaibhavam-invocation-tag {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--secondary);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.vaibhavam-content-wrapper {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.vaibhavam-lead-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fdf7ec 100%);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 2rem;
+  box-shadow: var(--shadow-md), var(--shadow-gold);
+  position: relative;
+}
+
+.lead-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #520f18, #37080f);
+  color: var(--gold-light);
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.lead-badge-pill .badge-icon {
+  font-size: 1.1rem;
+}
+
+.vaibhavam-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.vaibhavam-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+}
+
+.vaibhavam-subheading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.35);
+  padding-bottom: 0.6rem;
+}
+
+.vaibhavam-subheading .subhead-icon {
+  font-size: 1.4rem;
+}
+
+.vaibhavam-text {
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: var(--text-dark);
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.vaibhavam-text:last-child {
+  margin-bottom: 0;
+}
+
+.vaibhavam-text.lead-text {
+  font-size: 1.14rem;
+  line-height: 2.05;
+  color: #2b1704;
+}
+
+.alankaram-gratitude-box {
+  margin-top: 1.6rem;
+  background: #fff8eb;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.gratitude-symbol {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.gratitude-quote {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin: 0;
+}
+
+.mahimalu-card {
+  border-color: #e5b95a;
+  background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);
+}
+
+.mahimalu-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.4rem;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.8rem;
+}
+
+.mahimalu-icon {
+  font-size: 1.8rem;
+}
+
+.mahimalu-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0;
+}
+
+.mahima-item {
+  position: relative;
+  padding-left: 1.4rem;
+  border-left: 3px solid rgba(230, 81, 0, 0.35);
+  margin-bottom: 1.4rem;
+}
+
+.mahima-item:last-child {
+  margin-bottom: 0;
+}
+
+.mahima-lead {
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.highlight-ratham {
+  background: rgba(212, 175, 55, 0.15);
+  border-left: 3px solid var(--secondary);
+  padding: 0.6rem 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.conclusion-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* --- Procession Date Highlight Banner --- */
+.procession-date-highlight-banner {
+  background: linear-gradient(135deg, #4a0d15 0%, #7a1523 50%, #4a0d15 100%);
+  border: 2.5px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.2rem;
+  box-shadow: 0 10px 30px rgba(74, 13, 21, 0.35), var(--shadow-gold);
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.date-highlight-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.procession-bell-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  animation: bellGlow 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes bellGlow {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)); }
+}
+
+.date-highlight-content {
+  flex-grow: 1;
+}
+
+.date-highlight-badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.25);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.9rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.date-highlight-main {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-weight: 800;
+  color: #ffe89e;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.6rem;
+  line-height: 1.35;
+}
+
+.date-highlight-sub {
+  font-size: 0.98rem;
+  color: #f7e1c8;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+@media (max-width: 680px) {
+  .date-highlight-inner {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .procession-bell-icon {
+    font-size: 1.8rem;
+  }
+  .vaibhavam-card,
+  .vaibhavam-lead-card {
+    padding: 1.5rem 1.2rem;
+  }
+  .vaibhavam-text {
+    font-size: 1.02rem;
+    line-height: 1.85;
+    text-align: left;
+  }
+}
+
