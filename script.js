@@ -104,7 +104,6 @@ async function fetchDailyPooja() {
   }
   return [];
 }
-}
 
 async function fetchDharmaArticles() {
   let articles = [];
@@ -139,8 +138,16 @@ async function fetchDharmaArticles() {
 // 4. GLOBAL STATE & INITIALIZATION
 // --------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
+  // 1. Start Countdown IMMEDIATELY on load without waiting for async network
+  initCountdown();
+
+  // 2. Fetch remote site settings and update countdown if needed
   initGlobalSiteData();
+
+  // 3. Initialize Devotional Music Player at 0.5 (50%) volume
   initMusicPlayer();
+
+  // 4. UI Handlers
   initMobileMenu();
   initSmoothScrollAndActiveLinks();
   initDailyPooja();
@@ -151,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // --------------------------------------------------------------------------
 // 5. GLOBAL SITE DATA & COUNTDOWN
 // --------------------------------------------------------------------------
+let countdownTimerInterval = null;
+
 async function initGlobalSiteData() {
   try {
     const settings = await fetchSiteSettings();
@@ -170,8 +179,18 @@ function initCountdown(targetDateStr) {
   const target = targetDateStr || countdownEl.getAttribute("data-target") || "2026-09-14T06:00:00+05:30";
   const targetTime = new Date(target).getTime();
 
+  if (isNaN(targetTime)) {
+    console.warn("Invalid countdown date:", target);
+    return;
+  }
+
+  const dEl = document.getElementById("timer-days");
+  const hEl = document.getElementById("timer-hours");
+  const mEl = document.getElementById("timer-minutes");
+  const sEl = document.getElementById("timer-seconds");
+
   function update() {
-    const now = new Date().getTime();
+    const now = Date.now();
     const diff = Math.max(0, targetTime - now);
 
     const totalSeconds = Math.floor(diff / 1000);
@@ -180,23 +199,27 @@ function initCountdown(targetDateStr) {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
-    const dEl = document.getElementById("timer-days");
-    const hEl = document.getElementById("timer-hours");
-    const mEl = document.getElementById("timer-minutes");
-    const sEl = document.getElementById("timer-seconds");
-
     if (dEl) dEl.textContent = String(days).padStart(2, "0");
     if (hEl) hEl.textContent = String(hours).padStart(2, "0");
     if (mEl) mEl.textContent = String(minutes).padStart(2, "0");
     if (sEl) sEl.textContent = String(seconds).padStart(2, "0");
+
+    if (diff <= 0 && countdownTimerInterval) {
+      clearInterval(countdownTimerInterval);
+      const label = document.getElementById("countdownLabelText");
+      if (label) label.textContent = "శ్రీ లక్ష్మీ గణపతి స్వామి మహోత్సవాలు ప్రారంభమైనవి! 🕉️";
+    }
   }
 
+  if (countdownTimerInterval) {
+    clearInterval(countdownTimerInterval);
+  }
   update();
-  setInterval(update, 1000);
+  countdownTimerInterval = setInterval(update, 1000);
 }
 
 // --------------------------------------------------------------------------
-// 6. DEVOTIONAL MUSIC PLAYER
+// 6. DEVOTIONAL MUSIC PLAYER (Volume set to 0.5)
 // --------------------------------------------------------------------------
 function initMusicPlayer() {
   const musicBtn = document.getElementById("musicBtn");
@@ -206,7 +229,8 @@ function initMusicPlayer() {
 
   if (!musicBtn || !audioEl) return;
 
-  audioEl.volume = 0.08;
+  // Set default audio volume to 0.5
+  audioEl.volume = 0.5;
   let isPlaying = false;
 
   function updateUI(playing) {
@@ -265,9 +289,12 @@ function initMobileMenu() {
 function initSmoothScrollAndActiveLinks() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-link[href^='#']");
+  if (!sections.length || !navLinks.length) return;
 
-  window.addEventListener("scroll", function () {
-    const scrollPos = window.scrollY + 120;
+  let ticking = false;
+
+  function updateActive() {
+    const scrollPos = window.scrollY + 130;
     sections.forEach((sec) => {
       const top = sec.offsetTop;
       const height = sec.offsetHeight;
@@ -283,7 +310,15 @@ function initSmoothScrollAndActiveLinks() {
         });
       }
     });
-  });
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(updateActive);
+      ticking = true;
+    }
+  }, { passive: true });
 }
 
 // --------------------------------------------------------------------------
@@ -391,13 +426,23 @@ function initBackToTop() {
   const btn = document.getElementById("backToTop");
   if (!btn) return;
 
+  let ticking = false;
+
   window.addEventListener("scroll", function () {
-    if (window.scrollY > 400) {
-      btn.style.display = "inline-flex";
-    } else {
-      btn.style.display = "none";
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 350) {
+          btn.style.display = "inline-flex";
+          btn.style.opacity = "1";
+        } else {
+          btn.style.display = "none";
+          btn.style.opacity = "0";
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
-  });
+  }, { passive: true });
 
   btn.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });

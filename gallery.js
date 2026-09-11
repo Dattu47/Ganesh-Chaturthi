@@ -38,8 +38,11 @@ const STATIC_BACKUP_GALLERY = [
   { id: 23, year: "2016", title: "2016 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2016 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2016/2016.jpeg", filename: "2016.jpeg", backup_required: true, published: true },
   { id: 22, year: "2015", title: "2015 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2015 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2015/2015.jpeg", filename: "2015.jpeg", backup_required: true, published: true },
   { id: 21, year: "2014", title: "2014 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2014 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2014/2014.jpeg", filename: "2014.jpeg", backup_required: true, published: true },
+  { id: 37, year: "2013", title: "2013 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2013 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2013/2013.jpeg", filename: "2013.jpeg", backup_required: true, published: true },
+  { id: 38, year: "2012", title: "2012 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2012 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2012/2012.jpeg", filename: "2012.jpeg", backup_required: true, published: true },
   { id: 20, year: "2011", title: "2011 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2011 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2011/2011.jpeg", filename: "2011.jpeg", backup_required: true, published: true },
   { id: 19, year: "2010", title: "2010 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2010 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2010/2010.jpeg", filename: "2010.jpeg", backup_required: true, published: true },
+  { id: 39, year: "2009", title: "2009 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2009 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2009/2009.jpeg", filename: "2009.jpeg", backup_required: true, published: true },
   { id: 18, year: "2008", title: "2008 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2008 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2008/2008.jpeg", filename: "2008.jpeg", backup_required: true, published: true },
   { id: 17, year: "2006", title: "2006 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2006 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2006/2006.jpeg", filename: "2006.jpeg", backup_required: true, published: true },
   { id: 16, year: "2005", title: "2005 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2005 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2005/2005.jpeg", filename: "2005.jpeg", backup_required: true, published: true },
@@ -537,6 +540,9 @@ function initMusicPlayer() {
   const icon = document.getElementById("musicIcon");
   const label = document.getElementById("musicLabel");
   if (!audio || !btn) return;
+
+  // Set default audio volume to 0.5
+  audio.volume = 0.5;
 
   btn.addEventListener("click", function () {
     if (audio.paused) {
