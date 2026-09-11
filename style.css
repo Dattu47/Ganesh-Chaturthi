@@ -3039,6 +3039,42 @@ section, [id] {
   flex-shrink: 0;
 }
 
+/* Navigation Instagram Link */
+.nav-insta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.42rem 0.95rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 3px 10px rgba(220, 39, 67, 0.25);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.nav-insta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(220, 39, 67, 0.45);
+  filter: brightness(1.1);
+}
+
+.nav-insta-btn svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .nav-insta-btn .nav-insta-label {
+    display: none;
+  }
+  .nav-insta-btn {
+    padding: 0.45rem;
+    border-radius: 50%;
+  }
+}
+
 
 /* Section Separation on Long Scroll */
 .scrolling-section {
