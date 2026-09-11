@@ -299,11 +299,23 @@
         border-left: 2px solid #000000 !important;
         background: #f5f5f5 !important;
       }
+    body {
+      background: transparent !important;
+      min-height: 100vh;
+      position: relative;
+    }
+    .page-header, .pooja-container, .devotional-footer {
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Full Length and Width Background Image -->
+  <img src="assets/hero.jpg" class="individual-page-bg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దేవస్థానం" loading="eager">
+  <div class="individual-page-overlay"></div>
 
   <!-- Sticky Main Navigation Bar -->
   <header class="header-nav">
@@ -322,7 +334,7 @@
           <li><a href="index.html#home" class="nav-link">హోమ్</a></li>
           <li><a href="index.html#vaibhavam" class="nav-link">వైభవం & మహత్యం</a></li>
           <li><a href="index.html#daily-pooja" class="nav-link">నిత్య పూజ</a></li>
-          <li><a href="index.html#gallery" class="nav-link">గ్యాలరీ</a></li>
+          <li><a href="gallery.html" class="nav-link">గ్యాలరీ 📸</a></li>
           <li><a href="pooja-vidhanam.html" class="nav-link active">పూజా విధానం 📜</a></li>
           <li><a href="index.html#dharmam" class="nav-link">హిందూ ధర్మం & సంస్కృతి</a></li>
         </ul>

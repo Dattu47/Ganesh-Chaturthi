@@ -4048,10 +4048,238 @@ section, [id] {
   .vaibhavam-lead-card {
     padding: 1.5rem 1.2rem;
   }
-  .vaibhavam-text {
-    font-size: 1.02rem;
-    line-height: 1.85;
-    text-align: left;
+}
+
+/* --- Dedicated Homepage Gallery Invitation Styles --- */
+.gallery-portal-section {
+  padding: 3.5rem 1rem;
+  background: linear-gradient(180deg, #fbf7ee 0%, #ffffff 100%);
+}
+
+.gallery-invite-card {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 2px solid var(--border-gold, #dfc688);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(114, 18, 20, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-invite-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(114, 18, 20, 0.12);
+}
+
+.gallery-invite-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--gold, #d4af37), var(--maroon, #721214), var(--gold, #d4af37));
+}
+
+.invite-icon-wrap {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem auto;
+  background: linear-gradient(135deg, #fff9e6 0%, #f7e8ba 100%);
+  border: 2px solid var(--gold, #d4af37);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+}
+
+.invite-camera-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.invite-title {
+  font-size: clamp(1.4rem, 3.5vw, 1.95rem);
+  font-weight: 800;
+  color: var(--maroon, #721214);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.invite-ornament {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.invite-subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.12rem);
+  color: var(--text-dark, #3b2c21);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.invite-btn-wrap {
+  margin-bottom: 1rem;
+}
+
+.gallery-portal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.95rem 2rem;
+  background: linear-gradient(135deg, var(--maroon, #721214) 0%, #4d0b0d 100%);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 2px solid var(--gold, #d4af37);
+  box-shadow: 0 4px 15px rgba(114, 18, 20, 0.25);
+  transition: all 0.25s ease;
+  min-height: 52px;
+}
+
+.gallery-portal-btn:hover {
+  background: linear-gradient(135deg, var(--gold, #d4af37) 0%, var(--gold-dark, #a37c16) 100%);
+  color: var(--maroon-dark, #490b0c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4);
+}
+
+.gallery-portal-btn .btn-arrow {
+  font-size: 1.3rem;
+  transition: transform 0.2s ease;
+}
+
+.gallery-portal-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.invite-note {
+  font-size: 0.85rem;
+  color: var(--text-muted, #777);
+  margin: 0.75rem 0 0 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .gallery-portal-section {
+    padding: 2.5rem 0.75rem;
+  }
+  .gallery-invite-card {
+    padding: 1.8rem 1.25rem;
+  }
+  .gallery-portal-btn {
+    width: 100%;
+    padding: 0.9rem 1.25rem;
+    font-size: 0.98rem;
   }
 }
+
+/* --- Highlighting Sri Lakshmi Ganapathi Swamy Photos on Homepage --- */
+.featured-photos-highlight {
+  background: linear-gradient(135deg, #ffffff 0%, #fffdf7 100%);
+  border: 3px solid var(--gold, #d4af37);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.25), 0 4px 15px rgba(114, 18, 20, 0.15);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.featured-photos-highlight:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 18px 45px rgba(212, 175, 55, 0.35), 0 8px 25px rgba(114, 18, 20, 0.2);
+  border-color: var(--maroon, #721214);
+}
+
+.highlight-badge-ribbon {
+  display: inline-block;
+  background: linear-gradient(135deg, #d4af37 0%, #b38b1f 100%);
+  color: #ffffff;
+  padding: 0.35rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 3px 8px rgba(179, 139, 31, 0.4);
+}
+
+.highlighted-title {
+  color: var(--maroon, #721214);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.highlight-gold-btn {
+  background: linear-gradient(135deg, #721214 0%, #400708 100%) !important;
+  border: 2.5px solid #d4af37 !important;
+  color: #ffffff !important;
+  padding: 1.1rem 2.2rem !important;
+  font-size: 1.12rem !important;
+  box-shadow: 0 6px 20px rgba(114, 18, 20, 0.35) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.highlight-gold-btn:hover {
+  background: linear-gradient(135deg, #d4af37 0%, #a87e14 100%) !important;
+  color: #3b0507 !important;
+  border-color: #721214 !important;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5) !important;
+  transform: translateY(-3px) scale(1.02);
+}
+
+.highlight-features-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+
+.feat-tag {
+  background: #fbf5e6;
+  border: 1px solid #e0ce9f;
+  color: #5c3c0a;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* --- Full Length & Width Background Image Styles for Individual Pages --- */
+.individual-page-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center top;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.individual-page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(253, 251, 247, 0.84) 0%, rgba(254, 243, 199, 0.76) 50%, rgba(253, 251, 247, 0.90) 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+
 

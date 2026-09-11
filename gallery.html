@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ఉత్సవాల గ్యాలరీ | శ్రీ లక్ష్మీ గణపతి స్వామి – గాంధీబొమ్మ సెంటర్, వెలివెన్ను</title>
+  <meta name="description" content="శ్రీ లక్ష్మీ గణపతి స్వామి వారి ఉత్సవాల గ్యాలరీ - 1963 నుండి నేటి వరకు చారిత్రక వినాయక చవితి మహోత్సవాల దివ్య దర్శనం, అలంకరణల ఫోటోలు మరియు వీడియోలు.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo/committee-logo.png">
+
+  <!-- Google Fonts: Noto Sans Telugu & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Dedicated Gallery Page Specific Styles */
+    .gallery-page-body {
+      background: transparent !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Full Length & Width Background Image */
+    .individual-page-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center top;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .individual-page-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(253, 251, 247, 0.84) 0%, rgba(254, 243, 199, 0.76) 50%, rgba(253, 251, 247, 0.90) 100%);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .gallery-top-nav {
+      background: linear-gradient(135deg, var(--maroon, #721214) 0%, var(--maroon-dark, #490b0c) 100%);
+      color: #ffffff;
+      padding: 0.85rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+      border-bottom: 2px solid var(--gold, #d4af37);
+    }
+
+    .gallery-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 0.55rem 1rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .back-home-btn:hover {
+      background: var(--gold, #d4af37);
+      color: var(--maroon-dark, #490b0c);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .gallery-hero-header {
+      text-align: center;
+      padding: 2.2rem 1rem 1.5rem 1rem;
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.12) 0%, rgba(253, 251, 247, 0) 100%);
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
+    }
+
+    .gallery-logo-wrap {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .gallery-committee-logo {
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(114, 18, 20, 0.2);
+      border: 2px solid var(--gold, #d4af37);
+    }
+
+    .gallery-main-title {
+      font-size: 2rem;
+      color: var(--maroon, #721214);
+      margin: 0.25rem 0;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .gallery-subtitle {
+      font-size: 1.25rem;
+      color: var(--gold-dark, #997819);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .gallery-committee-tag {
+      font-size: 0.92rem;
+      color: var(--text-muted, #666);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Year Selection Control Card */
+    .year-selector-section {
+      max-width: 900px;
+      margin: 1.5rem auto 1rem auto;
+      padding: 0 1rem;
+    }
+
+    .year-control-card {
+      background: #ffffff;
+      border: 2px solid var(--gold-light, #f0e6c8);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .year-control-label {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--maroon, #721214);
+      margin-bottom: 0.75rem;
+    }
+
+    .select-wrap {
+      max-width: 380px;
+      margin: 0 auto 1rem auto;
+      position: relative;
+    }
+
+    .gallery-year-select {
+      width: 100%;
+      padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--maroon, #721214);
+      background-color: #fdfaf2;
+      border: 2px solid var(--gold, #d4af37);
+      border-radius: 50px;
+      appearance: none;
+      cursor: pointer;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+      font-family: inherit;
+    }
+
+    .gallery-year-select:focus {
+      outline: none;
+      border-color: var(--maroon, #721214);
+      box-shadow: 0 0 0 3px rgba(114, 18, 20, 0.15);
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--gold-dark, #997819);
+      font-size: 1rem;
+    }
+
+    /* Fast Year Pills Bar */
+    .year-pills-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.35rem 0.25rem 0.75rem 0.25rem;
+      justify-content: flex-start;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (min-width: 768px) {
+      .year-pills-bar {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    .year-pill-btn {
+      background: #fdfaf2;
+      border: 1px solid var(--gold-light, #e4d3a8);
+      color: var(--text-dark, #2b1e16);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 50px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .year-pill-btn:hover {
+      background: var(--gold-light, #f0e6c8);
+      color: var(--maroon, #721214);
+    }
+
+    .year-pill-btn.active {
+      background: var(--maroon, #721214);
+      color: #ffffff;
+      border-color: var(--maroon, #721214);
+      box-shadow: 0 2px 6px rgba(114, 18, 20, 0.3);
+    }
+
+    /* Active Year Heading Banner */
+    .active-year-banner {
+      max-width: 1200px;
+      margin: 1.5rem auto 1rem auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      border-bottom: 2px solid var(--gold-light, #f0e6c8);
+      padding-bottom: 0.75rem;
+    }
+
+    .active-year-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--maroon, #721214);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .active-year-count {
+      font-size: 0.92rem;
+      background: var(--gold-light, #f0e6c8);
+      color: var(--maroon-dark, #490b0c);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-weight: 700;
+    }
+
+    /* Media Sections */
+    .media-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3rem 1rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .media-group-heading {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--maroon, #721214);
+      margin: 1.5rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Photo Grid & Cards (Side-by-Side Responsive Layout) */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    @media (min-width: 520px) {
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .photo-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.6rem;
+      }
+    }
+
+    .gallery-photo-card {
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--gold-light, #e8dcbf);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .photo-year-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, var(--maroon, #721214) 0%, #4a090b 100%);
+      color: #ffd700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: 1.5px solid var(--gold, #d4af37);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+    }
+
+    .gallery-photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(114, 18, 20, 0.15);
+    }
+
+    .photo-thumb-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 110%; /* 1:1.1 aspect ratio */
+      background: #f4ede1;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .photo-thumb-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-photo-card:hover .photo-thumb-wrap img {
+      transform: scale(1.04);
+    }
+
+    .photo-zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #ffffff;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .photo-details-body {
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .photo-title-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark, #2b1e16);
+      margin: 0 0 0.4rem 0;
+      line-height: 1.35;
+    }
+
+    .photo-desc-text {
+      font-size: 0.88rem;
+      color: var(--text-muted, #666);
+      margin: 0 0 0.85rem 0;
+      line-height: 1.45;
+    }
+
+    /* DOWNLOAD BUTTON */
+    .photo-download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.65rem 1rem;
+      background: linear-gradient(135deg, var(--maroon, #721214) 0%, var(--maroon-dark, #500c0e) 100%);
+      color: #ffffff;
+      border: 1px solid var(--gold, #d4af37);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(114, 18, 20, 0.2);
+      font-family: inherit;
+    }
+
+    .photo-download-btn:hover {
+      background: linear-gradient(135deg, var(--gold, #d4af37) 0%, var(--gold-dark, #b38b1f) 100%);
+      color: var(--maroon-dark, #490b0c);
+      border-color: var(--maroon, #721214);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+    }
+
+    .photo-download-btn:active {
+      transform: scale(0.98);
+    }
+
+    .photo-download-btn .dl-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* Video Player Cards */
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .gallery-video-card {
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--gold-light, #e8dcbf);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      padding: 0.75rem;
+    }
+
+    .gallery-video-card video {
+      width: 100%;
+      border-radius: 8px;
+      background: #000000;
+      max-height: 380px;
+    }
+
+    /* Empty state */
+    .no-media-box {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 2px dashed var(--gold-light, #e8dcbf);
+      margin: 1.5rem 0;
+    }
+
+    .no-media-box p {
+      font-size: 1.1rem;
+      color: var(--text-muted, #666);
+      margin: 0;
+    }
+
+    /* Lightbox modal with download button */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 5, 2, 0.92);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-container {
+      position: relative;
+      max-width: 92vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      border: 2px solid var(--gold, #d4af37);
+    }
+
+    .lightbox-footer {
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      color: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .lightbox-caption {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .lightbox-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gold, #d4af37);
+      color: var(--maroon-dark, #490b0c);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .lightbox-download-btn:hover {
+      background: #ffffff;
+      transform: scale(1.04);
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      color: #ffffff;
+      font-size: 1.75rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: var(--gold, #d4af37);
+      color: var(--maroon-dark, #490b0c);
+    }
+
+    .lightbox-nav-btn.prev {
+      left: -20px;
+    }
+
+    .lightbox-nav-btn.next {
+      right: -20px;
+    }
+
+    @media (max-width: 600px) {
+      .lightbox-nav-btn.prev { left: 4px; }
+      .lightbox-nav-btn.next { right: 4px; }
+      .lightbox-close-btn { top: -40px; right: 4px; }
+    }
+  </style>
+</head>
+<body class="gallery-page-body">
+
+  <!-- Full Length and Width Background Image -->
+  <img src="assets/hero.jpg" class="individual-page-bg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దేవస్థానం" loading="eager">
+  <div class="individual-page-overlay"></div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="gallery-top-nav">
+    <div class="gallery-nav-inner">
+      <a href="index.html" class="back-home-btn" id="backToHomeBtn" title="ప్రధాన పేజీకి తిరిగి వెళ్లండి">
+        <span>←</span>
+        <span>హోమ్కు తిరిగి వెళ్లండి</span>
+      </a>
+
+      <!-- Music Player Button for continuity -->
+      <button id="musicBtn" class="music-btn" title="భక్తి సంగీతం ప్లే / పాజ్" aria-label="భక్తి సంగీతం" style="padding: 0.45rem 0.85rem; font-size: 0.85rem;">
+        <span id="musicIcon" class="music-btn-icon">▶</span>
+        <span id="musicLabel">భక్తి సంగీతం</span>
+      </button>
+
+      <!-- Audio Element -->
+      <audio id="devotionalAudio" loop preload="auto">
+        <source src="assets/music/devotional.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </header>
+
+  <!-- Gallery Hero Branding Area -->
+  <div class="gallery-hero-header">
+    <div class="gallery-logo-wrap">
+      <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దేవస్థానం" class="gallery-committee-logo">
+    </div>
+    <h1 class="gallery-main-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
+    <div class="gallery-subtitle">ఉత్సవాల గ్యాలరీ</div>
+    <p class="gallery-committee-tag">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
+  </div>
+
+  <!-- Year Selection Section -->
+  <section class="year-selector-section">
+    <div class="year-control-card">
+      <label for="galleryYearSelect" class="year-control-label">
+        📅 ఉత్సవాల సంవత్సరాన్ని ఎంచుకోండి (Select Festival Year)
+      </label>
+
+      <!-- Dropdown selector -->
+      <div class="select-wrap">
+        <select id="galleryYearSelect" class="gallery-year-select" aria-label="ఉత్సవాల సంవత్సరాన్ని ఎంచుకోండి">
+          <!-- Dynamically populated -->
+          <option value="" disabled selected>సంవత్సరం లోడ్ అవుతోంది...</option>
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
+
+      <!-- Quick-tap Year Pills Strip -->
+      <div class="year-pills-bar" id="yearPillsContainer">
+        <!-- Dynamically populated pills -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Display Container (Renders All Photos Side-by-Side Year-Wise) -->
+  <main class="media-container" id="mediaContainer">
+    <div id="galleryAllYearsContainer">
+      <!-- Year-wise side-by-side grids rendered by gallery.js -->
+    </div>
+
+    <!-- Loading / Empty State Message Box -->
+    <div id="loadingStatusBox" class="no-media-box">
+      <p>గ్యాలరీ చిత్రాలు లోడ్ అవుతున్నాయి...</p>
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="ఫోటో వ్యూయర్">
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" id="lightboxClose" title="మూసివేయండి">&times;</button>
+      <button class="lightbox-nav-btn prev" id="lightboxPrev" title="మునుపటి ఫోటో">&#10094;</button>
+      <button class="lightbox-nav-btn next" id="lightboxNext" title="తరువాతి ఫోటో">&#10095;</button>
+
+      <img id="lightboxImg" class="lightbox-img" src="" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దివ్య దర్శనం">
+
+      <div class="lightbox-footer">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <button class="lightbox-download-btn" id="lightboxDownloadBtn" title="ఫోటోను డౌన్లోడ్ చేయండి">
+          <span>⬇</span> డౌన్లోడ్
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Traditional Footer -->
+  <footer class="footer" style="margin-top: 3rem;">
+    <div class="container text-center">
+      <div class="footer-logo">
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="footer-logo-img">
+        <h3>శ్రీ లక్ష్మీ గణపతి ఉత్సవ కమిటీ</h3>
+        <p>గాంధీబొమ్మ సెంటర్, వెలివెన్ను, పశ్చిమ గోదావరి జిల్లా</p>
+      </div>
+      <div class="footer-bottom" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(212,175,55,0.2);">
+        <p>© 2026 శ్రీ లక్ష్మీ గణపతి స్వామి ఉత్సవ కమిటీ. సర్వహక్కులు ప్రత్యేకించబడినవి.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase CDN Script (Optional / Non-blocking) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Dedicated Gallery JavaScript -->
+  <script src="gallery.js"></script>
+</body>
+</html>
