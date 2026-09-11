@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="te">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>నిర్వాహక విభాగం (Admin Panel) | Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="icon" href="../assets/logo/committee-logo.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="admin-body">
+
+  <!-- ==================================================================
+       VIEW 1: ADMIN LOGIN VIEW
+       ================================================================== -->
+  <div id="adminLoginView" class="admin-login-wrapper" style="display: flex;">
+    <div class="admin-login-card">
+      <div class="admin-login-om">🕉️</div>
+      <h1 class="admin-login-title">నిర్వాహకుల లాగిన్ (Admin Panel)</h1>
+      <p class="admin-login-subtitle">శ్రీ లక్ష్మీ గణపతి స్వామి వారి ఉత్సవాల నిర్వహణ పోర్టల్</p>
+      <div class="admin-login-committee">
+        Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+      </div>
+
+      <div id="loginErrorMsg" class="login-error-alert" style="display: none;"></div>
+
+      <form id="adminLoginForm">
+        <div class="admin-form-group">
+          <label for="adminEmail">ఈమెయిల్ / యూజర్‌నేమ్ (Email or Username)</label>
+          <input type="text" id="adminEmail" class="admin-input" placeholder="Enter Mail-ID" required
+            autocomplete="username">
+        </div>
+
+        <div class="admin-form-group">
+          <label for="adminPassword">రహస్య సంకేతపదం (Password)</label>
+          <input type="password" id="adminPassword" class="admin-input" placeholder="••••••••" required
+            autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="admin-btn-primary">
+          🔐 లాగిన్ అవ్వండి (Sign In)
+        </button>
+      </form>
+
+      <div style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--admin-text-muted);">
+        (డెమో ఖాతా: <code>admin</code> / పాస్‌వర్డ్: <code>ganapathi2026</code>)
+      </div>
+
+      <a href="../index.html" class="login-back-link">
+        &larr; వెబ్‌సైట్ ప్రధాన పేజీకి తిరిగి వెళ్లండి
+      </a>
+    </div>
+  </div>
+
+  <!-- ==================================================================
+       VIEW 2: ADMIN DASHBOARD VIEW
+       ================================================================== -->
+  <div id="adminDashboardView" style="display: none;">
+    <!-- Top Admin Navbar -->
+    <header class="admin-navbar">
+      <div class="admin-nav-brand">
+        <img src="../assets/logo/committee-logo.png" alt="కమిటీ లోగో"
+          style="height: 42px; width: 42px; object-fit: contain; border-radius: 50%; background: #ffffff; padding: 2px;">
+        <div>
+          <div class="admin-brand-title">శ్రీ లక్ష్మీ గణపతి స్వామి – అడ్మిన్ ప్యానెల్</div>
+          <div class="admin-brand-committee">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-nav-right">
+        <span class="admin-user-badge" id="adminUserEmail">లాగిన్ అయి ఉన్నారు</span>
+        <a href="../index.html" class="btn-view-site" target="_blank">🌐 వెబ్‌సైట్ చూడండి</a>
+        <button onclick="handleAdminLogout()" class="btn-admin-logout">లాగౌట్ (Logout)</button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="admin-container">
+
+      <!-- Quick Stats Bar -->
+      <div class="admin-metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">📅</div>
+          <div>
+            <div class="metric-value" id="metricYears">0</div>
+            <div class="metric-label">నమోదైన సంవత్సరాలు</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📷</div>
+          <div>
+            <div class="metric-value" id="metricPhotos">0</div>
+            <div class="metric-label">గ్యాలరీ ఫోటోలు</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🎥</div>
+          <div>
+            <div class="metric-value" id="metricVideos">0</div>
+            <div class="metric-label">ఉత్సవ వీడియోలు</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📿</div>
+          <div>
+            <div class="metric-value" id="metricPoojas">0</div>
+            <div class="metric-label">నిత్య పూజలు</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📜</div>
+          <div>
+            <div class="metric-value" id="metricArticles">0</div>
+            <div class="metric-label">ధార్మిక వ్యాసాలు</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <nav class="admin-tabs-nav">
+        <button class="admin-nav-item active" data-tab="gallery">
+          <span>📸</span> గ్యాలరీ & మీడియా (1980+)
+        </button>
+        <button class="admin-nav-item" data-tab="pooja">
+          <span>📿</span> నిత్య పూజలు
+        </button>
+        <button class="admin-nav-item" data-tab="settings">
+          <span>⚙️</span> హోమ్‌పేజీ సెట్టింగ్‌లు
+        </button>
+        <button class="admin-nav-item" data-tab="dharma">
+          <span>🕉️</span> హిందూ ధర్మం & సంస్కృతి
+        </button>
+        <button class="admin-nav-item" data-tab="vidhanam-info">
+          <span>🥥</span> పూజా విధానం (శాశ్వత సమాచారం)
+        </button>
+      </nav>
+
+      <!-- Tab Contents Container -->
+      <div class="admin-tab-content">
+
+        <!-- ==================================================================
+             TAB 1: GALLERY & STORAGE (1980 TO CURRENT/FUTURE YEARS)
+             PRIMARY SUPABASE + GITHUB PROJECT BACKUP WORKFLOW
+             ================================================================== -->
+        <div class="admin-tab-pane active" id="tab-gallery">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">ఉత్సవ గ్యాలరీ & మీడియా నిర్వహణ (1980 &rarr; నేటి వరకు)</h2>
+              <p class="pane-subtitle">Supabase ప్రాథమిక స్టోరేజ్ మరియు గిట్‌హబ్ స్టాటిక్ ప్రాజెక్ట్ బ్యాకప్ వ్యవస్థ</p>
+            </div>
+          </div>
+
+          <!-- Architecture & Workflow Notice Card -->
+          <div class="backup-guidance-box">
+            <div class="backup-guidance-title">
+              <span>🏛️</span> గ్యాలరీ ప్రాథమిక స్టోరేజ్ & ప్రాజెక్ట్ బ్యాకప్ విధానం (Workflow)
+            </div>
+            <p>
+              1. <strong>Supabase = ప్రాథమిక డైనమిక్ స్టోరేజ్:</strong> అడ్మిన్ ప్యానెల్ ద్వారా అప్‌లోడ్ చేసే మీడియా
+              నేరుగా Supabase Storage లో భద్రపరచబడి పబ్లిక్ గ్యాలరీలో కనిపిస్తుంది.<br>
+              2. <strong>ప్రాజెక్ట్/GitHub = స్టాటిక్ బ్యాకప్ సోర్స్:</strong> ముఖ్యమైన ఫోటోల కోసం ప్రాజెక్ట్‌లో బ్యాకప్
+              ఉంచవచ్చు.
+            </p>
+            <div style="margin-top: 0.6rem; font-weight: 600; color: #854d0e;">స్టాటిక్ బ్యాకప్ ఉంచే సరైన పద్ధతి:</div>
+            <ol class="backup-step-list">
+              <li>క్రింది ఫారమ్ ద్వారా ఫోటోను అప్‌లోడ్ చేయండి (Supabaseలోకి చేరుతుంది).</li>
+              <li>"Static Backup Required" ఎంచుకుంటే అదే పేరుతో ఫోటో ఆటోమేటిక్‌గా డౌన్‌లోడ్ అవుతుంది.</li>
+              <li>మీ ప్రాజెక్ట్‌లో <code>assets/gallery/&lt;year&gt;/</code> ఫోల్డర్ సృష్టించి (ముందే ఖాళీ ఫోల్డర్లు
+                సృష్టించవద్దు), అందులో ఆ ఫోటోను ఉంచండి.</li>
+              <li><code>git add .</code>, <code>git commit -m "Add backup"</code> మరియు <code>git push</code> చేయండి.
+              </li>
+              <li>హోస్టింగ్ ఆటోమేటిక్‌గా రీడిప్లాయ్ అయి బ్యాకప్ అందుబాటులోకి వస్తుంది.</li>
+            </ol>
+            <small style="color: #a16207;">
+              * గమనిక: బ్రౌజర్ నేరుగా గిట్‌హబ్ లేదా హోస్టింగ్ ఫైల్‌సిస్టమ్‌లోకి రాయలేదు. అందువల్ల ఈ సులభమైన మాన్యువల్
+              Git వర్క్‌ఫ్లో వర్తిస్తుంది.
+            </small>
+          </div>
+
+          <!-- Datalist for 1980+ Years -->
+          <datalist id="galleryYearsDatalist"></datalist>
+
+          <div class="admin-grid-2">
+            <!-- Upload Photo Card -->
+            <div class="admin-card">
+              <h3 class="admin-card-title">📷 ఫోటో అప్‌లోడ్ (Upload Photo)</h3>
+              <form id="uploadPhotoForm" onsubmit="uploadGalleryPhoto(event)">
+                <div class="admin-form-group">
+                  <label for="photoUploadYear">ఉత్సవ సంవత్సరం (Year: 1980 నుండి ఏ సంవత్సరమైనా)</label>
+                  <input list="galleryYearsDatalist" id="photoUploadYear" type="number" min="1980" max="2099"
+                    class="admin-input" placeholder="ఉదా: 1985, 1998, 2026..." required>
+                  <small style="color: var(--admin-text-muted); font-size: 0.8rem;">1980 నుండి ప్రస్తుత/భవిష్యత్
+                    సంవత్సరం వరకు ఏదైనా ఎంచుకోవచ్చు.</small>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="photoCaption">క్యాప్షన్ / శీర్షిక (Caption - Required)</label>
+                  <input type="text" id="photoCaption" class="admin-input"
+                    placeholder="ఉదా: వినాయక చవితి ఉత్సవాలు - 1998" required>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="photoFileInput">చిత్ర ఫైల్ ఎంచుకోండి (Image File - Required)</label>
+                  <input type="file" id="photoFileInput" class="admin-input" accept="image/*" required>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+                  <div class="checkbox-group">
+                    <input type="checkbox" id="photoPublished" checked>
+                    <label for="photoPublished"><strong>వెబ్‌సైట్‌లో ప్రచురించు (Publish)</strong></label>
+                  </div>
+                  <div class="checkbox-group">
+                    <input type="checkbox" id="photoBackupRequired">
+                    <label for="photoBackupRequired">
+                      <strong>స్టాటిక్ బ్యాకప్ అవసరం (Static Backup Required)</strong><br>
+                      <small style="color: var(--admin-text-muted);">దీనిని ఎంచుకుంటే ప్రాజెక్ట్ బ్యాకప్ కొరకు ఫైల్
+                        ఆటోమేటిక్‌గా డౌన్‌లోడ్ అవుతుంది.</small>
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="admin-btn-add">
+                  ⬆️ ఫోటోను అప్‌లోడ్ చేయండి
+                </button>
+              </form>
+            </div>
+
+            <!-- Add Video Card -->
+            <div class="admin-card">
+              <h3 class="admin-card-title">🎥 వీడియో జోడించండి (Add Video)</h3>
+              <form id="addVideoForm" onsubmit="addGalleryVideo(event)">
+                <div class="admin-form-group">
+                  <label for="videoUploadYear">ఉత్సవ సంవత్సరం (1980 నుండి ఏ సంవత్సరమైనా)</label>
+                  <input list="galleryYearsDatalist" id="videoUploadYear" type="number" min="1980" max="2099"
+                    class="admin-input" placeholder="ఉదా: 2025 లేదా 2026" required>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="videoCaption">వీడియో క్యాప్షన్ / శీర్షిక (Caption - Required)</label>
+                  <input type="text" id="videoCaption" class="admin-input" placeholder="గణేష్ శోభాయాత్ర వేడుకలు"
+                    required>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="videoDesc">వివరణ (Optional Description)</label>
+                  <input type="text" id="videoDesc" class="admin-input" placeholder="మేళతాళాలు, కోలాటాలు, భక్తుల సందడి">
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="videoTypeSelect">వీడియో రకం (Video Type)</label>
+                  <select id="videoTypeSelect" class="admin-select"
+                    onchange="document.getElementById('videoUrlGroup').style.display = this.value === 'url' ? 'block' : 'none'; document.getElementById('videoFileGroup').style.display = this.value === 'file' ? 'block' : 'none';">
+                    <option value="url">యూట్యూబ్ లేదా బాహ్య లింక్ (YouTube / External Link)</option>
+                    <option value="file">వీడియో ఫైల్ అప్‌లోడ్ (Supabase MP4 Upload)</option>
+                  </select>
+                </div>
+
+                <div class="admin-form-group" id="videoUrlGroup">
+                  <label for="videoUrlInput">వీడియో URL / YouTube Embed Link</label>
+                  <input type="url" id="videoUrlInput" class="admin-input"
+                    placeholder="https://www.youtube.com/embed/...">
+                </div>
+
+                <div class="admin-form-group" id="videoFileGroup" style="display: none;">
+                  <label for="videoFileInput">వీడియో ఫైల్ ఎంచుకోండి (MP4)</label>
+                  <input type="file" id="videoFileInput" class="admin-input" accept="video/mp4,video/webm">
+                </div>
+
+                <div class="checkbox-group" style="margin-bottom: 1.25rem;">
+                  <input type="checkbox" id="videoPublished" checked>
+                  <label for="videoPublished"><strong>వెబ్‌సైట్‌లో ప్రచురించు (Publish)</strong></label>
+                </div>
+
+                <button type="submit" class="admin-btn-add">
+                  ➕ వీడియోను భద్రపరచండి
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Existing Media List -->
+          <h3 class="admin-card-title" style="margin-top: 1.5rem;">🗂️ నమోదైన మీడియా సమాహారం (సంవత్సరాల వారీగా)</h3>
+          <div id="adminGalleryYearsContainer">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             TAB 2: DAILY POOJA
+             ================================================================== -->
+        <div class="admin-tab-pane" id="tab-pooja">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">నిత్య పూజా కార్యక్రమాల నిర్వహణ</h2>
+              <p class="pane-subtitle">వినాయక పందిరి వద్ద జరిగే పూజలు, సమయాలు మరియు ప్రసాదాల వివరాలు</p>
+            </div>
+          </div>
+
+          <!-- Add Pooja Form Card -->
+          <div class="admin-card">
+            <h3 class="admin-card-title">➕ నూతన పూజా కార్యక్రమాన్ని జోడించండి</h3>
+            <form id="addPoojaForm" onsubmit="addDailyPooja(event)">
+              <div class="admin-grid-3">
+                <div class="admin-form-group">
+                  <label for="pooja_date">తేదీ (ఉదా: 14 సెప్టెంబర్ 2026)</label>
+                  <input type="text" id="pooja_date" name="pooja_date" class="admin-input" required
+                    placeholder="14 సెప్టెంబర్ 2026">
+                </div>
+                <div class="admin-form-group">
+                  <label for="pooja_time">సమయం (ఉదా: ఉదయం 8:30 గం॥)</label>
+                  <input type="text" id="pooja_time" name="pooja_time" class="admin-input" required
+                    placeholder="ఉదయం 8:30 గం॥">
+                </div>
+                <div class="admin-form-group">
+                  <label for="title">కార్యక్రమ నామము (Title)</label>
+                  <input type="text" id="title" name="title" class="admin-input" required
+                    placeholder="శ్రీ గణపతి ప్రతిష్ఠాపన పూజ">
+                </div>
+              </div>
+
+              <div class="admin-grid-2">
+                <div class="admin-form-group">
+                  <label for="description">వివరాలు (Description)</label>
+                  <input type="text" id="description" name="description" class="admin-input"
+                    placeholder="శాస్త్రోక్తంగా ప్రాణ ప్రతిష్ఠ మరియు కలశ స్థాపన">
+                </div>
+                <div class="admin-form-group">
+                  <label for="special_info">ప్రసాదం / విశేషాలు (Special Info / Prasadam)</label>
+                  <input type="text" id="special_info" name="special_info" class="admin-input"
+                    placeholder="మోదకాలు, పంచామృతం ప్రసాద వితరణ">
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 2rem; margin-bottom: 1.25rem;">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="is_today" name="is_today">
+                  <label for="is_today">ఇది "నేటి పూజ" (Today's Highlight) గా చూపించు</label>
+                </div>
+                <div class="checkbox-group">
+                  <input type="checkbox" id="is_published" name="is_published" checked>
+                  <label for="is_published">వెబ్‌సైట్‌లో ప్రచురించు (Publish)</label>
+                </div>
+              </div>
+
+              <button type="submit" class="admin-btn-add">
+                ➕ పూజను జోడించండి
+              </button>
+            </form>
+          </div>
+
+          <!-- Pooja Schedule Table -->
+          <h3 class="admin-card-title">📋 ప్రస్తుతం నమోదైన పూజా కార్యక్రమాలు</h3>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">తేదీ & సమయం</th>
+                  <th style="width: 30%;">కార్యక్రమం</th>
+                  <th style="width: 35%;">వివరాలు</th>
+                  <th style="width: 10%;">చర్య</th>
+                </tr>
+              </thead>
+              <tbody id="adminPoojaTableBody">
+                <!-- Dynamically rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             TAB 3: SETTINGS
+             ================================================================== -->
+        <div class="admin-tab-pane" id="tab-settings">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">వెబ్‌సైట్ & హోమ్‌పేజీ సెట్టింగ్‌లు</h2>
+              <p class="pane-subtitle">కమిటీ వివరాలు, కౌంట్‌డౌన్ మరియు హోమ్‌పేజీ సందేశాలు నిర్వహించండి</p>
+            </div>
+          </div>
+
+          <form id="adminSettingsForm" onsubmit="saveAdminSettings(event)">
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label for="committee_name">కమిటీ అధికారిక నామము (Committee Name)</label>
+                <input type="text" id="committee_name" name="committee_name" class="admin-input" required>
+              </div>
+              <div class="admin-form-group">
+                <label for="location">స్థలం (Location)</label>
+                <input type="text" id="location" name="location" class="admin-input" required>
+              </div>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label for="hero_title">హీరో విభాగం శీర్షిక (Hero Title)</label>
+                <input type="text" id="hero_title" name="hero_title" class="admin-input" required>
+              </div>
+              <div class="admin-form-group">
+                <label for="hero_subtitle">హీరో ఉప శీర్షిక (Hero Subtitle)</label>
+                <input type="text" id="hero_subtitle" name="hero_subtitle" class="admin-input" required>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="countdown_date">ఉత్సవాల ప్రారంభ సమయం / కౌంట్‌డౌన్ (ISO లేదా YYYY-MM-DDTHH:MM)</label>
+              <input type="datetime-local" id="countdown_date" name="countdown_date" class="admin-input">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="homepage_description">హోమ్‌పేజీ ప్రధాన వివరణ (Homepage Description)</label>
+              <textarea id="homepage_description" name="homepage_description" rows="3"
+                class="admin-textarea"></textarea>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="announcement">విశేష ప్రకటన (Special Announcement / Ticker)</label>
+              <input type="text" id="announcement" name="announcement" class="admin-input"
+                placeholder="ఉదా: 2026 సెప్టెంబర్ 14న ఉత్సవాల ప్రారంభం...">
+            </div>
+
+            <button type="submit" class="admin-btn-save">
+              <span>💾</span> సెట్టింగ్‌లను భద్రపరచండి
+            </button>
+          </form>
+        </div>
+
+        <!-- ==================================================================
+             TAB 4: DHARMA & SAMSKRUTHI
+             ================================================================== -->
+        <div class="admin-tab-pane" id="tab-dharma">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">హిందూ ధర్మం & సంస్కృతి వ్యాసాల నిర్వహణ</h2>
+              <p class="pane-subtitle">ధార్మిక విశేషాలు, సంప్రదాయాలు మరియు పండుగల విశిష్టత వ్యాసాలు</p>
+            </div>
+          </div>
+
+          <!-- Add Article Card -->
+          <div class="admin-card">
+            <h3 class="admin-card-title">✍️ నూతన వ్యాసాన్ని ప్రచురించండి</h3>
+            <form id="addArticleForm" onsubmit="addDharmaArticle(event)">
+              <div class="admin-grid-2">
+                <div class="admin-form-group">
+                  <label for="articleTitle">వ్యాసం శీర్షిక (Article Title)</label>
+                  <input type="text" id="articleTitle" class="admin-input" required
+                    placeholder="మట్టి వినాయకుడి విశిష్టత & పర్యావరణ పరిరక్షణ">
+                </div>
+                <div class="admin-form-group">
+                  <label for="articleCategory">వర్గం (Category)</label>
+                  <select id="articleCategory" class="admin-select" required>
+                    <option value="సనాతన ధర్మం">సనాతన ధర్మం</option>
+                    <option value="పూజా విశిష్టత">పూజా విశిష్టత</option>
+                    <option value="పర్యావరణం">పర్యావరణం & సంప్రదాయం</option>
+                    <option value="ఆధ్యాత్మికం">ఆధ్యాత్మికం</option>
+                    <option value="కమిటీ విశేషాలు">కమిటీ విశేషాలు</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="articleImageFile">కవర్ చిత్రం (Optional Cover Image)</label>
+                <input type="file" id="articleImageFile" class="admin-input" accept="image/*">
+              </div>
+
+              <div class="admin-form-group">
+                <label for="articleContent">వ్యాసం పూర్తి పాఠం (Article Content)</label>
+                <textarea id="articleContent" rows="6" class="admin-textarea" required
+                  placeholder="వ్యాసం వివరాలు ఇక్కడ రాయండి..."></textarea>
+              </div>
+
+              <button type="submit" class="admin-btn-add">
+                ✍️ వ్యాసాన్ని ప్రచురించండి
+              </button>
+            </form>
+          </div>
+
+          <!-- Articles Table -->
+          <h3 class="admin-card-title">📖 ప్రచురించబడిన వ్యాసాల జాబితా</h3>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 10%;">చిత్రం</th>
+                  <th style="width: 25%;">శీర్షిక & వర్గం</th>
+                  <th style="width: 53%;">సారాంశం</th>
+                  <th style="width: 12%;">చర్య</th>
+                </tr>
+              </thead>
+              <tbody id="adminDharmaTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             TAB 5: POOJA VIDHANAM (PERMANENT OFFICIAL CONTENT)
+             ================================================================== -->
+        <div class="admin-tab-pane" id="tab-vidhanam-info">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">వినాయక చవితి పూజా విధానం & సంపూర్ణ వ్రతకల్పం</h2>
+              <p class="pane-subtitle">శాశ్వత అధికారిక కంటెంట్ (Permanent Static Content)</p>
+            </div>
+          </div>
+
+          <div class="admin-card" style="border-left: 4px solid var(--admin-gold); background: #fffcf5;">
+            <h3 class="admin-card-title">ℹ️ శాశ్వత పూజా విధానం గమనిక</h3>
+            <p style="font-size: 0.98rem; line-height: 1.7; color: var(--admin-text-main); margin-bottom: 1.25rem;">
+              వినాయక చవితి సంపూర్ణ పూజా విధానం, సంపూర్ణ వ్రతకల్పం, షోడశోపచార పూజ, ఏకవింశతి పత్రపూజ, అష్టోత్తర శతనామావళి,
+              దండకం మరియు శమంతకోపాఖ్యానం శాశ్వతంగా వెబ్‌సైట్‌లో నిక్షిప్తమై ఉన్నాయి. ఇది భక్తుల సౌలభ్యం కొరకు ఎటువంటి
+              మార్పులు లేదా డిలీషన్‌లకు తావులేకుండా స్థిరంగా (Static) ఉంచబడింది. దీనిని అడ్మిన్ ప్యానెల్ ద్వారా
+              సవరించవలసిన అవసరం లేదు.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="../pooja-vidhanam.html" target="_blank" class="admin-btn-save" style="text-decoration: none;">
+                <span>👁️</span> వెబ్‌సైట్‌లో సంపూర్ణ పూజా విధానాన్ని వీక్షించండి (View Page)
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

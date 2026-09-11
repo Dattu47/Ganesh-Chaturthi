@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు | Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</title>
+  <meta name="description" content="శ్రీ లక్ష్మీ గణపతి స్వామి వార్షిక వినాయక చవితి ఉత్సవాలు. Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu. పూజా కార్యక్రమాలు, ఉత్సవ గ్యాలరీ, సంపూర్ణ పూజా విధానం మరియు సంస్కృతి.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/logo/committee-logo.png" type="image/png">
+  <!-- Supabase JS Client v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Committee Top Header Banner -->
+  <div class="top-committee-banner">
+    <div class="container banner-inner">
+      <span class="banner-icon">🕉️</span>
+      <span class="committee-title-text">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</span>
+    </div>
+  </div>
+
+  <!-- Sticky Main Navigation Bar -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" aria-label="హోమ్ పేజీ">
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="header-logo-img">
+        <div class="nav-logo-group">
+          <span class="nav-logo-main">శ్రీ లక్ష్మీ గణపతి స్వామి</span>
+          <span class="nav-logo-sub">వినాయక చవితి ఉత్సవాలు</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links as Smooth-Scroll Shortcuts (Clean Public Navigation) -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link active">హోమ్</a></li>
+          <li><a href="#daily-pooja" class="nav-link">నిత్య పూజ</a></li>
+          <li><a href="#gallery" class="nav-link">గ్యాలరీ</a></li>
+          <li><a href="pooja-vidhanam.html" class="nav-link">పూజా విధానం 📜</a></li>
+          <li><a href="#dharmam" class="nav-link">హిందూ ధర్మం & సంస్కృతి</a></li>
+        </ul>
+      </nav>
+
+      <!-- Music Player & Mobile Hamburger -->
+      <div class="nav-actions">
+        <!-- Pure HTML5 Audio Element -->
+        <audio id="devotionalAudio" loop preload="auto">
+          <source src="assets/music/devotional.mp3" type="audio/mp3">
+        </audio>
+
+        <button id="musicBtn" class="music-btn" title="భక్తి సంగీతం ప్లే / పాజ్" aria-label="భక్తి సంగీతం">
+          <span id="musicIcon" class="music-btn-icon">▶</span>
+          <span id="musicLabel">భక్తి సంగీతం</span>
+        </button>
+
+        <button id="mobileToggle" class="mobile-toggle" aria-label="మెనూ తెరవండి" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================================================================
+       SECTION 1 — HOME
+       ================================================================== -->
+  <section id="home" class="hero">
+    <!-- Devotional Hero Background (NOT the committee logo) -->
+    <img src="assets/hero.jpg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి ఆలయం మరియు దివ్య శోభ" class="hero-bg">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <!-- Official Committee Logo in Foreground Centered Element -->
+      <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="committee-logo home-hero-logo">
+
+      <h1 class="hero-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
+      <h2 class="hero-subtitle">వినాయక చవితి ఉత్సవాలు</h2>
+      <p class="hero-committee-name">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
+
+      <div class="hero-tags">
+        <span class="hero-tag-item">భక్తి</span>
+        <span class="hero-tag-item">•</span>
+        <span class="hero-tag-item">సంప్రదాయం</span>
+        <span class="hero-tag-item">•</span>
+        <span class="hero-tag-item">సంస్కృతి</span>
+        <span class="hero-tag-item">•</span>
+        <span class="hero-tag-item">ఉత్సవం</span>
+      </div>
+
+      <p class="hero-quote">
+        "శుక్లాంబరధరం విష్ణుం శశివర్ణం చతుర్భుజమ్ ।<br>
+        ప్రసన్నవదనం ధ్యాయేత్ సర్వవిఘ్నోపశాంతయే ॥"
+      </p>
+
+      <!-- Dynamic Countdown Section with generous gaps above and below -->
+      <div class="hero-countdown-wrap">
+        <div class="countdown-section">
+          <div class="countdown-card" id="countdownCard" data-target="2026-09-14T06:00:00+05:30">
+            <div class="countdown-icon">🐘</div>
+            <h3 class="countdown-header" id="countdownLabelText">నూతన గణేశ విగ్రహ ఆవిష్కరణకు ఇంకా</h3>
+            
+            <div class="countdown-timer-grid">
+              <div class="timer-box">
+                <span id="timer-days" class="timer-number">00</span>
+                <span class="timer-label">రోజులు</span>
+              </div>
+              <div class="timer-box">
+                <span id="timer-hours" class="timer-number">00</span>
+                <span class="timer-label">గంటలు</span>
+              </div>
+              <div class="timer-box">
+                <span id="timer-minutes" class="timer-number">00</span>
+                <span class="timer-label">నిమిషాలు</span>
+              </div>
+              <div class="timer-box">
+                <span id="timer-seconds" class="timer-number">00</span>
+                <span class="timer-label">సెకన్లు</span>
+              </div>
+            </div>
+
+            <div class="countdown-footer-text">
+              శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య దర్శనం
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intuitive Scroll Down Guidance -->
+      <div class="scroll-down-cue">
+        <a href="#daily-pooja" class="scroll-down-btn">
+          <span class="scroll-arrow">↓</span> నిత్య పూజా కార్యక్రమాల కొరకు క్రిందికి స్క్రోల్ చేయండి
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 2 — నిత్య పూజా కార్యక్రమాలు (DAILY TWO TIMES & COMMITTEE CONTACT)
+       ================================================================== -->
+  <section id="daily-pooja" class="scrolling-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-icon">📿</span>
+        <h2 class="section-title">నిత్య పూజా కార్యక్రమాలు</h2>
+        <div class="section-divider"><span>🌺</span></div>
+        <p class="section-subtitle">వినాయక పందిరి వద్ద ప్రతిరోజు జరిగే పూజా కార్యక్రమాలు</p>
+      </div>
+
+      <!-- Daily Two Times Pooja Announcement Cards -->
+      <div class="daily-two-times-container">
+        <div class="daily-two-times-header">
+          <h3 class="daily-two-times-title">ప్రతిరోజూ రెండు పూటలా విశేష పూజలు</h3>
+          <p class="daily-two-times-sub">ఉత్సవాల సందర్భంగా స్వామివారి సన్నిధిలో ప్రతిరోజూ ఉదయం మరియు సాయంత్రం దివ్య పూజలు నిర్వహించబడును</p>
+        </div>
+
+        <div class="daily-two-times-grid">
+          <!-- Morning Pooja Card -->
+          <div class="daily-two-card">
+            <span class="daily-two-badge">🌅 ప్రాతఃకాల ఆరాధన</span>
+            <div class="daily-two-time">ఉదయం ~8:00 AM</div>
+            <h4 class="daily-two-name">ఉదయం నిత్య పూజ & అభిషేకం</h4>
+            <p class="daily-two-desc">
+              ప్రతిరోజూ సుమారు ఉదయం 8:00 గంటలకు స్వామివారికి పంచామృతాభిషేకం, పవిత్ర తులసి-గరిక పుష్పార్చన మరియు తీర్థ ప్రసాద వితరణ జరుగును.
+            </p>
+          </div>
+
+          <!-- Evening Pooja Card -->
+          <div class="daily-two-card">
+            <span class="daily-two-badge">🪔 సాయంకాల ఆరాధన</span>
+            <div class="daily-two-time">సాయంత్రం 6:00 PM</div>
+            <h4 class="daily-two-name">సాయంత్రం నిత్య దీపారాధన & హారతి</h4>
+            <p class="daily-two-desc">
+              ప్రతిరోజూ సాయంత్రం 6:00 గంటలకు సర్వజన సమక్షంలో దీపారాధన, విశేష సంధ్యా హారతి, భజనలు మరియు భక్తులకు ప్రసాద నివేదన జరుగును.
+            </p>
+          </div>
+        </div>
+
+        <!-- Committee Contact Banner -->
+        <div class="committee-contact-banner">
+          <span class="contact-icon">📢</span>
+          <span>పూజలు, విశేష సేవలు మరియు మరిన్ని వివరాలకు కమిటీ సభ్యులను సంప్రదించగలరు.</span>
+          <div style="font-size: 0.95rem; font-weight: 500; color: var(--text-muted); margin-top: 0.4rem;">
+            (For more details and pooja participation, please meet committee members)
+          </div>
+        </div>
+      </div>
+
+      <!-- Pandiri Devotee Notice Box -->
+      <div class="pandiri-notice-box" style="margin-top: 2.5rem;">
+        <span class="notice-icon">ℹ️</span>
+        <p>
+          భక్తులకు విజ్ఞప్తి: పూజా కార్యక్రమాలలో పాల్గొనదలచిన భక్తులు నిర్ణీత సమయానికి ముందుగా వినాయక పందిరి వద్దకు చేరుకోవాల్సిందిగా కోరుతున్నాము.
+        </p>
+      </div>
+
+      <!-- Scroll Down Guidance to Gallery -->
+      <div class="scroll-down-cue">
+        <a href="#gallery" class="scroll-down-btn">
+          <span class="scroll-arrow">↓</span> ఉత్సవాల గ్యాలరీ కొరకు క్రిందికి స్క్రోల్ చేయండి
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 3 — ఉత్సవాల గ్యాలరీ (YEAR-WISE 1980+)
+       ================================================================== -->
+  <section id="gallery" class="scrolling-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-icon">📸</span>
+        <h2 class="section-title">ఉత్సవాల గ్యాలరీ</h2>
+        <div class="section-divider"><span>🌺</span></div>
+        <p class="section-subtitle">ప్రతి ఏటా స్వామివారి నూతన అలంకరణలు, శోభాయాత్రలు మరియు భక్తి దృశ్యాలు (1980 నుండి ఇప్పటివరకు)</p>
+      </div>
+
+      <!-- Live Year Search / Filter Bar (1980 to Current/Future) -->
+      <div class="gallery-search-container" style="max-width: 480px; margin: 0 auto 1.75rem auto;">
+        <div style="position: relative; display: flex; align-items: center;">
+          <span style="position: absolute; left: 14px; font-size: 1.1rem; pointer-events: none; color: var(--gold-dark);">🔍</span>
+          <input 
+            type="text" 
+            id="galleryYearSearch" 
+            class="admin-input" 
+            style="padding-left: 2.75rem; border-radius: 50px; font-size: 1rem; border: 2px solid var(--border-gold); background: #ffffff; box-shadow: var(--shadow-sm);"
+            placeholder="సంవత్సరంతో వెతకండి (ఉదా: 1985, 2026)..." 
+            aria-label="సంవత్సరంతో వెతకండి">
+          <button id="clearSearchBtn" type="button" style="position: absolute; right: 12px; background: none; border: none; font-size: 1.1rem; color: var(--text-muted); cursor: pointer; display: none;" title="తొలగించండి">✕</button>
+        </div>
+      </div>
+
+      <!-- Filter Tabs by Year (Rendered dynamically by main.js) -->
+      <div class="year-tabs-container">
+        <div class="year-tabs-nav" id="yearTabsNav">
+          <!-- Dynamically filled with year buttons -->
+        </div>
+      </div>
+
+      <!-- Main Gallery Container: Groups media into Year blocks with Photos and Videos -->
+      <div id="gallerySectionsContainer">
+        <!-- Rendered dynamically by main.js -->
+        <div style="text-align: center; padding: 3rem 1rem;">
+          <p style="font-size: 1.1rem; color: var(--text-muted);">చిత్రాలు లోడ్ అవుతున్నాయి...</p>
+        </div>
+      </div>
+
+      <!-- Pure Vanilla JS Lightbox Modal -->
+      <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="ఫోటో వ్యూయర్">
+        <button id="lightboxClose" class="lightbox-close" aria-label="మూసివేయండి">&times;</button>
+        <button id="lightboxPrev" class="lightbox-nav-btn prev" aria-label="మునుపటి ఫోటో">&#10094;</button>
+        <button id="lightboxNext" class="lightbox-nav-btn next" aria-label="తరువాతి ఫోటో">&#10095;</button>
+        
+        <div class="lightbox-content">
+          <img id="lightboxImg" src="" alt="శ్రీ లక్ష్మీ గణపతి స్వామి ఉత్సవ చిత్రం">
+          <div class="lightbox-caption">
+            <h4 id="lightboxTitle"></h4>
+            <span id="lightboxCategory" class="lightbox-category-tag"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Down Guidance to Pooja Vidhanam Highlight -->
+      <div class="scroll-down-cue">
+        <a href="#pooja-vidhanam" class="scroll-down-btn">
+          <span class="scroll-arrow">↓</span> పూజా విధానం కొరకు క్రిందికి స్క్రోల్ చేయండి
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 4 — వినాయక చవితి పూజా విధానం (HIGHLIGHT CARD)
+       ================================================================== -->
+  <section id="pooja-vidhanam" class="scrolling-section pooja-highlight-section">
+    <div class="container">
+      <div class="pooja-feature-banner">
+        <div class="pooja-banner-icon">📜</div>
+        <div class="pooja-banner-content">
+          <span class="pooja-badge">శాశ్వత పవిత్ర పూజా విధానం</span>
+          <h2 class="pooja-banner-title">వినాయక చవితి సంపూర్ణ పూజా విధానం & వ్రతకల్పం</h2>
+          <p class="pooja-banner-desc">
+            ఇంటి వద్ద భక్తిశ్రద్ధలతో శాస్త్రోక్తంగా వినాయక పూజ చేసుకునేందుకు అవసరమైన సంపూర్ణ పూజా సామగ్రి, ఆచమనం, సంకల్పం, 21 పత్రుల పూజ, అష్టోత్తర శతనామావళి, వినాయక దండకం మరియు సంపూర్ణ వ్రత కథ.
+          </p>
+          <div class="pooja-banner-actions">
+            <a href="pooja-vidhanam.html" class="highlight-pooja-btn">
+              <span>📖</span> సంపూర్ణ పూజా విధానం చదవండి (Click Here for Pooja Vidhanam) &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Down Guidance to Dharma -->
+      <div class="scroll-down-cue">
+        <a href="#dharmam" class="scroll-down-btn">
+          <span class="scroll-arrow">↓</span> హిందూ ధర్మం & సంస్కృతి కొరకు క్రిందికి స్క్రోల్ చేయండి
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SECTION 5 — హిందూ ధర్మం & సంస్కృతి
+       ================================================================== -->
+  <section id="dharmam" class="scrolling-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-icon">🕉️</span>
+        <h2 class="section-title">హిందూ ధర్మం & సంస్కృతి</h2>
+        <div class="section-divider"><span>🌺</span></div>
+        <p class="section-subtitle">సనాతన సంప్రదాయాలు, వినాయక చవితి విశిష్టత మరియు ఆధ్యాత్మిక జ్ఞానం</p>
+      </div>
+
+      <!-- Devotional Introduction Quote Card -->
+      <div class="dharma-hero-quote-card">
+        <span class="quote-om">🕉️</span>
+        <blockquote class="dharma-sanskrit-quote">
+          "ధర్మో రక్షతి రక్షితః | సత్యమేవ జయతే నానృతం ||"
+        </blockquote>
+        <p class="quote-meaning">
+          ధర్మాన్ని మనం రక్షిస్తే, ఆ ధర్మమే మనలను సర్వవేళలా కాపాడుతుంది. భారతీయ సనాతన సంస్కృతిలో పండుగలు కేవలం వేడుకలు మాత్రమే కావు; అవి సమాజంలో ఐక్యతను, భక్తిని మరియు ధార్మిక విలువలను పెంపొందించే దివ్య సాధనాలు.
+        </p>
+      </div>
+
+      <!-- Dynamic Articles Grid (Populated by main.js from Supabase) -->
+      <div class="dharma-grid" id="dharmaArticlesGrid">
+        <div style="text-align: center; grid-column: 1 / -1; padding: 2rem;">
+          <p style="color: var(--text-muted);">వ్యాసాలు లోడ్ అవుతున్నాయి...</p>
+        </div>
+      </div>
+
+      <!-- Three Pillars of Ganesha Worship Card -->
+      <div class="three-pillars-card" style="margin-top: 2.5rem;">
+        <h3 class="pillars-title">గణేశ తత్త్వం – మూడు పరమార్థాలు</h3>
+        <div class="pillars-grid">
+          <div class="pillar-item">
+            <span class="pillar-icon">🐘</span>
+            <h4>విజ్ఞానము & వివేకము</h4>
+            <p>గజముఖం అపారమైన జ్ఞానానికి, ఆలోచనా శక్తికి మరియు వివేకానికి చిహ్నం. పెద్ద చెవులు మంచి మాటలను ఆలకించమని సూచిస్తాయి.</p>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-icon">🌱</span>
+            <h4>ప్రకృతితో అనుసంధానం</h4>
+            <p>మట్టి గణపతి పూజ మరియు 21 రకాల ఔషధ గుణాలున్న పత్రాలతో అర్చన ప్రకృతిని పూజించాలనే పర్యావరణ సందేశాన్ని ఇస్తాయి.</p>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-icon">🤝</span>
+            <h4>సమాజ ఐక్యత</h4>
+            <p>వినాయక చవితి ఉత్సవాలు కులమతాల కతీతంగా వీధి వీధినా పందిళ్ళు వేసి అందరినీ ఒకే వేదికపై కలిపే సామాజిక మహోత్సవం.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       FOOTER — TRADITIONAL DEVOTIONAL FOOTER (WITH LOGO & INSTAGRAM)
+       ================================================================== -->
+  <footer class="devotional-footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- Committee Logo replacing emoji in bottom -->
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="footer-logo-img">
+        <h3 class="footer-title">శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య సన్నిధి</h3>
+        <p class="footer-values">భక్తి • సంప్రదాయం • సంస్కృతి • ధర్మం</p>
+
+        <!-- Instagram Follow Button -->
+        <div class="footer-instagram-wrap">
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="footer-instagram-btn" aria-label="Follow on Instagram">
+            <svg class="instagram-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            <span>ఇన్‌స్టాగ్రామ్‌లో మమ్మల్ని అనుసరించండి (Follow on Instagram)</span>
+          </a>
+        </div>
+
+        <div class="footer-blessing-box">
+          <h4 class="footer-blessing-title">🙏 ధన్యవాదాలు</h4>
+          <p class="footer-blessing-text">
+            శ్రీ లక్ష్మీ గణపతి స్వామి వారి ఆశీస్సులు మీ కుటుంబంపై ఎల్లప్పుడూ ఉండాలని మనస్ఫూర్తిగా కోరుకుంటూ...
+          </p>
+          <div class="footer-slogan">గణపతి బప్పా మోరియా ! పునరాగమనాయచ 🙏</div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            &copy; 2026 Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu. సర్వ హక్కులు ప్రత్యేకించబడినవి.
+          </div>
+          <div class="footer-actions">
+            <button id="backToTop" class="back-to-top" aria-label="పైకి వెళ్ళండి">
+              <span>↑</span> పైకి
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
