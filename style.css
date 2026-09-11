@@ -64,7 +64,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background-image: 
     linear-gradient(rgba(253, 251, 247, 0.92), rgba(253, 251, 247, 0.92)),
-    url('../images/hero.jpg');
+    url('assets/hero.jpg');
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
@@ -718,7 +718,7 @@ button {
 /* --- Subpages Header Banner --- */
 .page-header {
   position: relative;
-  background: linear-gradient(rgba(32, 15, 7, 0.74), rgba(32, 15, 7, 0.88)), url('../images/hero.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(32, 15, 7, 0.74), rgba(32, 15, 7, 0.88)), url('assets/hero.jpg') center/cover no-repeat;
   color: #ffffff;
   padding: 4.2rem 1.25rem 3.2rem 1.25rem;
   text-align: center;
@@ -3600,6 +3600,101 @@ section, [id] {
 /* ==========================================================================
    Gallery Primary & Static Fallback Styles
    ========================================================================== */
+.gallery-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--border-gold);
+  background: #ffffff;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md), var(--shadow-gold);
+}
+
+.gallery-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #fdfaf3;
+  cursor: pointer;
+}
+
+.gallery-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-card:hover .gallery-img-wrap img {
+  transform: scale(1.05);
+}
+
+.gallery-overlay-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(32, 15, 7, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .gallery-overlay-hover {
+  opacity: 1;
+}
+
+.zoom-icon {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold);
+}
+
+.gallery-info {
+  padding: 1rem 1.2rem;
+  background: #ffffff;
+  border-top: 1px solid var(--border-gold);
+  flex-grow: 1;
+}
+
+.gallery-item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.4rem;
+}
+
+.gallery-item-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.gallery-year-badge {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--secondary);
+  background: rgba(230, 81, 0, 0.1);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
 .gallery-img-wrap.image-unavailable {
   background: #fdfaf3;
   border: 1px dashed var(--border-gold);

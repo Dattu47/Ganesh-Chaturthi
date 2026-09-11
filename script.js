@@ -44,18 +44,39 @@ function getGalleryFallbackPath(year, filename) {
 const FALLBACK_MESSAGE_TELUGU = "ఈ చిత్రం ప్రస్తుతం అందుబాటులో లేదు.";
 
 // --------------------------------------------------------------------------
-// 3. DATA ACCESS LAYER (Supabase First, Silent Fallback)
+// 3. DATA ACCESS LAYER (Supabase SDK First, Direct REST Second, Local Third)
 // --------------------------------------------------------------------------
+async function fetchSupabaseRest(endpoint) {
+  if (!SUPABASE_CONFIG.url || !SUPABASE_CONFIG.anonKey) return null;
+  try {
+    const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/${endpoint}`, {
+      headers: {
+        apikey: SUPABASE_CONFIG.anonKey,
+        Authorization: `Bearer ${SUPABASE_CONFIG.anonKey}`
+      }
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (e) {
+    // Network or offline catch
+  }
+  return null;
+}
+
 async function fetchSiteSettings() {
   const sb = getSupabase();
   if (sb) {
     try {
       const { data, error } = await sb.from("site_settings").select("*").eq("id", 1).single();
       if (!error && data) return data;
-    } catch (e) {
-      // Silent catch
-    }
+    } catch (e) { }
   }
+
+  // Direct REST fallback
+  const restData = await fetchSupabaseRest("site_settings?id=eq.1");
+  if (restData && restData[0]) return restData[0];
+
   const local = localStorage.getItem("local_site_settings");
   if (local) {
     try { return JSON.parse(local); } catch (e) { }
@@ -69,6 +90,7 @@ async function fetchSiteSettings() {
 }
 
 async function fetchDailyPooja() {
+  let list = [];
   const sb = getSupabase();
   if (sb) {
     try {
@@ -78,11 +100,18 @@ async function fetchDailyPooja() {
         .eq("published", true)
         .order("display_order", { ascending: true })
         .order("date", { ascending: true });
-      if (!error && data && data.length > 0) return data;
-    } catch (e) {
-      // Silent catch
-    }
+      if (!error && data && data.length > 0) list = data;
+    } catch (e) { }
   }
+
+  // Direct REST fallback
+  if (list.length === 0) {
+    const restData = await fetchSupabaseRest("daily_pooja?published=eq.true&order=display_order.asc,date.asc");
+    if (restData && restData.length > 0) list = restData;
+  }
+
+  if (list.length > 0) return list;
+
   const local = localStorage.getItem("local_daily_pooja");
   if (local) {
     try { return JSON.parse(local); } catch (e) { }
@@ -109,6 +138,14 @@ async function fetchGalleryItems() {
     }
   }
 
+  // Direct REST fallback (Guaranteed to work without external CDN script)
+  if (items.length === 0) {
+    const restData = await fetchSupabaseRest("gallery?published=eq.true&order=year.desc,id.desc");
+    if (restData && Array.isArray(restData)) {
+      items = restData;
+    }
+  }
+
   // Merge with local items (for newly uploaded or offline photos)
   const local = localStorage.getItem("local_gallery");
   if (local) {
@@ -129,6 +166,7 @@ async function fetchGalleryItems() {
 }
 
 async function fetchDharmaArticles() {
+  let articles = [];
   const sb = getSupabase();
   if (sb) {
     try {
@@ -137,11 +175,18 @@ async function fetchDharmaArticles() {
         .select("*")
         .eq("published", true)
         .order("id", { ascending: false });
-      if (!error && data && data.length > 0) return data;
-    } catch (e) {
-      // Silent catch
-    }
+      if (!error && data && data.length > 0) articles = data;
+    } catch (e) { }
   }
+
+  // Direct REST fallback
+  if (articles.length === 0) {
+    const restData = await fetchSupabaseRest("dharma_samskruthi?published=eq.true&order=id.desc");
+    if (restData && restData.length > 0) articles = restData;
+  }
+
+  if (articles.length > 0) return articles;
+
   const local = localStorage.getItem("local_dharma");
   if (local) {
     try { return JSON.parse(local); } catch (e) { }

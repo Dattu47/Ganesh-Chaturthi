@@ -408,6 +408,23 @@ async function getAdminGalleryItems() {
       if (data) list = data;
     } catch (e) { }
   }
+
+  // Direct REST fallback
+  if (!list || list.length === 0) {
+    try {
+      const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/gallery?select=*&order=year.desc,id.desc`, {
+        headers: {
+          apikey: SUPABASE_CONFIG.anonKey,
+          Authorization: `Bearer ${SUPABASE_CONFIG.anonKey}`
+        }
+      });
+      if (res.ok) {
+        const restData = await res.json();
+        if (Array.isArray(restData)) list = restData;
+      }
+    } catch (e) { }
+  }
+
   if (!list || list.length === 0) {
     const local = localStorage.getItem("local_gallery");
     if (local) {
