@@ -81,71 +81,188 @@
        SECTION 1 — HOME
        ================================================================== -->
   <section id="home" class="hero">
-    <!-- Devotional Hero Background (NOT the committee logo) -->
-    <img src="assets/hero.jpg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి ఆలయం మరియు దివ్య శోభ" class="hero-bg">
-    <div class="hero-overlay"></div>
+    <!-- Initial Pre-Reveal Hero (Active while countdown runs) -->
+    <div class="hero-initial-wrap" id="heroInitialWrap">
+      <!-- Devotional Hero Background (NOT the committee logo) -->
+      <img src="assets/hero.jpg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి ఆలయం మరియు దివ్య శోభ" class="hero-bg">
+      <div class="hero-overlay"></div>
 
-    <div class="hero-content">
-      <!-- Official Committee Logo in Foreground Centered Element -->
-      <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="committee-logo home-hero-logo">
+      <div class="hero-content">
+        <!-- Official Committee Logo in Foreground Centered Element -->
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="committee-logo home-hero-logo">
 
-      <h1 class="hero-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
-      <h2 class="hero-subtitle">వినాయక చవితి ఉత్సవాలు</h2>
-      <p class="hero-committee-name">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
+        <h1 class="hero-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
+        <h2 class="hero-subtitle">వినాయక చవితి ఉత్సవాలు</h2>
+        <p class="hero-committee-name">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
 
-      <div class="hero-tags">
-        <span class="hero-tag-item">భక్తి</span>
-        <span class="hero-tag-item">•</span>
-        <span class="hero-tag-item">సంప్రదాయం</span>
-        <span class="hero-tag-item">•</span>
-        <span class="hero-tag-item">సంస్కృతి</span>
-        <span class="hero-tag-item">•</span>
-        <span class="hero-tag-item">ఉత్సవం</span>
-      </div>
+        <div class="hero-tags">
+          <span class="hero-tag-item">భక్తి</span>
+          <span class="hero-tag-item">•</span>
+          <span class="hero-tag-item">సంప్రదాయం</span>
+          <span class="hero-tag-item">•</span>
+          <span class="hero-tag-item">సంస్కృతి</span>
+          <span class="hero-tag-item">•</span>
+          <span class="hero-tag-item">ఉత్సవం</span>
+        </div>
 
-      <p class="hero-quote">
-        "శుక్లాంబరధరం విష్ణుం శశివర్ణం చతుర్భుజమ్ ।<br>
-        ప్రసన్నవదనం ధ్యాయేత్ సర్వవిఘ్నోపశాంతయే ॥"
-      </p>
+        <p class="hero-quote">
+          "శుక్లాంబరధరం విష్ణుం శశివర్ణం చతుర్భుజమ్ ।<br>
+          ప్రసన్నవదనం ధ్యాయేత్ సర్వవిఘ్నోపశాంతయే ॥"
+        </p>
 
-      <!-- Dynamic Countdown Section with generous gaps above and below -->
-      <div class="hero-countdown-wrap">
-        <div class="countdown-section">
-          <div class="countdown-card" id="countdownCard" data-target="2026-09-14T06:00:00+05:30">
-            <div class="countdown-icon">🐘</div>
-            <h3 class="countdown-header" id="countdownLabelText">నూతన గణేశ విగ్రహ ఆవిష్కరణకు ఇంకా</h3>
+        <!-- Dynamic Countdown Section with generous gaps above and below -->
+        <div class="hero-countdown-wrap">
+          <div class="countdown-section">
+            <div class="countdown-card" id="countdownCard" data-target="2026-09-14T06:00:00+05:30">
+              <div class="countdown-icon">🐘</div>
+              <h3 class="countdown-header" id="countdownLabelText">శ్రీ లక్ష్మీ గణపతి స్వామి దివ్య దర్శనానికి ఇంకా</h3>
 
-            <div class="countdown-timer-grid">
-              <div class="timer-box">
-                <span id="timer-days" class="timer-number">00</span>
-                <span class="timer-label">రోజులు</span>
+              <div class="countdown-timer-grid">
+                <div class="timer-box">
+                  <span id="timer-days" class="timer-number">00</span>
+                  <span class="timer-label">రోజులు</span>
+                </div>
+                <div class="timer-box">
+                  <span id="timer-hours" class="timer-number">00</span>
+                  <span class="timer-label">గంటలు</span>
+                </div>
+                <div class="timer-box">
+                  <span id="timer-minutes" class="timer-number">00</span>
+                  <span class="timer-label">నిమిషాలు</span>
+                </div>
+                <div class="timer-box">
+                  <span id="timer-seconds" class="timer-number">00</span>
+                  <span class="timer-label">సెకన్లు</span>
+                </div>
               </div>
-              <div class="timer-box">
-                <span id="timer-hours" class="timer-number">00</span>
-                <span class="timer-label">గంటలు</span>
-              </div>
-              <div class="timer-box">
-                <span id="timer-minutes" class="timer-number">00</span>
-                <span class="timer-label">నిమిషాలు</span>
-              </div>
-              <div class="timer-box">
-                <span id="timer-seconds" class="timer-number">00</span>
-                <span class="timer-label">సెకన్లు</span>
-              </div>
-            </div>
 
-            <div class="countdown-footer-text">
-              శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య దర్శనం
+              <div class="countdown-footer-text">
+                శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య దర్శనం
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Intuitive Scroll Down Guidance -->
-      <div class="scroll-down-cue">
-        <a href="#vaibhavam" class="scroll-down-btn">
-          <span class="scroll-arrow">↓</span> స్వామివారి వైభవం, గ్యాలరీ & పూజా విధానం కొరకు క్రిందికి స్క్రోల్ చేయండి
-        </a>
+        <!-- Intuitive Scroll Down Guidance -->
+        <div class="scroll-down-cue">
+          <a href="#vaibhavam" class="scroll-down-btn">
+            <span class="scroll-arrow">↓</span> స్వామివారి వైభవం, గ్యాలరీ & పూజా విధానం కొరకు క్రిందికి స్క్రోల్ చేయండి
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Permanent Ganesh Agaman Sanctum Hero (Revealed on countdown completion) -->
+    <div id="ganeshAgamanReveal" class="ganesh-agaman-container" aria-hidden="true">
+      <div class="ganesh-agaman-stage">
+        
+        <!-- Deep Temple Sanctum (Garbhagudi) -->
+        <div class="ganesh-agaman-sanctum">
+          <!-- Divine Rays & Sacred Ambient Halo -->
+          <div class="ganesh-agaman-halo"></div>
+          <div class="ganesh-agaman-divine-rays"></div>
+
+          <!-- Floating Sacred Flower Petals & Golden Sparkles Container -->
+          <div class="ganesh-agaman-petals-layer" id="ganeshAgamanPetals"></div>
+
+          <!-- Sacred Top Invocation: "శ్రీ గణేశాయ నమః" -->
+          <div class="ganesh-agaman-invocation-wrap">
+            <div class="ganesh-agaman-invocation-plaque">
+              <span class="ganesh-agaman-invocation-text">శ్రీ గణేశాయ నమః</span>
+            </div>
+          </div>
+
+          <!-- The Sacred Ganesh Idol Photograph (2026.jpeg) -->
+          <div class="ganesh-agaman-idol-wrap">
+            <div class="ganesh-agaman-idol-pedestal-aura"></div>
+            <img
+              src="assets/gallery/2026/2026.jpeg"
+              alt="శ్రీ లక్ష్మీ గణపతి స్వామివారు"
+              class="ganesh-agaman-idol-img"
+              id="ganeshAgamanIdolImg"
+              onerror="this.onerror=null; this.src='assets/gallery/2026.jpeg';"
+            >
+          </div>
+
+          <!-- Under-Ganesh Permanent Hero Titles -->
+          <div class="ganesh-agaman-hero-titles-wrap">
+            <div class="ganesh-agaman-hero-plaque">
+              <h1 class="ganesh-agaman-hero-main-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
+              <h2 class="ganesh-agaman-hero-sub-title">వినాయక చవితి ఉత్సవాలు</h2>
+              <p class="ganesh-agaman-hero-committee">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
+            </div>
+            
+            <div class="ganesh-agaman-scroll-cue">
+              <a href="#vaibhavam" class="scroll-down-btn">
+                <span class="scroll-arrow">↓</span> స్వామివారి వైభవం, గ్యాలరీ &amp; పూజా విధానం కొరకు క్రిందికి స్క్రోల్ చేయండి
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Traditional Wooden Temple Doors with 3D Perspective -->
+        <div class="ganesh-agaman-door-frame">
+          <!-- Left Door Leaf -->
+          <div class="ganesh-agaman-door ganesh-agaman-door-left" id="ganeshDoorLeft">
+            <div class="ganesh-door-wood-grain"></div>
+            <div class="ganesh-door-brass-border"></div>
+            <div class="ganesh-door-carving">
+              <div class="ganesh-brass-studs-grid">
+                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
+                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
+                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
+              </div>
+              <div class="ganesh-door-brass-ornament">🕉️</div>
+            </div>
+            <div class="ganesh-door-handle left-handle"></div>
+          </div>
+
+          <!-- Right Door Leaf -->
+          <div class="ganesh-agaman-door ganesh-agaman-door-right" id="ganeshDoorRight">
+            <div class="ganesh-door-wood-grain"></div>
+            <div class="ganesh-door-brass-border"></div>
+            <div class="ganesh-door-carving">
+              <div class="ganesh-brass-studs-grid">
+                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
+                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
+                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
+              </div>
+              <div class="ganesh-door-brass-ornament">🛕</div>
+            </div>
+            <div class="ganesh-door-handle right-handle"></div>
+          </div>
+        </div>
+
+        <!-- Traditional Temple Pillars & Torana Arch -->
+        <div class="ganesh-agaman-temple-arch">
+          <div class="ganesh-temple-top-arch">
+            <div class="arch-torana">🌺 🪔 🕉️ 🪔 🌺</div>
+          </div>
+          <div class="ganesh-temple-pillar pillar-left"></div>
+          <div class="ganesh-temple-pillar pillar-right"></div>
+        </div>
+
+        <!-- Sacred Standing Brass Diyas (Deepams with Animated Flickering Flames) -->
+        <div class="ganesh-agaman-diya diya-left">
+          <div class="diya-brass-stand">
+            <div class="diya-oil-cup"></div>
+            <div class="diya-flame-wrap">
+              <div class="diya-flame"></div>
+              <div class="diya-flame-glow"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ganesh-agaman-diya diya-right">
+          <div class="diya-brass-stand">
+            <div class="diya-oil-cup"></div>
+            <div class="diya-flame-wrap">
+              <div class="diya-flame"></div>
+              <div class="diya-flame-glow"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -524,6 +641,8 @@
       </div>
     </div>
   </footer>
+
+
 
   <script src="script.js"></script>
 </body>

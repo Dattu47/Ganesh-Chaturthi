@@ -188,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // 5. GLOBAL SITE DATA & COUNTDOWN
 // --------------------------------------------------------------------------
 let countdownTimerInterval = null;
+let ganeshRevealStarted = false;
 
 async function initGlobalSiteData() {
   try {
@@ -233,10 +234,17 @@ function initCountdown(targetDateStr) {
     if (mEl) mEl.textContent = String(minutes).padStart(2, "0");
     if (sEl) sEl.textContent = String(seconds).padStart(2, "0");
 
-    if (diff <= 0 && countdownTimerInterval) {
-      clearInterval(countdownTimerInterval);
+    if (diff <= 0) {
+      if (countdownTimerInterval) {
+        clearInterval(countdownTimerInterval);
+      }
       const label = document.getElementById("countdownLabelText");
       if (label) label.textContent = "శ్రీ లక్ష్మీ గణపతి స్వామి మహోత్సవాలు ప్రారంభమైనవి! 🕉️";
+
+      if (!ganeshRevealStarted) {
+        ganeshRevealStarted = true;
+        startGaneshReveal();
+      }
     }
   }
 
@@ -245,6 +253,24 @@ function initCountdown(targetDateStr) {
   }
   update();
   countdownTimerInterval = setInterval(update, 1000);
+
+  // Allow immediate verification via ?reveal=true or by clicking the countdown card
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("reveal") === "true") {
+    setTimeout(() => {
+      if (!ganeshRevealStarted) {
+        ganeshRevealStarted = true;
+        startGaneshReveal();
+      }
+    }, 400);
+  }
+
+  countdownEl.addEventListener("click", function () {
+    if (!ganeshRevealStarted) {
+      ganeshRevealStarted = true;
+      startGaneshReveal();
+    }
+  });
 }
 
 // --------------------------------------------------------------------------
@@ -479,3 +505,118 @@ function initBackToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
+
+// ==========================================================================
+// 14. GANESH AGAMAN PERMANENT HERO & TEMPLE SANCTUM COMPONENT
+// ==========================================================================
+function spawnSacredPetals() {
+  const container = document.getElementById("ganeshAgamanPetals");
+  if (!container) return;
+  const PETAL_SYMBOLS = ["🌺", "🌸", "🌼", "🏵️", "✨", "🍃"];
+  const count = window.innerWidth <= 768 ? 16 : 26;
+  for (let i = 0; i < count; i++) {
+    const petal = document.createElement("span");
+    petal.className = "ganesh-petal";
+    petal.textContent = PETAL_SYMBOLS[Math.floor(Math.random() * PETAL_SYMBOLS.length)];
+    const left = Math.random() * 100;
+    const size = 0.85 + Math.random() * 0.85;
+    const duration = 4.5 + Math.random() * 3.5;
+    const delay = Math.random() * 2.5;
+    const drift = -40 + Math.random() * 80;
+    const rot = -180 + Math.random() * 360;
+    petal.style.left = `${left}%`;
+    petal.style.fontSize = `${size}rem`;
+    petal.style.animationDuration = `${duration}s`;
+    petal.style.animationDelay = `${delay}s`;
+    petal.style.setProperty("--drift-x", `${drift}px`);
+    petal.style.setProperty("--rot-deg", `${rot}deg`);
+    container.appendChild(petal);
+  }
+}
+
+function startAmbientParticles() {
+  const container = document.getElementById("ganeshAgamanPetals");
+  if (!container) return;
+  // Keep subtle ambient golden sparkles floating gently
+  const sparkleCount = window.innerWidth <= 768 ? 10 : 18;
+  for (let i = 0; i < sparkleCount; i++) {
+    const sparkle = document.createElement("span");
+    sparkle.className = "ganesh-ambient-sparkle";
+    sparkle.style.left = `${Math.random() * 96 + 2}%`;
+    sparkle.style.top = `${Math.random() * 80 + 10}%`;
+    sparkle.style.animationDuration = `${4 + Math.random() * 4}s`;
+    sparkle.style.animationDelay = `${Math.random() * 3}s`;
+    container.appendChild(sparkle);
+  }
+}
+
+function startGaneshReveal() {
+  const reveal = document.getElementById("ganeshAgamanReveal");
+  if (!reveal) return;
+
+  // Scroll to top instantly and lock scroll temporarily for the reveal sequence
+  window.scrollTo({ top: 0, behavior: "instant" });
+  document.body.style.overflow = "hidden";
+
+  // Enter Fullscreen Presentation Mode for the initial animation
+  reveal.classList.add("reveal-active", "reveal-fullscreen");
+  reveal.setAttribute("aria-hidden", "false");
+
+  // Optional: If devotional audio player exists and is paused, trigger playback smoothly
+  const audioEl = document.getElementById("devotionalAudio");
+  if (audioEl && audioEl.paused) {
+    audioEl.play().catch(() => {});
+  }
+
+  // Animation Timeline:
+  // 1. Doors begin opening smoothly in 3D perspective
+  setTimeout(() => {
+    reveal.classList.add("doors-opening");
+  }, 800);
+
+  // 2. Garbhagudi sanctum illuminates with divine rays and golden halo
+  setTimeout(() => {
+    reveal.classList.add("sanctum-illuminated");
+  }, 1600);
+
+  // 3. 2026 Ganesh Idol and Top Invocation "శ్రీ గణేశాయ నమః" appear
+  setTimeout(() => {
+    reveal.classList.add("idol-revealed");
+  }, 2600);
+
+  // 4. Sacred flower petals gently shower
+  setTimeout(() => {
+    spawnSacredPetals();
+  }, 3800);
+
+  // 5. Under-Ganesh permanent titles appear smoothly
+  setTimeout(() => {
+    reveal.classList.add("titles-revealed");
+  }, 5000);
+
+  // 6. Reveal animation completes -> Transition directly to Permanent Hero Section
+  // IMPORTANT: The reveal scene NEVER disappears, closes, or resets!
+  setTimeout(() => {
+    // Dock as the permanent Hero section
+    reveal.classList.remove("reveal-fullscreen");
+    reveal.classList.add("reveal-permanent-hero");
+
+    // Hide pre-reveal countdown wrap so there are no duplicate titles or clutter
+    const initialHero = document.getElementById("heroInitialWrap");
+    if (initialHero) {
+      initialHero.style.display = "none";
+    }
+
+    // Restore normal body scrolling so user can scroll down through all sections
+    document.body.style.overflow = "";
+
+    // Start continuous subtle ambient floating particles
+    startAmbientParticles();
+  }, 6500);
+}
+
+// Support aliases for backward compatibility and test consoles
+window.startGaneshReveal = startGaneshReveal;
+window.playGaneshAgaman = startGaneshReveal;
+
+
