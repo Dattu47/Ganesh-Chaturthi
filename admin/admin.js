@@ -496,7 +496,7 @@ async function loadAdminGallery() {
 
                       return `
                       <div class="thumb-card">
-                        <img src="${p.file_url}" alt="${caption}" loading="lazy" onerror="this.src='../assets/logo/committee-logo.png'">
+                        <img src="${p.file_url}" alt="${caption}" loading="lazy" onerror="this.src='../assets/logo/committee-logo.jpeg'">
                         <div class="thumb-info">
                           <div class="thumb-title" title="${caption}">${caption}</div>
                           <div style="font-size: 0.76rem; color: var(--admin-text-muted); margin: 3px 0; word-break: break-all;">

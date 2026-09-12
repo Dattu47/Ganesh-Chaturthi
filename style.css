@@ -4705,8 +4705,8 @@ html {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  min-height: calc(100vh - 70px) !important;
-  height: calc(100vh - 70px) !important;
+  min-height: max(112vh, 1040px) !important;
+  height: max(112vh, 1040px) !important;
   z-index: 10 !important;
 }
 
@@ -4777,10 +4777,10 @@ html {
   position: absolute;
   left: 50%;
   top: -22%;
-  width: min(94vw, 1100px);
+  width: min(96vw, 1320px);
   height: 120%;
   transform: translateX(-50%);
-  border: 38px solid #3a1406;
+  border: 42px solid #3a1406;
   border-bottom: 0;
   border-radius: 52% 52% 0 0;
   box-shadow:
@@ -4934,7 +4934,7 @@ html {
   z-index: 2;
   left: 50%;
   top: 46%;
-  width: min(72vw, 820px);
+  width: min(88vw, 980px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -4975,7 +4975,7 @@ html {
   z-index: 3;
   left: 50%;
   top: 45%;
-  width: min(62vw, 650px);
+  width: min(80vw, 840px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%) scale(.65);
   border-radius: 50%;
@@ -5013,8 +5013,8 @@ html {
   z-index: 2;
   left: 50%;
   top: 44%;
-  width: 170vmax;
-  height: 170vmax;
+  width: 200vmax;
+  height: 200vmax;
   transform: translate(-50%, -50%);
   background:
     repeating-conic-gradient(
@@ -5043,7 +5043,7 @@ html {
   z-index: 3;
   left: 50%;
   top: -15%;
-  width: 30%;
+  width: 36%;
   height: 130%;
   transform: translateX(-50%);
   background:
@@ -5077,7 +5077,7 @@ html {
   z-index: 3;
   left: 50%;
   top: 46%;
-  width: min(55vw, 570px);
+  width: min(72vw, 750px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -5113,8 +5113,8 @@ html {
   z-index: 8;
   left: 50%;
   top: 48%;
-  width: min(72vw, 560px);
-  height: min(54vh, 480px);
+  width: min(85vw, 780px);
+  height: min(72vh, 690px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5128,9 +5128,9 @@ html {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 14px;
-  box-shadow: 0 0 25px rgba(255, 186, 58, 0.2);
-  filter: drop-shadow(0 15px 20px rgba(0,0,0,.9)) drop-shadow(0 0 30px rgba(255,186,58,.3));
+  border-radius: 16px;
+  box-shadow: 0 0 35px rgba(255, 186, 58, 0.28);
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,.9)) drop-shadow(0 0 35px rgba(255,186,58,.38));
 }
 
 .scene.opening .idol {
@@ -5515,8 +5515,12 @@ html {
 
 /* Responsive Mobile Rules */
 @media(max-width: 600px) {
+  .scene.permanent-hero {
+    min-height: 880px !important;
+    height: 880px !important;
+  }
   .scene .arch {
-    width: 130vw;
+    width: 135vw;
     border-width: 24px;
   }
   .scene .pillar {
@@ -5544,7 +5548,8 @@ html {
   }
   .scene .idol {
     width: 96vw;
-    height: 52vh;
+    height: 60vh;
+    max-height: 520px;
     top: 48%;
   }
   .scene .message {
