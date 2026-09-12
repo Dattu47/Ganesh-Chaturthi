@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="te">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>శ్రీ లక్ష్మీ గణపతి స్వామివారి వైభవం & మహత్యం | Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</title>
+  <meta name="description"
+    content="శ్రీ లక్ష్మీ గణపతి స్వామివారి చారిత్రక 75 సంవత్సరాల వైభవం, నిత్య పూజలు, దివ్య అలంకారాలు, స్వామివారి మహిమలు మరియు రథోత్సవ విశేషాలు. Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/logo/committee-logo.png" type="image/png">
+  <!-- Supabase JS Client v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="vaibhavam-page-body">
+
+  <!-- Devotional Background Image & Soft Overlay -->
+  <img src="assets/hero.jpg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి నేపథ్యం" class="individual-page-bg">
+  <div class="individual-page-overlay"></div>
+
+  <!-- Committee Top Header Banner -->
+  <div class="top-committee-banner">
+    <div class="container banner-inner">
+      <span class="banner-icon">🕉️</span>
+      <span class="committee-title-text">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</span>
+    </div>
+  </div>
+
+  <!-- Sticky Main Navigation Bar -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="హోమ్ పేజీ">
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="header-logo-img">
+        <div class="nav-logo-group">
+          <span class="nav-logo-main">శ్రీ లక్ష్మీ గణపతి స్వామి</span>
+          <span class="nav-logo-sub">వినాయక చవితి ఉత్సవాలు</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#home" class="nav-link">హోమ్</a></li>
+          <li><a href="vaibhavam.html" class="nav-link active">వైభవం & మహత్యం</a></li>
+          <li><a href="index.html#daily-pooja" class="nav-link">నిత్య పూజ</a></li>
+          <li><a href="pooja-vidhanam.html" class="nav-link">పూజా విధానం 📜</a></li>
+          <li><a href="gallery.html" class="nav-link">గ్యాలరీ 📸</a></li>
+          <li><a href="index.html#dharmam" class="nav-link">హిందూ ధర్మం & సంస్కృతి</a></li>
+        </ul>
+      </nav>
+
+      <!-- Music Player & Mobile Hamburger -->
+      <div class="nav-actions">
+        <!-- Pure HTML5 Audio Element -->
+        <audio id="devotionalAudio" loop preload="auto">
+          <source src="assets/music/devotional.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- Instagram Link in Navigation -->
+        <a href="https://www.instagram.com/lakshmiganapathiswamy?stkn=MXFzMzN1dTNtdzY5Mg%3D%3D" target="_blank"
+          rel="noopener noreferrer" class="nav-insta-btn" title="ఇన్‌స్టాగ్రామ్‌లో స్వామివారిని అనుసరించండి"
+          aria-label="Instagram @lakshmiganapathiswamy">
+          <svg class="instagram-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+          <span class="nav-insta-label">Instagram</span>
+        </a>
+
+        <button id="musicBtn" class="music-btn" title="భక్తి సంగీతం ప్లే / పాజ్" aria-label="భక్తి సంగీతం">
+          <span id="musicIcon" class="music-btn-icon">▶</span>
+          <span id="musicLabel">భక్తి సంగీతం</span>
+        </button>
+
+        <button id="mobileToggle" class="mobile-toggle" aria-label="మెనూ తెరవండి" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header Banner -->
+  <div class="page-header" style="background: linear-gradient(135deg, rgba(82, 15, 24, 0.96) 0%, rgba(55, 8, 15, 0.96) 100%); padding: 3rem 1rem 2.2rem 1rem; text-align: center; color: #ffffff; border-bottom: 2px solid var(--gold);">
+    <div class="container">
+      <div style="margin-bottom: 1rem;">
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" style="width: 80px; height: 80px; object-fit: contain; border-radius: 50%; background: #ffffff; padding: 4px; border: 2px solid var(--gold); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      </div>
+      <span class="vaibhavam-invocation-tag" style="color: #ffe699; font-size: 1.25rem;">శ్రీ లక్ష్మీ గణపతి స్వామియే నమః</span>
+      <h1 class="section-title" style="color: #ffffff; margin-top: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6);">శ్రీ లక్ష్మీ గణపతి స్వామివారి వైభవం & మహత్యం</h1>
+      <div class="section-divider"><span>🌺</span></div>
+      <p class="section-subtitle" style="color: #fce8c5; font-size: 1.15rem; max-width: 800px; margin: 0 auto;">వేలివెన్ను గాంధీ బొమ్మ సెంటర్ శ్రీలక్ష్మీ గణపతి స్వామివారి వైభవం, మహత్యం.</p>
+    </div>
+  </div>
+
+  <!-- Quick Topic Navigation Pills -->
+  <div class="container">
+    <nav class="vaibhavam-jump-nav" aria-label="విషయ సూచిక">
+      <span class="jump-nav-title">📜 స్వామివారి విశేషాలు త్వరితంగా చదవండి (Jump to Section)</span>
+      <div class="jump-pills-bar">
+        <a href="#heritage" class="jump-pill-btn">🚩 75 ఏళ్ల చరిత్ర</a>
+        <a href="#festival-pooja" class="jump-pill-btn">🕉️ 10 రోజుల పూజలు</a>
+        <a href="#alankaram" class="jump-pill-btn">✨ దివ్య అలంకారాలు</a>
+        <a href="#mahimalu" class="jump-pill-btn">🌟 స్వామివారి మహిమలు</a>
+        <a href="#procession" class="jump-pill-btn">🎊 రథోత్సవం & ఊరేగింపు</a>
+        <a href="#procession-date" class="jump-pill-btn">🔔 ఊరేగింపు తేదీ</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="container" style="margin-bottom: 3.5rem;">
+    <div class="vaibhavam-content-wrapper">
+
+      <!-- 75 Years Heritage Lead Box -->
+      <section id="heritage" class="vaibhavam-lead-card">
+        <div class="lead-badge-pill">
+          <span class="badge-icon">🚩</span>
+          <span>75 సంవత్సరాల చారిత్రక భక్తి వైభవం • బాలగంగాధర తిలక్ మహాశయుని స్ఫూర్తితో</span>
+        </div>
+        <p class="vaibhavam-text lead-text">
+          శ్రీలక్ష్మీ గణపతి స్వామివారి ఉత్సవాలు, వేలివెన్ను గాంధీ బొమ్మ సెంటర్ నందు సుమారుగా స్వాతంత్య్రము వచ్చినప్పటి
+          నుండి బాలగంగాధరతిలక్ మహాశయుని పిలుపు మేరకు వినాయక చవితి సందర్భంగా ప్రతీ సంవత్సరం, నిరాటంకంగా, గొప్పగా నేటి
+          వరకు75 సంవత్సరాలుగా నిర్వహించబడుచున్నవి.స్వామి వారి మూర్తి వెదురుతో తయారై, ప్రతీ సంవత్సరం అందంగా అలంకరించి,
+          వినాయక చవితి రోజున తెల్లవారు జామున గ్రామస్తులు, కమిటీ సభ్యులు, యువకులు అందరూ గోస్తనీనదికి వెళ్ళి
+          స్నానమాచరించి, అలంకృత వినాయక స్వామిని మేళతాళాలతో ఊరేగింపుగా గాంధీ బొమ్మ వద్ద గల పందిట్లోనికి తీసుకుని వచ్చి
+          సింహాసనం పై ఆశీనులను గావింపజేస్తారు.
+        </p>
+      </section>
+
+      <!-- Festival & Committee Card -->
+      <section id="festival-pooja" class="vaibhavam-card">
+        <h2 class="vaibhavam-subheading">
+          <span class="subhead-icon">🕉️</span> 10 రోజుల నిత్య పూజలు & 11వ రోజు మహా ఉత్సవం
+        </h2>
+        <p class="vaibhavam-text">
+          తదుపరి తెల్లవారిన తరువాత కొంతమంది దంపతులచే వినాయక వ్రతం పండితులు చేయిస్తారు. ఆవిధంగా10 రోజులపాటు
+          స్వామివారికి నిత్య అభిషేకాలు, గరిక, పుష్పాలతో పూజలు,దర్శనాలు, నూతన నగదు దండలతో మొక్కులు తీర్చుకోవడం
+          జరుగుతుంది.11వ రోజు మేళతాళాలతో, చిత్ర విచిత్ర వేషధారులతో గొప్ప ఉత్సవం జరుగుతుంది. ఈ కార్యక్రమములన్నియు శ్రీ
+          లక్ష్మీ గణపతి ఉత్సవ కమిటీ ఆధ్వర్యంలో జరుగుతాయి.ప్రస్తుతం ఈ కమిటీ అధ్యక్షుడిగా శ్రీ శిరిగిన శివ రాధాకృష్ణ
+          గారు వ్యవహరిస్తున్నారు.
+        </p>
+      </section>
+
+      <!-- Alankaram Traditions Card -->
+      <section id="alankaram" class="vaibhavam-card">
+        <h2 class="vaibhavam-subheading">
+          <span class="subhead-icon">✨</span> స్వామివారి దివ్య అలంకార విశేషాలు & భక్తుల సమర్పణలు
+        </h2>
+        <p class="vaibhavam-text">
+          గత 20 సంవత్సరాలుగా భక్తుల సహకారంతో స్వామివారి అలంకారాలు రంగు మెరుపు కాగితాల స్థానే పట్టు వస్త్రాలు,జరీ
+          పట్టీలు,మెరుపురాళ్ల పట్టీలు,వెండి,బంగారు,ఇత్తడి ఆభరణాలతో అలంకరింపజేయడం జరుగుతున్నది.
+        </p>
+        <p class="vaibhavam-text">
+          ఈ విధంగా అలంకరణ చేయుటకు చవితికి నెలరోజుల ముందుగా మొదలు పెట్టి చవితి నాటికి పూర్తి చేయడం జరుగుతుంది. ప్రతీ
+          సంవత్సరం భక్తులు తమ కోరిక నెరవేరినందుకు స్వామివారికి ఎదో ఒక ఆభరణం తయారు చేయించి చవితిరోజున ధరింపజేస్తారు.
+          స్వామి వారి ఉత్సవాలు పూర్తి అయిన తర్వాత చినదేవుని గుడి నందు భక్తులచే బహుకరించబడిన మందిరం నందు స్వామి వారి
+          మూర్తిని ఆశీనులను జేస్తారు.అప్పటి నుంచి స్వామివారు నిత్య దీప, ధూప, నైవేద్యాలు, అభిషేకాలు,ఆరాధనలతో సంవత్సరం
+          అంతా భక్తుల పూజలు అందుకుంటూ, వారి కోరికలు తీరుస్తూ కొలువై ఉంటారు.
+        </p>
+        <div class="alankaram-gratitude-box">
+          <span class="gratitude-symbol">🙏</span>
+          <p class="gratitude-quote">
+            ఈ స్వామి వారిని గత 35 సంవత్సరాలుగా ప్రతీ సంవత్సరం కొత్త రూపంలో అలంకరించే అదృష్టం కమిటీవారి ద్వారా
+            స్వామివారి ప్రేరణతో కలిగినందులకు సదా నేను కృతజ్ఞుడను.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2: శ్రీ లక్ష్మీ గణపతి స్వామి వారి ప్రత్యేకతలు, మహిమలు -->
+      <section id="mahimalu" class="vaibhavam-card mahimalu-card">
+        <div class="mahimalu-header">
+          <span class="mahimalu-icon">🌟</span>
+          <h2 class="mahimalu-title">శ్రీ లక్ష్మీ గణపతి స్వామి వారి ప్రత్యేకతలు, మహిమలు</h2>
+        </div>
+
+        <div class="mahima-item">
+          <p class="vaibhavam-text mahima-lead">
+            ముఖ్యంగా స్వామి వారు పిల్లలు లేని వారికి సంతానం ఇవ్వడం, వివాహం కాని వారికి వివాహం జరిపించడం, మంచి ఉద్యోగం
+            లో స్థిరపడేటట్లు చేయడం, పిల్లలకు విద్యపై శ్రద్ధ ఉండేటట్లు చేయడం,అన్యోన్య దాంపత్యాన్ని ఇవ్వడం,సంకటాలనుండి
+            రక్షించడం,రైతులకు గిట్టుబాటుగా పంటలు పండేటట్లు చేయడం, వ్యాపారులకు మంచి ఉన్నతిని ప్రసాదించడం,నూతనగృహ
+            నిర్మాణాలు మహిమలుగా చెప్పవచ్చును.
+          </p>
+        </div>
+
+        <div class="mahima-item">
+          <p class="vaibhavam-text">
+            వారి కోరికలు తీరిన తర్వాత వారి మొక్కుని బట్టి కొత్త రూపాయిలతో దండలు గుచ్చి స్వామి మెడలో వేసి ఆనందించడం
+            స్వామి ప్రత్యేకతగా చెప్పవచ్చును. సంతానవతులైనవారు పిల్లల బరువుకు సరిపడే రూపాయి నాణేలు,పటికబెల్లంతో తులాభారం
+            స్వామి సన్నిధిలో వేయడం మరో ప్రత్యేకతగా చెప్పవచ్చును.
+          </p>
+        </div>
+
+        <div class="mahima-item">
+          <p class="vaibhavam-text">
+            స్వామివారి నెల రోజుల అలంకరణ సమయంలోసేవ చేసిన యువకులకు మంచి ఉద్యోగాలు, ఉన్నత చదువులకు మంచి
+            విద్యాసంస్థలలో,విదేశాలలో సీట్లు సంపాదించి, అభివృద్ధి పథంలో ఉన్నారు.అంతెందుకు స్వామివారిని నమ్మిన వారికి
+            కొదువ లేదు.
+          </p>
+        </div>
+
+        <div class="mahima-item">
+          <p class="vaibhavam-text">
+            ఇక సంవత్సరం పొడవునా ,ప్రతీ బుధవారం, విశేష అర్చనలు,అభిషేకాలు జరుగుతున్నవి.విశేషించి ప్రతీ నెలా వచ్చే
+            సంకష్టహర చతుర్థి నాడు తెల్లవారుజామునుండి విశేష అభిషేకాలు, పుష్పాలతో, గరికతో,విశేష పూజలు భక్తులు అత్యంత
+            శ్రద్ధతో జరుపుకొంటారు. స్వామివారిని కొలవడంతో తమ సంకటాలు అన్నీ తొలగి ఆనందంగా జీవిస్తున్నామని గ్రామంలో ఏ
+            ఒక్కరిని అడిగినా చెబుతారు.
+          </p>
+        </div>
+
+        <div class="mahima-item">
+          <p class="vaibhavam-text">
+            మరి ముఖ్యంగా గ్రామంలో ఎవరింట వివాహం జరిగినా మొదటి శుభలేఖ స్వామివారికే ఇస్తారు.ఆ తర్వాతే బంధువులు,
+            స్నేహితులకు ఇవ్వడం,స్వామివారిని తమ కుటుంబ పెద్దగా భావించడం,వారికి స్వామివారిపై గల అపార అభిమానానికి
+            గుర్తుగా భావించవచ్చును.
+          </p>
+        </div>
+      </section>
+
+      <!-- Shobhayatra / Procession Card -->
+      <section id="procession" class="vaibhavam-card procession-card">
+        <h2 class="vaibhavam-subheading">
+          <span class="subhead-icon">🎊</span> 11వ రోజు స్వామివారి దివ్య రథోత్సవం & ఊరేగింపు వైభవం
+        </h2>
+
+        <p class="vaibhavam-text">
+          అలాగే స్వామివారి 11వరోజు ఊరేగింపు ఒక ప్రత్యేకత ను కలిగివుంది.ఈ సంవత్సరం ఏ వాహనంలో స్వామి ఉరేగుతారో అనే
+          ఉత్కంఠ అందరిలో ఉంటూ ఆ ఉరేగింపు కోసం ఎదురు చూస్తారు. ఎందుకంటే ప్రతీ సంవత్సరం కొత్తగా ప్రత్యేక ఆకర్షణగా, అధిక
+          వ్యయంతో వ్యయప్రయాసలకోర్చి స్వామివారి రధం తయారు చేయించి,ఊరేగింపు జరిపించడం గొప్ప విషయం.
+        </p>
+
+        <p class="vaibhavam-text highlight-ratham">
+          ఇంత వ్యయప్రయాసలకోర్చి తయారు చేసిన రధం ఈ ఒక్కసారికే ఉపయోగిస్తారు.మారు సంవత్సరం మరొక కొత్తరధం.
+        </p>
+
+        <p class="vaibhavam-text">
+          ఉరేగింపునాడు గ్రామమంతా ప్రతీ ఇంట్లో పెద్ద శుభకార్యం జరుగుతున్నట్లుగా భావిస్తారు.ప్రతీ ఇల్లు బంధువులు,
+          స్నేహితులతో కళకళలాడుతుంది. ఎక్కడెక్కడో ఉద్యోగాలలో ఉన్నవారందరూ వస్తారు.
+        </p>
+
+        <p class="vaibhavam-text">
+          ఇక ఊరేగింపు చిత్ర విచిత్ర వేషాల ట్రాక్టర్లతో,బ్యాండ్ మేళాలు, సన్నాయి,తాషాలు, నేలపై
+          డాన్సులు,బుట్టబొమ్మలు,కోలాటాలు, కర్రసాము,భజన కీర్తనలతో అత్యంత వైభవంగా జరుగుతుంది. ఇంత భారీ ఎత్తున జరిగే
+          కార్యక్రమంలో చిన్న అపశ్రుతి కూడా జరుగదు.దీనికి కారణం లక్ష్మీ గణపతి స్వామి వారి మహిమే అని చెప్పక తప్పదు.ఈ
+          సంవత్సరం మునుపటి వైభవంతో ఊరేగింపు జరపడానికి సన్నాహాలు జరుగుతున్నాయి.
+        </p>
+
+        <p class="vaibhavam-text conclusion-text">
+          స్వామివారి మహిమ మాత్రం అంతకంతకు పెరుగుతోంది.
+        </p>
+      </section>
+
+      <!-- Highlight Box: ఈ సారి ఊరేగింపు 24.09.2026 గురువారం. -->
+      <section id="procession-date" class="procession-date-highlight-banner">
+        <div class="date-highlight-inner">
+          <span class="procession-bell-icon">🔔</span>
+          <div class="date-highlight-content">
+            <span class="date-highlight-badge">మహోత్సవ దివ్య ఊరేగింపు తేదీ</span>
+            <h3 class="date-highlight-main">ఈ సారి ఊరేగింపు 24.09.2026 గురువారం.</h3>
+            <p class="date-highlight-sub">సర్వ భక్తులు విచ్చేసి స్వామివారి శోభాయాత్రలో పాల్గొని తీర్థప్రసాదాలు
+              స్వీకరించి స్వామివారి కృపకు పాత్రులు కాగలరు.</p>
+          </div>
+          <span class="procession-bell-icon">🪔</span>
+        </div>
+      </section>
+
+      <!-- Cross-Portal Links Section -->
+      <div class="vaibhavam-explore-footer">
+        <h3 class="explore-footer-title">శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య సన్నిధి – మరిన్ని విభాగాలు</h3>
+        <p class="explore-footer-desc">ఉత్సవాల అపురూప ఛాయాచిత్రాలు మరియు సంపూర్ణ వినాయక చవితి పూజా విధానం చూడండి:</p>
+        <div class="explore-actions-row">
+          <a href="gallery.html" class="explore-btn primary">
+            <span>📸</span> స్వామివారి ఫోటోల గ్యాలరీ (1963 - 2025)
+          </a>
+          <a href="pooja-vidhanam.html" class="explore-btn primary">
+            <span>📜</span> సంపూర్ణ పూజా విధానం & వ్రతకల్పం
+          </a>
+          <a href="index.html" class="explore-btn secondary">
+            <span>🏠</span> ప్రధాన పేజీకి వెళ్లండి
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Devotional Traditional Footer -->
+  <footer class="devotional-footer">
+    <div class="container">
+      <div class="footer-content">
+        <img src="assets/logo/committee-logo.png" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="footer-logo-img">
+        <h3 class="footer-title">శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య సన్నిధి</h3>
+        <p class="footer-values">భక్తి • సంప్రదాయం • సంస్కృతి • ధర్మం</p>
+
+        <!-- Instagram Follow Button -->
+        <div class="footer-instagram-wrap">
+          <a href="https://www.instagram.com/lakshmiganapathiswamy?stkn=MXFzMzN1dTNtdzY5Mg%3D%3D" target="_blank"
+            rel="noopener noreferrer" class="footer-instagram-btn"
+            aria-label="Follow @lakshmiganapathiswamy on Instagram">
+            <svg class="instagram-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+            <span>ఇన్‌స్టాగ్రామ్‌లో స్వామివారిని అనుసరించండి (@lakshmiganapathiswamy)</span>
+          </a>
+        </div>
+
+        <div class="footer-blessing-box">
+          <h4 class="footer-blessing-title">🙏 ధన్యవాదాలు</h4>
+          <p class="footer-blessing-text">
+            శ్రీ లక్ష్మీ గణపతి స్వామి వారి ఆశీస్సులు మీ కుటుంబంపై ఎల్లప్పుడూ ఉండాలని మనస్ఫూర్తిగా కోరుకుంటూ...
+          </p>
+          <div class="footer-slogan">గణపతి బప్పా మోరియా ! పునరాగమనాయచ 🙏</div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            &copy; 2026 Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu. సర్వ హక్కులు ప్రత్యేకించబడినవి.
+          </div>
+          <div class="footer-actions">
+            <button id="backToTop" class="back-to-top" aria-label="పైకి వెళ్ళండి">
+              <span>↑</span> పైకి
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

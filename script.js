@@ -131,7 +131,36 @@ async function fetchDharmaArticles() {
   if (local) {
     try { return JSON.parse(local); } catch (e) { }
   }
-  return [];
+  return [
+    {
+      id: 1,
+      title: "దేవాలయాల ప్రాముఖ్యత",
+      category: "హిందూ ధర్మం",
+      content: "దేవాలయాలు కేవలం పూజా స్థలాలు మాత్రమే కాదు; మానసిక ప్రశాంతతను, సానుకూల ఆధ్యాత్మిక తరంగాలను అందిస్తూ సమాజ ఐక్యతను నిలిపే పవిత్ర కేంద్రాలు.",
+      image_url: "assets/dharma/temple.jpg"
+    },
+    {
+      id: 2,
+      title: "దీపారాధన పరమార్థం",
+      category: "పూజా సంప్రదాయాలు",
+      content: "దీపం పరబ్రహ్మ స్వరూపం. అజ్ఞానమనే అంధకారాన్ని పారద్రోలి జ్ఞాన వెలుగును నింపే పవిత్ర సంప్రదాయం దీపారాధన. నిత్య దీపారాధన ద్వారా ఇంట్లో సకల దోషాలు నివారణమై శుభాలు కలుగుతాయి.",
+      image_url: "assets/dharma/deepam.jpg"
+    },
+    {
+      id: 3,
+      title: "ప్రకృతితో మన అనుబంధం - మట్టి గణపతి",
+      category: "సనాతన సంప్రదాయాలు",
+      content: "వినాయకుని మట్టితో తయారుచేసి, ఔషధ గుణాలున్న 21 పత్రులతో పూజించి తిరిగి జలంలో నిమజ్జనం చేయడం ద్వారా సృష్టి, స్థితి, లయల ప్రకృతి ధర్మాన్ని మనం గౌరవిస్తాము.",
+      image_url: "assets/dharma/clay_ganesha.jpg"
+    },
+    {
+      id: 4,
+      title: "భారతీయ సంస్కృతి & సనాతన ధర్మ విలువలు",
+      category: "హిందూ సంస్కృతి",
+      content: "\"వసుధైవ కుటుంబకం\" - ప్రపంచమంతా ఒకే కుటుంబం అనే సత్యం, ధర్మం, శాంతి, సేవా భావాలను మన సనాతన సంస్కృతి తరతరాలుగా బోధిస్తోంది.",
+      image_url: "assets/dharma/culture.jpg"
+    }
+  ];
 }
 
 // --------------------------------------------------------------------------
@@ -379,6 +408,13 @@ async function initDailyPooja() {
 // --------------------------------------------------------------------------
 // 12. HINDU DHARMA & SAMSKRUTHI SECTION
 // --------------------------------------------------------------------------
+const DHARMA_IMAGES_MAP = {
+  "దేవాలయాల ప్రాముఖ్యత": "assets/dharma/temple.jpg",
+  "దీపారాధన పరమార్థం": "assets/dharma/deepam.jpg",
+  "ప్రకృతితో మన అనుబంధం - మట్టి గణపతి": "assets/dharma/clay_ganesha.jpg",
+  "భారతీయ సంస్కృతి & సనాతన ధర్మ విలువలు": "assets/dharma/culture.jpg"
+};
+
 async function initDharma() {
   const container = document.getElementById("dharmaArticlesGrid");
   if (!container) return;
@@ -386,32 +422,27 @@ async function initDharma() {
   try {
     const articles = await fetchDharmaArticles();
     if (!articles || articles.length === 0) {
-      container.innerHTML = `<p style="text-align: center; color: var(--text-muted); grid-column: 1 / -1;">వ్యాసాలు త్వరలో ప్రచురించబడును.</p>`;
       return;
     }
 
     container.innerHTML = articles
       .map(
-        (art) => `
+        (art) => {
+          const imgUrl = DHARMA_IMAGES_MAP[art.title] || (art.image_url && !art.image_url.startsWith("images/") ? art.image_url : "assets/dharma/temple.jpg");
+          return `
         <article class="dharma-article-card">
-          ${
-            art.image_url
-              ? `
-            <div class="article-image-wrap">
-              <img src="${art.image_url}" alt="${art.title}" loading="lazy" onerror="this.style.display='none'">
-              <span class="article-category-badge">${art.category}</span>
-            </div>
-          `
-              : ""
-          }
+          <div class="article-image-wrap">
+            <img src="${imgUrl}" alt="${art.title}" loading="lazy" onerror="this.onerror=null; this.src='assets/dharma/temple.jpg';">
+            <span class="article-category-badge">${art.category}</span>
+          </div>
           <div class="article-body">
-            ${!art.image_url ? `<span class="article-category-badge-inline">${art.category}</span>` : ""}
             <h3 class="article-title">${art.title}</h3>
             <div class="article-divider"></div>
             <p class="article-content">${art.content}</p>
           </div>
         </article>
-      `
+      `;
+        }
       )
       .join("");
   } catch (err) {
