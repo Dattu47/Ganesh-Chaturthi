@@ -24,124 +24,10 @@
   <style>
     /* Dedicated Gallery Page Specific Styles */
     .gallery-page-body {
-      background: transparent !important;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
-    }
-
-    /* Full Length & Width Background Image */
-    .individual-page-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      object-position: center top;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    .individual-page-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      background: linear-gradient(180deg, rgba(253, 251, 247, 0.84) 0%, rgba(254, 243, 199, 0.76) 50%, rgba(253, 251, 247, 0.90) 100%);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      pointer-events: none;
-    }
-
-    .gallery-top-nav {
-      background: linear-gradient(135deg, var(--maroon, #721214) 0%, var(--maroon-dark, #490b0c) 100%);
-      color: #ffffff;
-      padding: 0.85rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-      border-bottom: 2px solid var(--gold, #d4af37);
-    }
-
-    .gallery-nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .back-home-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      padding: 0.55rem 1rem;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .back-home-btn:hover {
-      background: var(--gold, #d4af37);
-      color: var(--maroon-dark, #490b0c);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .gallery-hero-header {
-      text-align: center;
-      padding: 2.2rem 1rem 1.5rem 1rem;
-      background: linear-gradient(180deg, rgba(212, 175, 55, 0.12) 0%, rgba(253, 251, 247, 0) 100%);
-      border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
-    }
-
-    .gallery-logo-wrap {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-    }
-
-    .gallery-committee-logo {
-      width: 85px;
-      height: 85px;
-      object-fit: contain;
-      border-radius: 50%;
-      background: #ffffff;
-      padding: 4px;
-      box-shadow: 0 4px 12px rgba(114, 18, 20, 0.2);
-      border: 2px solid var(--gold, #d4af37);
-    }
-
-    .gallery-main-title {
-      font-size: 2rem;
-      color: var(--maroon, #721214);
-      margin: 0.25rem 0;
-      font-weight: 800;
-      line-height: 1.25;
-    }
-
-    .gallery-subtitle {
-      font-size: 1.25rem;
-      color: var(--gold-dark, #997819);
-      font-weight: 700;
-      margin-bottom: 0.35rem;
-    }
-
-    .gallery-committee-tag {
-      font-size: 0.92rem;
-      color: var(--text-muted, #666);
-      max-width: 600px;
-      margin: 0 auto;
     }
 
     /* Year Selection Control Card */
@@ -655,41 +541,81 @@
 
 <body class="gallery-page-body">
 
-  <!-- Full Length and Width Background Image -->
+  <!-- Devotional Background Image & Soft Overlay -->
   <img src="assets/hero.jpg" class="individual-page-bg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దేవస్థానం" loading="eager">
   <div class="individual-page-overlay"></div>
 
-  <!-- Top Sticky Navigation Bar -->
-  <header class="gallery-top-nav">
-    <div class="gallery-nav-inner">
-      <a href="index.html" class="back-home-btn" id="backToHomeBtn" title="ప్రధాన పేజీకి తిరిగి వెళ్లండి">
-        <span>←</span>
-        <span>హోమ్కు తిరిగి వెళ్లండి</span>
+  <!-- Committee Top Header Banner -->
+  <div class="top-committee-banner">
+    <div class="container banner-inner">
+      <span class="banner-icon">🕉️</span>
+      <span class="committee-title-text">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</span>
+    </div>
+  </div>
+
+  <!-- Sticky Main Navigation Bar -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="హోమ్ పేజీ">
+        <img src="assets/logo/committee-logo.jpeg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="header-logo-img">
+        <div class="nav-logo-group">
+          <span class="nav-logo-main">శ్రీ లక్ష్మీ గణపతి స్వామి</span>
+          <span class="nav-logo-sub">వినాయక చవితి ఉత్సవాలు</span>
+        </div>
       </a>
 
-      <!-- Music Player Button for continuity -->
-      <button id="musicBtn" class="music-btn" title="భక్తి సంగీతం ప్లే / పాజ్" aria-label="భక్తి సంగీతం"
-        style="padding: 0.45rem 0.85rem; font-size: 0.85rem;">
-        <span id="musicIcon" class="music-btn-icon">▶</span>
-        <span id="musicLabel">భక్తి సంగీతం</span>
-      </button>
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#home" class="nav-link">హోమ్</a></li>
+          <li><a href="vaibhavam.html" class="nav-link">వైభవం & మహత్యం</a></li>
+          <li><a href="index.html#daily-pooja" class="nav-link">నిత్య పూజ</a></li>
+          <li><a href="pooja-vidhanam.html" class="nav-link">పూజా విధానం 📜</a></li>
+          <li><a href="gallery.html" class="nav-link active">గ్యాలరీ 📸</a></li>
+          <li><a href="index.html#dharmam" class="nav-link">హిందూ ధర్మం & సంస్కృతి</a></li>
+        </ul>
+      </nav>
 
-      <!-- Audio Element -->
-      <audio id="devotionalAudio" loop preload="auto">
-        <source src="assets/music/devotional.mp3" type="audio/mp3">
-      </audio>
+      <!-- Music Player & Mobile Hamburger -->
+      <div class="nav-actions">
+        <audio id="devotionalAudio" loop preload="auto">
+          <source src="assets/music/devotional.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- Instagram Link in Navigation -->
+        <a href="https://www.instagram.com/lakshmiganapathiswamy?stkn=MXFzMzN1dTNtdzY5Mg%3D%3D" target="_blank"
+          rel="noopener noreferrer" class="nav-insta-btn" title="ఇన్‌స్టాగ్రామ్‌లో స్వామివారిని అనుసరించండి"
+          aria-label="Instagram @lakshmiganapathiswamy">
+          <svg class="instagram-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+          <span class="nav-insta-label">Instagram</span>
+        </a>
+
+        <button id="musicBtn" class="music-btn" title="భక్తి సంగీతం ప్లే / పాజ్" aria-label="భక్తి సంగీతం">
+          <span id="musicIcon" class="music-btn-icon">▶</span>
+          <span id="musicLabel">భక్తి సంగీతం</span>
+        </button>
+
+        <button id="mobileToggle" class="mobile-toggle" aria-label="మెనూ తెరవండి" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Gallery Hero Branding Area -->
-  <div class="gallery-hero-header">
-    <div class="gallery-logo-wrap">
-      <img src="assets/logo/committee-logo.jpeg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దేవస్థానం"
-        class="gallery-committee-logo">
+  <!-- Unified Royal Page Header Banner -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-logo-wrap">
+        <img src="assets/logo/committee-logo.jpeg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="page-header-logo">
+      </div>
+      <span class="page-invocation-pill">శ్రీ లక్ష్మీ గణపతి స్వామియే నమః</span>
+      <h1 class="page-title">శ్రీ లక్ష్మీ గణపతి స్వామి ఉత్సవాల గ్యాలరీ</h1>
+      <div class="section-divider"><span>🌺</span></div>
+      <p class="page-subtitle">1963 నుండి నేటి వరకు చారిత్రక వినాయక చవితి మహోత్సవాల దివ్య దర్శనం మరియు అలంకరణల ఫోటోలు.</p>
     </div>
-    <h1 class="gallery-main-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
-    <div class="gallery-subtitle">ఉత్సవాల గ్యాలరీ</div>
-    <p class="gallery-committee-tag">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
   </div>
 
   <!-- Year Selection Section -->
@@ -745,23 +671,54 @@
     </div>
   </div>
 
-  <!-- Traditional Footer -->
-  <footer class="footer" style="margin-top: 3rem;">
-    <div class="container text-center">
-      <div class="footer-logo">
+  <!-- Devotional Traditional Footer -->
+  <footer class="devotional-footer">
+    <div class="container">
+      <div class="footer-content">
         <img src="assets/logo/committee-logo.jpeg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="footer-logo-img">
-        <h3>శ్రీ లక్ష్మీ గణపతి ఉత్సవ కమిటీ</h3>
-        <p>గాంధీబొమ్మ సెంటర్, వెలివెన్ను, పశ్చిమ గోదావరి జిల్లా</p>
-      </div>
-      <div class="footer-bottom"
-        style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(212,175,55,0.2);">
-        <p>© 2026 శ్రీ లక్ష్మీ గణపతి స్వామి ఉత్సవ కమిటీ. సర్వహక్కులు ప్రత్యేకించబడినవి.</p>
+        <h3 class="footer-title">శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య సన్నిధి</h3>
+        <p class="footer-values">భక్తి • సంప్రదాయం • సంస్కృతి • ధర్మం</p>
+
+        <!-- Instagram Follow Button -->
+        <div class="footer-instagram-wrap">
+          <a href="https://www.instagram.com/lakshmiganapathiswamy?stkn=MXFzMzN1dTNtdzY5Mg%3D%3D" target="_blank"
+            rel="noopener noreferrer" class="footer-instagram-btn"
+            aria-label="Follow @lakshmiganapathiswamy on Instagram">
+            <svg class="instagram-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+            <span>ఇన్‌స్టాగ్రామ్‌లో స్వామివారిని అనుసరించండి (@lakshmiganapathiswamy)</span>
+          </a>
+        </div>
+
+        <div class="footer-blessing-box">
+          <h4 class="footer-blessing-title">🙏 ధన్యవాదాలు</h4>
+          <p class="footer-blessing-text">
+            శ్రీ లక్ష్మీ గణపతి స్వామి వారి ఆశీస్సులు మీ కుటుంబంపై ఎల్లప్పుడూ ఉండాలని మనస్ఫూర్తిగా కోరుకుంటూ...
+          </p>
+          <div class="footer-slogan">గణపతి బప్పా మోరియా ! పునరాగమనాయచ 🙏</div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            &copy; 2026 Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu. సర్వ హక్కులు ప్రత్యేకించబడినవి.
+          </div>
+          <div class="footer-actions">
+            <button id="backToTop" class="back-to-top" aria-label="పైకి వెళ్ళండి">
+              <span>↑</span> పైకి
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- Supabase CDN Script (Optional / Non-blocking) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Global Script for Navigation, Music Player & Back-to-Top -->
+  <script src="script.js"></script>
 
   <!-- Dedicated Gallery JavaScript -->
   <script src="gallery.js"></script>

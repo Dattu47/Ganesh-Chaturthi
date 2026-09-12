@@ -299,27 +299,29 @@
         border-left: 2px solid #000000 !important;
         background: #f5f5f5 !important;
       }
+    }
 
-      body {
-        background: transparent !important;
-        min-height: 100vh;
-        position: relative;
-      }
-
-      .page-header,
-      .pooja-container,
-      .devotional-footer {
-        position: relative;
-        z-index: 1;
-      }
+    /* Screen Styles for Devotional Subpage */
+    .pooja-container {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 
-<body>
+<body class="pooja-page-body">
 
   <!-- Full Length and Width Background Image -->
   <img src="assets/hero.jpg" class="individual-page-bg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి దేవస్థానం" loading="eager">
   <div class="individual-page-overlay"></div>
+
+  <!-- Committee Top Header Banner -->
+  <div class="top-committee-banner">
+    <div class="container banner-inner">
+      <span class="banner-icon">🕉️</span>
+      <span class="committee-title-text">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</span>
+    </div>
+  </div>
 
   <!-- Sticky Main Navigation Bar -->
   <header class="header-nav">
@@ -336,10 +338,10 @@
       <nav>
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html#home" class="nav-link">హోమ్</a></li>
-          <li><a href="vaibhavam.html" class="nav-link">వైభవం & మహత్యం 🛕</a></li>
+          <li><a href="vaibhavam.html" class="nav-link">వైభవం & మహత్యం</a></li>
           <li><a href="index.html#daily-pooja" class="nav-link">నిత్య పూజ</a></li>
-          <li><a href="gallery.html" class="nav-link">గ్యాలరీ 📸</a></li>
           <li><a href="pooja-vidhanam.html" class="nav-link active">పూజా విధానం 📜</a></li>
+          <li><a href="gallery.html" class="nav-link">గ్యాలరీ 📸</a></li>
           <li><a href="index.html#dharmam" class="nav-link">హిందూ ధర్మం & సంస్కృతి</a></li>
         </ul>
       </nav>
@@ -373,11 +375,15 @@
     </div>
   </header>
 
-  <!-- Page Header -->
+  <!-- Unified Page Header Banner -->
   <div class="page-header">
     <div class="container">
-      <span class="page-header-icon">🪔</span>
+      <div class="page-header-logo-wrap">
+        <img src="assets/logo/committee-logo.jpeg" alt="శ్రీ లక్ష్మీ గణపతి స్వామి" class="page-header-logo">
+      </div>
+      <span class="page-invocation-pill">శ్రీ లక్ష్మీ గణపతి స్వామియే నమః</span>
       <h1 class="page-title">వినాయక చవితి పూజా విధానం & సంపూర్ణ వ్రతకల్పం</h1>
+      <div class="section-divider"><span>🌺</span></div>
       <p class="page-subtitle">శ్రీ లక్ష్మీ గణపతి స్వామి వారి దివ్య అనుగ్రహం కొరకు సంపూర్ణ పూజా క్రమం మరియు వ్రత కథ</p>
     </div>
   </div>

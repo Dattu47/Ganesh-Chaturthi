@@ -533,36 +533,8 @@ function initLightboxEvents() {
   });
 }
 
-// 10. DEVOTIONAL MUSIC PLAYER
-function initMusicPlayer() {
-  const audio = document.getElementById("devotionalAudio");
-  const btn = document.getElementById("musicBtn");
-  const icon = document.getElementById("musicIcon");
-  const label = document.getElementById("musicLabel");
-  if (!audio || !btn) return;
-
-  // Set default audio volume to 0.5
-  audio.volume = 0.5;
-
-  btn.addEventListener("click", function () {
-    if (audio.paused) {
-      audio.play().then(() => {
-        if (icon) icon.textContent = "⏸";
-        if (label) label.textContent = "పాజ్";
-        btn.classList.add("playing");
-      }).catch(() => { });
-    } else {
-      audio.pause();
-      if (icon) icon.textContent = "▶";
-      if (label) label.textContent = "భక్తి సంగీతం";
-      btn.classList.remove("playing");
-    }
-  });
-}
-
-// 11. INITIALIZATION
+// 10. INITIALIZATION
 document.addEventListener("DOMContentLoaded", function () {
-  initMusicPlayer();
   initLightboxEvents();
   initDedicatedGallery();
 });
