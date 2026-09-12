@@ -507,116 +507,127 @@ function initBackToTop() {
 }
 
 // ==========================================================================
-// 14. GANESH AGAMAN PERMANENT HERO & TEMPLE SANCTUM COMPONENT
+// 14. GANESH AGAMAN CINEMATIC TEMPLE REVEAL & PERMANENT HERO (REFERENCE)
 // ==========================================================================
-function spawnSacredPetals() {
-  const container = document.getElementById("ganeshAgamanPetals");
-  if (!container) return;
-  const PETAL_SYMBOLS = ["🌺", "🌸", "🌼", "🏵️", "✨", "🍃"];
-  const count = window.innerWidth <= 768 ? 16 : 26;
-  for (let i = 0; i < count; i++) {
-    const petal = document.createElement("span");
-    petal.className = "ganesh-petal";
-    petal.textContent = PETAL_SYMBOLS[Math.floor(Math.random() * PETAL_SYMBOLS.length)];
-    const left = Math.random() * 100;
-    const size = 0.85 + Math.random() * 0.85;
-    const duration = 4.5 + Math.random() * 3.5;
-    const delay = Math.random() * 2.5;
-    const drift = -40 + Math.random() * 80;
-    const rot = -180 + Math.random() * 360;
-    petal.style.left = `${left}%`;
-    petal.style.fontSize = `${size}rem`;
-    petal.style.animationDuration = `${duration}s`;
-    petal.style.animationDelay = `${delay}s`;
-    petal.style.setProperty("--drift-x", `${drift}px`);
-    petal.style.setProperty("--rot-deg", `${rot}deg`);
-    container.appendChild(petal);
+function makeEffects() {
+  const effects = document.getElementById("effects");
+  if (!effects) return;
+  effects.innerHTML = "";
+
+  /* ---------------------------------------
+     1. GOLDEN FLOATING SPARKS (Infinite)
+  --------------------------------------- */
+  for (let i = 0; i < 95; i++) {
+    const s = document.createElement("i");
+    s.className = "spark";
+    if (Math.random() > 0.86) {
+      s.classList.add("big");
+    }
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = (25 + Math.random() * 75) + "%";
+    s.style.setProperty("--d", (2.5 + Math.random() * 5) + "s");
+    s.style.animationDelay = Math.random() * 4 + "s";
+    effects.appendChild(s);
+  }
+
+  /* ---------------------------------------
+     2. FLOWER PETALS
+  --------------------------------------- */
+  for (let i = 0; i < 70; i++) {
+    const p = document.createElement("i");
+    p.className = "petal";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.setProperty("--drift", (Math.random() * 280 - 140) + "px");
+    p.style.setProperty("--d", (4 + Math.random() * 5) + "s");
+    p.style.animationDelay = Math.random() * 2.5 + "s";
+    effects.appendChild(p);
+  }
+
+  /* ---------------------------------------
+     3. GOLD DUST CONVERGING TOWARD IDOL
+  --------------------------------------- */
+  for (let i = 0; i < 100; i++) {
+    const g = document.createElement("i");
+    g.className = "gold";
+    const x = (Math.random() * 100 - 50) * 8;
+    const y = (Math.random() * 100 - 50) * 7;
+    g.style.left = "50%";
+    g.style.top = "48%";
+    g.style.setProperty("--sx", x + "px");
+    g.style.setProperty("--sy", y + "px");
+    g.style.setProperty("--d", (1.5 + Math.random() * 3) + "s");
+    g.style.animationDelay = (Math.random() * 2) + "s";
+    effects.appendChild(g);
   }
 }
 
-function startAmbientParticles() {
-  const container = document.getElementById("ganeshAgamanPetals");
-  if (!container) return;
-  // Keep subtle ambient golden sparkles floating gently
-  const sparkleCount = window.innerWidth <= 768 ? 10 : 18;
-  for (let i = 0; i < sparkleCount; i++) {
-    const sparkle = document.createElement("span");
-    sparkle.className = "ganesh-ambient-sparkle";
-    sparkle.style.left = `${Math.random() * 96 + 2}%`;
-    sparkle.style.top = `${Math.random() * 80 + 10}%`;
-    sparkle.style.animationDuration = `${4 + Math.random() * 4}s`;
-    sparkle.style.animationDelay = `${Math.random() * 3}s`;
-    container.appendChild(sparkle);
-  }
-}
+function playReveal() {
+  const scene = document.getElementById("ganeshAgamanReveal");
+  if (!scene) return;
 
-function startGaneshReveal() {
-  const reveal = document.getElementById("ganeshAgamanReveal");
-  if (!reveal) return;
-
-  // Scroll to top instantly and lock scroll temporarily for the reveal sequence
+  // Scroll to top instantly and lock body scroll during reveal presentation
   window.scrollTo({ top: 0, behavior: "instant" });
   document.body.style.overflow = "hidden";
 
-  // Enter Fullscreen Presentation Mode for the initial animation
-  reveal.classList.add("reveal-active", "reveal-fullscreen");
-  reveal.setAttribute("aria-hidden", "false");
+  // Reset classes and activate fullscreen mode
+  scene.classList.remove("playing", "opening", "revealed", "permanent-hero");
+  scene.classList.add("fullscreen-mode");
+  scene.setAttribute("aria-hidden", "false");
 
-  // Optional: If devotional audio player exists and is paused, trigger playback smoothly
+  // Create sacred particles
+  makeEffects();
+
+  // Force browser reflow
+  void scene.offsetWidth;
+
+  // Optional: Start devotional audio if present and paused
   const audioEl = document.getElementById("devotionalAudio");
   if (audioEl && audioEl.paused) {
     audioEl.play().catch(() => {});
   }
 
-  // Animation Timeline:
-  // 1. Doors begin opening smoothly in 3D perspective
+  /* ---------------------------------------
+     PHASE 1 (150ms) - Temple wakes up
+  --------------------------------------- */
   setTimeout(() => {
-    reveal.classList.add("doors-opening");
-  }, 800);
+    scene.classList.add("playing");
+  }, 150);
 
-  // 2. Garbhagudi sanctum illuminates with divine rays and golden halo
+  /* ---------------------------------------
+     PHASE 2 (900ms) - Doors begin opening
+  --------------------------------------- */
   setTimeout(() => {
-    reveal.classList.add("sanctum-illuminated");
-  }, 1600);
+    scene.classList.add("opening");
+  }, 900);
 
-  // 3. 2026 Ganesh Idol and Top Invocation "శ్రీ గణేశాయ నమః" appear
+  /* ---------------------------------------
+     PHASE 3 (2900ms) - Divine darshan
+  --------------------------------------- */
   setTimeout(() => {
-    reveal.classList.add("idol-revealed");
-  }, 2600);
+    scene.classList.add("revealed");
+  }, 2900);
 
-  // 4. Sacred flower petals gently shower
+  /* ---------------------------------------
+     PHASE 4 (6200ms) - Transition to Permanent Hero
+     IMPORTANT: Scene NEVER closes or disappears!
+  --------------------------------------- */
   setTimeout(() => {
-    spawnSacredPetals();
-  }, 3800);
+    scene.classList.remove("fullscreen-mode");
+    scene.classList.add("permanent-hero");
 
-  // 5. Under-Ganesh permanent titles appear smoothly
-  setTimeout(() => {
-    reveal.classList.add("titles-revealed");
-  }, 5000);
-
-  // 6. Reveal animation completes -> Transition directly to Permanent Hero Section
-  // IMPORTANT: The reveal scene NEVER disappears, closes, or resets!
-  setTimeout(() => {
-    // Dock as the permanent Hero section
-    reveal.classList.remove("reveal-fullscreen");
-    reveal.classList.add("reveal-permanent-hero");
-
-    // Hide pre-reveal countdown wrap so there are no duplicate titles or clutter
     const initialHero = document.getElementById("heroInitialWrap");
     if (initialHero) {
       initialHero.style.display = "none";
     }
 
-    // Restore normal body scrolling so user can scroll down through all sections
+    // Restore normal body scrolling
     document.body.style.overflow = "";
-
-    // Start continuous subtle ambient floating particles
-    startAmbientParticles();
-  }, 6500);
+  }, 6200);
 }
 
-// Support aliases for backward compatibility and test consoles
-window.startGaneshReveal = startGaneshReveal;
-window.playGaneshAgaman = startGaneshReveal;
+// Global aliases for backward compatibility and console testing
+window.playReveal = playReveal;
+window.startGaneshReveal = playReveal;
+window.playGaneshAgaman = playReveal;
 
 

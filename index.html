@@ -152,118 +152,92 @@
       </div>
     </div>
 
-    <!-- Permanent Ganesh Agaman Sanctum Hero (Revealed on countdown completion) -->
-    <div id="ganeshAgamanReveal" class="ganesh-agaman-container" aria-hidden="true">
-      <div class="ganesh-agaman-stage">
-        
-        <!-- Deep Temple Sanctum (Garbhagudi) -->
-        <div class="ganesh-agaman-sanctum">
-          <!-- Divine Rays & Sacred Ambient Halo -->
-          <div class="ganesh-agaman-halo"></div>
-          <div class="ganesh-agaman-divine-rays"></div>
+    <!-- Permanent Ganesh Agaman Temple Sanctum (Based on reference architecture) -->
+    <div id="ganeshAgamanReveal" class="scene ganesh-reveal-scene" aria-hidden="true">
 
-          <!-- Floating Sacred Flower Petals & Golden Sparkles Container -->
-          <div class="ganesh-agaman-petals-layer" id="ganeshAgamanPetals"></div>
-
-          <!-- Sacred Top Invocation: "శ్రీ గణేశాయ నమః" -->
-          <div class="ganesh-agaman-invocation-wrap">
-            <div class="ganesh-agaman-invocation-plaque">
-              <span class="ganesh-agaman-invocation-text">శ్రీ గణేశాయ నమః</span>
-            </div>
-          </div>
-
-          <!-- The Sacred Ganesh Idol Photograph (2026.jpeg) -->
-          <div class="ganesh-agaman-idol-wrap">
-            <div class="ganesh-agaman-idol-pedestal-aura"></div>
-            <img
-              src="assets/gallery/2026/2026.jpeg"
-              alt="శ్రీ లక్ష్మీ గణపతి స్వామివారు"
-              class="ganesh-agaman-idol-img"
-              id="ganeshAgamanIdolImg"
-              onerror="this.onerror=null; this.src='assets/gallery/2026.jpeg';"
-            >
-          </div>
-
-          <!-- Under-Ganesh Permanent Hero Titles -->
-          <div class="ganesh-agaman-hero-titles-wrap">
-            <div class="ganesh-agaman-hero-plaque">
-              <h1 class="ganesh-agaman-hero-main-title">శ్రీ లక్ష్మీ గణపతి స్వామి</h1>
-              <h2 class="ganesh-agaman-hero-sub-title">వినాయక చవితి ఉత్సవాలు</h2>
-              <p class="ganesh-agaman-hero-committee">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
-            </div>
-            
-            <div class="ganesh-agaman-scroll-cue">
-              <a href="#vaibhavam" class="scroll-down-btn">
-                <span class="scroll-arrow">↓</span> స్వామివారి వైభవం, గ్యాలరీ &amp; పూజా విధానం కొరకు క్రిందికి స్క్రోల్ చేయండి
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Traditional Wooden Temple Doors with 3D Perspective -->
-        <div class="ganesh-agaman-door-frame">
-          <!-- Left Door Leaf -->
-          <div class="ganesh-agaman-door ganesh-agaman-door-left" id="ganeshDoorLeft">
-            <div class="ganesh-door-wood-grain"></div>
-            <div class="ganesh-door-brass-border"></div>
-            <div class="ganesh-door-carving">
-              <div class="ganesh-brass-studs-grid">
-                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
-                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
-                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
-              </div>
-              <div class="ganesh-door-brass-ornament">🕉️</div>
-            </div>
-            <div class="ganesh-door-handle left-handle"></div>
-          </div>
-
-          <!-- Right Door Leaf -->
-          <div class="ganesh-agaman-door ganesh-agaman-door-right" id="ganeshDoorRight">
-            <div class="ganesh-door-wood-grain"></div>
-            <div class="ganesh-door-brass-border"></div>
-            <div class="ganesh-door-carving">
-              <div class="ganesh-brass-studs-grid">
-                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
-                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
-                <span class="brass-stud"></span><span class="brass-stud"></span><span class="brass-stud"></span>
-              </div>
-              <div class="ganesh-door-brass-ornament">🛕</div>
-            </div>
-            <div class="ganesh-door-handle right-handle"></div>
-          </div>
-        </div>
-
-        <!-- Traditional Temple Pillars & Torana Arch -->
-        <div class="ganesh-agaman-temple-arch">
-          <div class="ganesh-temple-top-arch">
-            <div class="arch-torana">🌺 🪔 🕉️ 🪔 🌺</div>
-          </div>
-          <div class="ganesh-temple-pillar pillar-left"></div>
-          <div class="ganesh-temple-pillar pillar-right"></div>
-        </div>
-
-        <!-- Sacred Standing Brass Diyas (Deepams with Animated Flickering Flames) -->
-        <div class="ganesh-agaman-diya diya-left">
-          <div class="diya-brass-stand">
-            <div class="diya-oil-cup"></div>
-            <div class="diya-flame-wrap">
-              <div class="diya-flame"></div>
-              <div class="diya-flame-glow"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ganesh-agaman-diya diya-right">
-          <div class="diya-brass-stand">
-            <div class="diya-oil-cup"></div>
-            <div class="diya-flame-wrap">
-              <div class="diya-flame"></div>
-              <div class="diya-flame-glow"></div>
-            </div>
-          </div>
-        </div>
-
+      <!-- TEMPLE ARCHITECTURE -->
+      <div class="temple">
+        <div class="arch"></div>
+        <div class="pillar left-pillar"></div>
+        <div class="pillar right-pillar"></div>
+        <div class="floor"></div>
       </div>
+
+      <!-- TOP ORNAMENT WITH OM -->
+      <div class="ornament">
+        <span></span>
+      </div>
+
+      <!-- ATMOSPHERIC LIGHTING -->
+      <div class="glow"></div>
+      <div class="rays"></div>
+      <div class="lightshaft"></div>
+      <div class="halo"></div>
+
+      <!-- SACRED MANDALA (5 CONCENTRIC ROTATING RINGS) -->
+      <div class="mandala">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+
+      <!-- INCENSE SMOKE / DHUMI -->
+      <div class="smoke"></div>
+
+      <!-- THE 2026 GANESH IDOL -->
+      <div class="idol">
+        <img
+          src="assets/gallery/2026/2026.jpeg"
+          alt="శ్రీ లక్ష్మీ గణపతి స్వామివారు"
+          onerror="this.onerror=null; this.src='assets/gallery/2026.jpeg';"
+        >
+      </div>
+
+      <!-- TOP DEVOTIONAL HEADER -->
+      <div class="header">
+        <div class="om">ॐ</div>
+        <h1>శ్రీ గణేశాయ నమః</h1>
+        <p>శ్రీ లక్ష్మీ గణపతి స్వామివారి ఉత్సవాలు</p>
+      </div>
+
+      <!-- 3D TEMPLE DOORS -->
+      <div class="door left">
+        <div class="panel"></div>
+        <div class="handle"></div>
+      </div>
+
+      <div class="door right">
+        <div class="panel"></div>
+        <div class="handle"></div>
+      </div>
+
+      <!-- SACRED PARTICLES (SPARKS, PETALS, CONVERGING GOLD DUST) -->
+      <div class="effects" id="effects"></div>
+
+      <!-- DIVINE LIGHT FLASH -->
+      <div class="flash"></div>
+
+      <!-- UNDER-GANESH DEVOTIONAL MESSAGE PLAQUE -->
+      <div class="message">
+        <small>🙏 శ్రీ లక్ష్మీ గణపతి స్వామివారి దివ్య దర్శనం 🙏</small>
+        <strong>శ్రీ లక్ష్మీ గణపతి స్వామి</strong>
+        <span>వినాయక చవితి ఉత్సవాలు</span>
+        <p class="committee-subtext">Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu</p>
+        <div class="ganesh-agaman-scroll-cue">
+          <a href="#vaibhavam" class="scroll-down-btn">
+            <span class="scroll-arrow">↓</span> స్వామివారి వైభవం, గ్యాలరీ &amp; పూజా విధానం కొరకు క్రిందికి స్క్రోల్ చేయండి
+          </a>
+        </div>
+      </div>
+
+      <!-- TRADITIONAL DIYAS / LAMPS -->
+      <div class="lamps">
+        <div class="lamp"></div>
+        <div class="lamp"></div>
+      </div>
+
     </div>
   </section>
 
@@ -287,7 +261,8 @@
         <div class="portal-ornament"><span>🌺 🕉️ 🌺</span></div>
 
         <p class="portal-card-desc">
-          <strong>బాలగంగాధర తిలక్ మహాశయుని స్ఫూర్తితో 75 సంవత్సరాలుగా</strong> వేలివెన్ను గాంధీబొమ్మ సెంటర్ నందు నిరాటంకంగా నిర్వహించబడుతున్న మహోత్సవ విశేషాలు, దివ్య అలంకారాలు, స్వామివారి మహిమలు మరియు రథోత్సవ వైభవం.
+          <strong>బాలగంగాధర తిలక్ మహాశయుని స్ఫూర్తితో 75 సంవత్సరాలుగా</strong> వేలివెన్ను గాంధీబొమ్మ సెంటర్ నందు
+          నిరాటంకంగా నిర్వహించబడుతున్న మహోత్సవ విశేషాలు, దివ్య అలంకారాలు, స్వామివారి మహిమలు మరియు రథోత్సవ వైభవం.
         </p>
 
         <!-- Prominent Clickable Action Button -->
@@ -524,7 +499,8 @@
           <div class="article-body">
             <h3 class="article-title">దేవాలయాల ప్రాముఖ్యత</h3>
             <div class="article-divider"></div>
-            <p class="article-content">దేవాలయాలు కేవలం పూజా స్థలాలు మాత్రమే కాదు; మానసిక ప్రశాంతతను, సానుకూల ఆధ్యాత్మిక తరంగాలను అందిస్తూ సమాజ ఐక్యతను నిలిపే పవిత్ర కేంద్రాలు.</p>
+            <p class="article-content">దేవాలయాలు కేవలం పూజా స్థలాలు మాత్రమే కాదు; మానసిక ప్రశాంతతను, సానుకూల ఆధ్యాత్మిక
+              తరంగాలను అందిస్తూ సమాజ ఐక్యతను నిలిపే పవిత్ర కేంద్రాలు.</p>
           </div>
         </article>
 
@@ -537,7 +513,8 @@
           <div class="article-body">
             <h3 class="article-title">దీపారాధన పరమార్థం</h3>
             <div class="article-divider"></div>
-            <p class="article-content">దీపం పరబ్రహ్మ స్వరూపం. అజ్ఞానమనే అంధకారాన్ని పారద్రోలి జ్ఞాన వెలుగును నింపే పవిత్ర సంప్రదాయం దీపారాధన. నిత్య దీపారాధన ద్వారా ఇంట్లో సకల దోషాలు నివారణమై శుభాలు కలుగుతాయి.</p>
+            <p class="article-content">దీపం పరబ్రహ్మ స్వరూపం. అజ్ఞానమనే అంధకారాన్ని పారద్రోలి జ్ఞాన వెలుగును నింపే
+              పవిత్ర సంప్రదాయం దీపారాధన. నిత్య దీపారాధన ద్వారా ఇంట్లో సకల దోషాలు నివారణమై శుభాలు కలుగుతాయి.</p>
           </div>
         </article>
 
@@ -550,7 +527,8 @@
           <div class="article-body">
             <h3 class="article-title">ప్రకృతితో మన అనుబంధం - మట్టి గణపతి</h3>
             <div class="article-divider"></div>
-            <p class="article-content">వినాయకుని మట్టితో తయారుచేసి, ఔషధ గుణాలున్న 21 పత్రులతో పూజించి తిరిగి జలంలో నిమజ్జనం చేయడం ద్వారా సృష్టి, స్థితి, లయల ప్రకృతి ధర్మాన్ని మనం గౌరవిస్తాము.</p>
+            <p class="article-content">వినాయకుని మట్టితో తయారుచేసి, ఔషధ గుణాలున్న 21 పత్రులతో పూజించి తిరిగి జలంలో
+              నిమజ్జనం చేయడం ద్వారా సృష్టి, స్థితి, లయల ప్రకృతి ధర్మాన్ని మనం గౌరవిస్తాము.</p>
           </div>
         </article>
 
@@ -563,7 +541,8 @@
           <div class="article-body">
             <h3 class="article-title">భారతీయ సంస్కృతి & సనాతన ధర్మ విలువలు</h3>
             <div class="article-divider"></div>
-            <p class="article-content">"వసుధైవ కుటుంబకం" - ప్రపంచమంతా ఒకే కుటుంబం అనే సత్యం, ధర్మం, శాంతి, సేవా భావాలను మన సనాతన సంస్కృతి తరతరాలుగా బోధిస్తోంది.</p>
+            <p class="article-content">"వసుధైవ కుటుంబకం" - ప్రపంచమంతా ఒకే కుటుంబం అనే సత్యం, ధర్మం, శాంతి, సేవా భావాలను
+              మన సనాతన సంస్కృతి తరతరాలుగా బోధిస్తోంది.</p>
           </div>
         </article>
       </div>
