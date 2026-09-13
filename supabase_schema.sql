@@ -1,6 +1,6 @@
 -- ==========================================================================
 -- శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు 2026
--- Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+-- Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
 -- Complete Supabase Database Schema, RLS Security Policies & Seed Data
 -- ==========================================================================
 
@@ -10,7 +10,7 @@
 CREATE TABLE IF NOT EXISTS site_settings (
     id INTEGER PRIMARY KEY DEFAULT 1,
     website_name TEXT NOT NULL DEFAULT 'శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు 2026',
-    committee_name TEXT NOT NULL DEFAULT 'Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu',
+    committee_name TEXT NOT NULL DEFAULT 'Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu',
     location TEXT NOT NULL DEFAULT 'Gandhibomma Center, Velivennu',
     hero_title TEXT NOT NULL DEFAULT 'శ్రీ లక్ష్మీ గణపతి స్వామి',
     hero_subtitle TEXT NOT NULL DEFAULT 'వినాయక చవితి ఉత్సవాలు 2026',
@@ -189,7 +189,7 @@ INSERT INTO site_settings (id, website_name, committee_name, location, hero_titl
 VALUES (
     1,
     'శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు 2026',
-    'Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu',
+    'Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu',
     'Gandhibomma Center, Velivennu',
     'శ్రీ లక్ష్మీ గణపతి స్వామి',
     'వినాయక చవితి ఉత్సవాలు 2026',

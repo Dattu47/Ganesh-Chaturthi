@@ -1,6 +1,6 @@
 // ==========================================================================
 // శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు
-// Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+// Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
 // Dedicated Gallery Engine: All Photos Side-by-Side Year-Wise & Direct Downloads (gallery.js)
 // ==========================================================================
 
@@ -219,18 +219,21 @@
     availableYears = Object.keys(groupedMedia).sort((a, b) => b.localeCompare(a));
     if (availableYears.length === 0) return;
 
+    if (!currentSelectedYear || (currentSelectedYear !== "all" && !availableYears.includes(currentSelectedYear))) {
+      currentSelectedYear = "all";
+    }
+
     renderYearControls();
     renderAllPhotosSideBySide(currentSelectedYear);
   }
 
   function renderYearControls() {
     const yearSelect = document.getElementById("galleryYearSelect");
-    const yearPillsContainer = document.getElementById("yearPillsContainer");
 
-    // Populate Year Select Dropdown
+    // Populate Year Select Dropdown with "all" option at top and then each year
     if (yearSelect) {
       yearSelect.innerHTML = `
-        <option value="all"${currentSelectedYear === "all" ? " selected" : ""}>🌟 అన్ని సంవత్సరాలు (All 21 Years) - అన్ని ఫోటోలు</option>
+        <option value="all"${currentSelectedYear === "all" ? " selected" : ""}>🌟 అన్ని సంవత్సరాలు (All Years) - అన్ని ఫోటోలు</option>
         ${availableYears
           .map((yr) => `<option value="${yr}"${currentSelectedYear === yr ? " selected" : ""}>${yr} వినాయక చవితి ఉత్సవాలు</option>`)
           .join("")}
@@ -239,22 +242,6 @@
       yearSelect.onchange = function () {
         handleYearSelection(this.value);
       };
-    }
-
-    // Populate Fast Year Pills
-    if (yearPillsContainer) {
-      yearPillsContainer.innerHTML = `
-        <button type="button" class="year-pill-btn${currentSelectedYear === "all" ? " active" : ""}" data-year="all">అన్ని సంవత్సరాలు (All)</button>
-        ${availableYears
-          .map((yr) => `<button type="button" class="year-pill-btn${currentSelectedYear === yr ? " active" : ""}" data-year="${yr}">${yr}</button>`)
-          .join("")}
-      `;
-
-      yearPillsContainer.querySelectorAll(".year-pill-btn").forEach((btn) => {
-        btn.onclick = function () {
-          handleYearSelection(this.getAttribute("data-year"));
-        };
-      });
     }
   }
 
@@ -273,7 +260,7 @@
     }
   }
 
-  // 7. HANDLE YEAR SELECTION (Filter or View All)
+  // 7. HANDLE YEAR SELECTION
   function handleYearSelection(selectedYear) {
     currentSelectedYear = selectedYear || "all";
 
@@ -283,21 +270,11 @@
       yearSelect.value = currentSelectedYear;
     }
 
-    // Sync Pills
-    const yearPillsContainer = document.getElementById("yearPillsContainer");
-    if (yearPillsContainer) {
-      yearPillsContainer.querySelectorAll(".year-pill-btn").forEach((btn) => {
-        if (btn.getAttribute("data-year") === currentSelectedYear) {
-          btn.classList.add("active");
-          btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
-
     renderAllPhotosSideBySide(currentSelectedYear);
   }
+
+  // Expose globally for inline button calls
+  window.handleYearSelection = handleYearSelection;
 
   // 8. RENDER ALL PHOTOS SIDE BY SIDE YEAR-WISE
   function renderAllPhotosSideBySide(filterYear) {
@@ -328,7 +305,7 @@
       container.innerHTML = `
         <div class="no-media-box" style="text-align: center; padding: 3rem 1rem; background: rgba(255,255,255,0.95); border-radius: 14px; border: 1.5px dashed var(--gold, #d4af37);">
           <p style="font-size: 1.15rem; color: var(--maroon, #721214); font-weight: 700;">ఈ సంవత్సరానికి చిత్రాలు అందుబాటులో లేవు.</p>
-          <button type="button" class="year-pill-btn active" onclick="handleYearSelection('all')" style="margin-top: 1rem; cursor: pointer;">
+          <button type="button" onclick="handleYearSelection('all')" style="margin-top: 1rem; cursor: pointer; background: var(--maroon, #721214); color: #fff; border: 1px solid var(--gold, #d4af37); padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 700;">
             అన్ని సంవత్సరాల ఫోటోలు చూడండి (View All)
           </button>
         </div>
@@ -337,7 +314,7 @@
     }
 
     const bannerTitle = isAll
-      ? "శ్రీ లక్ష్మీ గణపతి స్వామి వారి చారిత్రక ఉత్సవ దర్శనం (1963 – 2025)"
+      ? `శ్రీ లక్ష్మీ గణపతి స్వామి వారి చారిత్రక ఉత్సవ దర్శనం (1963 – ${availableYears[0] || "2025"})`
       : `${filterYear} వినాయక చవితి ఉత్సవ ఫోటోలు`;
     const bannerCount = `${allPhotos.length} దివ్య ఛాయాచిత్రాలు${allVideos.length ? ` • ${allVideos.length} వీడియోలు` : ""}`;
 
@@ -349,7 +326,7 @@
           <span>${bannerTitle}</span>
         </div>
         <div style="display: flex; align-items: center; gap: 0.75rem;">
-          ${!isAll ? `<button type="button" onclick="handleYearSelection('all')" class="year-pill-btn" style="background: #fdfaf2; border: 1.5px solid var(--gold); font-size: 0.88rem; padding: 0.4rem 0.9rem; cursor: pointer; border-radius: 50px; font-weight: 700; color: #4e0d14;">← అన్ని ఫోటోలు</button>` : ""}
+          ${!isAll ? `<button type="button" onclick="handleYearSelection('all')" style="background: #fdfaf2; border: 1.5px solid var(--gold, #d4af37); font-size: 0.88rem; padding: 0.4rem 0.9rem; cursor: pointer; border-radius: 50px; font-weight: 700; color: #4e0d14; transition: all 0.2s ease;">← అన్ని ఫోటోలు (View All)</button>` : ""}
           <div class="active-year-count" style="background: #fdf6e2; color: #694a08; font-weight: 700; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.92rem; border: 1px solid #e2cb94;">
             ${bannerCount}
           </div>

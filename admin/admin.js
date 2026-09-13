@@ -1,6 +1,6 @@
 // ==========================================================================
 // Admin Panel Management & Supabase Auth Script (admin/admin.js)
-// Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+// Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
 // ==========================================================================
 
 // --------------------------------------------------------------------------
@@ -232,7 +232,7 @@ async function loadAdminSettings() {
   }
   if (!settings) {
     settings = {
-      committee_name: "Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu",
+      committee_name: "Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu",
       location: "Gandhibomma Center, Velivennu",
       hero_title: "శ్రీ లక్ష్మీ గణపతి స్వామి",
       hero_subtitle: "వినాయక చవితి ఉత్సవాలు",

@@ -12,3 +12,6 @@
 
 /script.js
   Cache-Control: no-cache
+
+/gallery.js
+  Cache-Control: no-cache

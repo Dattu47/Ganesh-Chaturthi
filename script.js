@@ -1,6 +1,6 @@
 // ==========================================================================
 // శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు
-// Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+// Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
 // Client Script: Primary Supabase + Static Project Backup (script.js)
 // ==========================================================================
 
@@ -69,7 +69,7 @@ async function fetchSiteSettings() {
   }
   return {
     website_name: "శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు",
-    committee_name: "Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu",
+    committee_name: "Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu",
     countdown_date: "2026-09-14T06:00:00+05:30",
     music_url: "assets/music/devotional.mp3"
   };

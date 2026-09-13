@@ -1,6 +1,6 @@
 /* ==========================================================================
    శ్రీ లక్ష్మీ గణపతి స్వామి – వినాయక చవితి ఉత్సవాలు 2026
-   Sri Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
+   Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu
    Devotional Design System (static/style.css)
    ========================================================================== */
 
@@ -3042,8 +3042,98 @@ section, [id] {
 }
 
 /* ==========================================================================
-   INSTAGRAM FOLLOW BUTTON IN FOOTER
+   FOOTER ADDRESS & DUAL SOCIAL BUTTONS (INSTAGRAM & YOUTUBE)
    ========================================================================== */
+.footer-address-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1.8rem;
+  margin: 0.5rem auto 1.6rem auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
+}
+
+.footer-address-main {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold-light, #ffe699);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-address-icon {
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+.footer-address-sub {
+  font-size: 0.88rem;
+  color: #ffd8a8;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+}
+
+.footer-social-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 auto 2rem auto;
+  max-width: 720px;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #ffffff !important;
+  font-size: 0.96rem;
+  font-weight: 700;
+  padding: 0.72rem 1.5rem;
+  border-radius: var(--radius-full);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  min-width: 250px;
+}
+
+.footer-social-btn.footer-insta-btn {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 5px 16px rgba(220, 39, 67, 0.35);
+}
+
+.footer-social-btn.footer-insta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 22px rgba(220, 39, 67, 0.5);
+  filter: brightness(1.08);
+}
+
+.footer-social-btn.footer-youtube-btn {
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  box-shadow: 0 5px 16px rgba(255, 0, 0, 0.35);
+}
+
+.footer-social-btn.footer-youtube-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 22px rgba(255, 0, 0, 0.5);
+  filter: brightness(1.08);
+}
+
+.footer-social-btn svg {
+  flex-shrink: 0;
+}
+
+/* Backwards compatibility for single instagram wrap if needed */
 .footer-instagram-wrap {
   margin: 1.75rem auto 1.5rem auto;
   text-align: center;
@@ -3065,49 +3155,28 @@ section, [id] {
   text-decoration: none;
 }
 
-.footer-instagram-btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 9px 24px rgba(220, 39, 67, 0.5);
-  filter: brightness(1.08);
-}
-
-.footer-instagram-btn svg {
-  flex-shrink: 0;
-}
-
-/* Navigation Instagram Link */
-.nav-insta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: #ffffff !important;
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.42rem 0.95rem;
-  border-radius: var(--radius-full);
-  box-shadow: 0 3px 10px rgba(220, 39, 67, 0.25);
-  transition: all 0.25s ease;
-  text-decoration: none;
-}
-
-.nav-insta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 14px rgba(220, 39, 67, 0.45);
-  filter: brightness(1.1);
-}
-
-.nav-insta-btn svg {
-  flex-shrink: 0;
-}
-
 @media (max-width: 600px) {
-  .nav-insta-btn .nav-insta-label {
-    display: none;
+  .footer-address-box {
+    padding: 0.75rem 1.1rem;
+    width: 100%;
   }
-  .nav-insta-btn {
-    padding: 0.45rem;
-    border-radius: 50%;
+  .footer-address-main {
+    font-size: 0.95rem;
+  }
+  .footer-address-sub {
+    font-size: 0.82rem;
+  }
+  .footer-social-wrap {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .footer-social-btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.9rem;
+    min-width: unset;
   }
 }
 
@@ -4346,14 +4415,25 @@ body.pooja-page-body {
   z-index: 1;
 }
 
+.committee-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .page-header-logo-wrap {
-  display: inline-block;
-  margin-bottom: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto 0.85rem auto;
+  text-align: center;
 }
 
 .page-header-logo {
-  width: 82px;
-  height: 82px;
+  width: 86px;
+  height: 86px;
   object-fit: contain;
   border-radius: 50%;
   background: #ffffff;
@@ -4361,6 +4441,8 @@ body.pooja-page-body {
   border: 2.5px solid var(--gold, #d4af37);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 
 .page-header-logo:hover {
@@ -4368,13 +4450,15 @@ body.pooja-page-body {
 }
 
 .page-invocation-pill {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 0.45rem auto;
   color: #ffe699;
   font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 0.4rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .page-header .page-title {
