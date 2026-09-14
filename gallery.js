@@ -28,7 +28,7 @@
   // 2. STATIC PROJECT BACKUP MANIFEST (All 21 Historical Festival Years)
   // Ensures 100% offline & instantaneous rendering on GitHub / Cloudflare Pages / Local
   const STATIC_BACKUP_GALLERY = [
-    { id: 34, year: "2026", title: "2026 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2026 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2026/2026.jpeg", filename: "2026.jpeg", backup_required: true, published: true },
+    { id: 34, year: "2026", title: "2026 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2026 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "assets/gallery/2026/ganapathi-2026.jpeg", filename: "ganapathi-2026.jpeg", backup_required: true, published: true },
     { id: 33, year: "2025", title: "2025 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2025 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2025/2025.jpeg", filename: "2025.jpeg", backup_required: true, published: true },
     { id: 32, year: "2024", title: "2024 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2024 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2024/2024.jpeg", filename: "2024.jpeg", backup_required: true, published: true },
     { id: 31, year: "2023", title: "2023 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2023 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2023/2023.jpeg", filename: "2023.jpeg", backup_required: true, published: true },
@@ -56,9 +56,12 @@
   ];
 
   function getGalleryFallbackPath(year, filename) {
-    if (!year || !filename) return "";
+    if (!year) return "";
     const cleanYear = String(year).trim();
-    const cleanFilename = String(filename).trim().replace(/^\/+/, "");
+    if (cleanYear === "2026") {
+      return "assets/gallery/2026/ganapathi-2026.jpeg";
+    }
+    const cleanFilename = String(filename || `${cleanYear}.jpeg`).trim().replace(/^\/+/, "");
     return `assets/gallery/${cleanYear}/${cleanFilename}`;
   }
 
@@ -201,9 +204,18 @@
   function populateGallery(items) {
     if (!items || items.length === 0) return;
 
+    // Merge incoming items with STATIC_BACKUP_GALLERY to guarantee 2026 and all historical festival years are ALWAYS present
+    const mergedItems = [...items];
+    STATIC_BACKUP_GALLERY.forEach((backup) => {
+      const exists = mergedItems.some((item) => String(item.year).trim() === String(backup.year).trim());
+      if (!exists) {
+        mergedItems.push(backup);
+      }
+    });
+
     // Group media by Year
     groupedMedia = {};
-    items.forEach((item) => {
+    mergedItems.forEach((item) => {
       const yr = String(item.year || "").trim();
       if (!yr) return;
       if (!groupedMedia[yr]) {
@@ -216,7 +228,7 @@
       }
     });
 
-    // Sort years descending (2025 -> 2024 -> ... -> 1963)
+    // Sort years descending (2026 -> 2025 -> 2024 -> ... -> 1963)
     availableYears = Object.keys(groupedMedia).sort((a, b) => b.localeCompare(a));
     if (availableYears.length === 0) return;
 
@@ -346,9 +358,13 @@
         const desc = photo.description || `గాంధీబొమ్మ సెంటర్ నందు ${yr} వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.`;
         const filename = photo.filename || (photo.file_url ? photo.file_url.split("/").pop().split("?")[0] : `${yr}.jpeg`);
         const localPath = getGalleryFallbackPath(yr, filename);
-        const primarySrc = localPath || photo.file_url;
-        const fallbackSrc = photo.file_url || localPath;
-        const dlFilename = `ganapathi-${yr}-${filename.replace(/^ganapathi-/, "")}`;
+        const primarySrc = (yr === "2026")
+          ? "assets/gallery/2026/ganapathi-2026.jpeg?v=2026-darshan"
+          : (localPath || photo.file_url);
+        const fallbackSrc = (yr === "2026")
+          ? "assets/gallery/2026/2026.jpeg"
+          : (photo.file_url || localPath);
+        const dlFilename = `ganapathi-${yr}.jpeg`;
 
         masterPhotosList.push({
           src: primarySrc,
