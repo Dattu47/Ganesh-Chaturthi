@@ -5003,6 +5003,84 @@ html {
   z-index: 10 !important;
 }
 
+/* Direct rendering when reveal animation has already completed in this session */
+html.reveal-already-completed #heroInitialWrap,
+html.reveal-already-played #heroInitialWrap {
+  display: none !important;
+}
+
+html.reveal-already-completed .scene,
+html.reveal-already-played .scene {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  min-height: max(112vh, 1040px) !important;
+  height: max(112vh, 1040px) !important;
+  z-index: 10 !important;
+}
+
+html.reveal-already-completed .scene .temple,
+html.reveal-already-played .scene .temple {
+  transform: scale(1.045) !important;
+  transition: none !important;
+}
+
+html.reveal-already-completed .scene .door.left,
+html.reveal-already-played .scene .door.left {
+  transform: perspective(1300px) rotateY(-82deg) translateX(-4%) !important;
+  filter: brightness(.62) !important;
+  transition: none !important;
+}
+
+html.reveal-already-completed .scene .door.right,
+html.reveal-already-played .scene .door.right {
+  transform: perspective(1300px) rotateY(82deg) translateX(4%) !important;
+  filter: brightness(.62) !important;
+  transition: none !important;
+}
+
+html.reveal-already-completed .scene .idol,
+html.reveal-already-played .scene .idol {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(.99) !important;
+  filter: brightness(1.06) saturate(1.14) contrast(1.06) drop-shadow(0 25px 45px rgba(0,0,0,.85)) drop-shadow(0 0 32px rgba(255,190,65,.45)) !important;
+  transition: none !important;
+}
+
+html.reveal-already-completed .scene .header,
+html.reveal-already-played .scene .header {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+html.reveal-already-completed .scene .message,
+html.reveal-already-played .scene .message {
+  opacity: 1 !important;
+  transform: translate(-50%, 0) scale(1) !important;
+  transition: none !important;
+}
+
+html.reveal-already-completed .scene .glow,
+html.reveal-already-played .scene .glow {
+  opacity: 1 !important;
+}
+
+html.reveal-already-completed .scene .halo,
+html.reveal-already-played .scene .halo {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+}
+
+html.reveal-already-completed .scene .rays,
+html.reveal-already-played .scene .rays {
+  opacity: .9 !important;
+}
+
+html.reveal-already-completed .scene .smoke,
+html.reveal-already-played .scene .smoke {
+  opacity: .7 !important;
+}
+
 /* Cinematic vignette */
 .scene:after {
   content: "";

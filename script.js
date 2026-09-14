@@ -164,14 +164,30 @@ async function fetchDharmaArticles() {
 }
 
 // --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 // 4. GLOBAL STATE & INITIALIZATION
 // --------------------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  // 1. Start Countdown IMMEDIATELY on load without waiting for async network
-  initCountdown();
+function isRevealCompleted() {
+  try {
+    return sessionStorage.getItem("ganeshRevealCompleted") === "true" || sessionStorage.getItem("ganesh_reveal_played") === "true";
+  } catch (e) {
+    return false;
+  }
+}
 
-  // 2. Fetch remote site settings and update countdown if needed
-  initGlobalSiteData();
+document.addEventListener("DOMContentLoaded", function () {
+  const alreadyCompleted = isRevealCompleted();
+
+  if (alreadyCompleted && !window.location.search.includes("reveal=true")) {
+    // Reveal already completed in this session: skip countdown, do not initialize timers, render final state immediately
+    showPermanentHeroImmediately();
+  } else {
+    // 1. Start Countdown IMMEDIATELY on load without waiting for async network
+    initCountdown();
+
+    // 2. Fetch remote site settings and update countdown if needed
+    initGlobalSiteData();
+  }
 
   // 3. Initialize Devotional Music Player at 0.5 (50%) volume
   initMusicPlayer();
@@ -189,6 +205,38 @@ document.addEventListener("DOMContentLoaded", function () {
 // --------------------------------------------------------------------------
 let countdownTimerInterval = null;
 let ganeshRevealStarted = false;
+let isDevotionalMusicPlaying = false;
+
+function showPermanentHeroImmediately() {
+  const scene = document.getElementById("ganeshAgamanReveal");
+  if (!scene) return;
+
+  try {
+    sessionStorage.setItem("ganeshRevealCompleted", "true");
+    sessionStorage.setItem("ganesh_reveal_played", "true");
+  } catch (e) {}
+
+  document.documentElement.classList.add("reveal-already-completed");
+  document.documentElement.classList.add("reveal-already-played");
+  scene.classList.remove("fullscreen-mode");
+  scene.classList.add("playing", "opening", "revealed", "permanent-hero");
+  scene.setAttribute("aria-hidden", "false");
+
+  const initialHero = document.getElementById("heroInitialWrap");
+  if (initialHero) {
+    initialHero.style.display = "none";
+  }
+
+  document.body.style.overflow = "";
+  makeEffects();
+
+  // Ensure devotional music is stopped when returning to home
+  const audioEl = document.getElementById("devotionalAudio");
+  if (audioEl) {
+    audioEl.pause();
+    updateMusicUI(false);
+  }
+}
 
 async function initGlobalSiteData() {
   try {
@@ -205,6 +253,12 @@ async function initGlobalSiteData() {
 function initCountdown(targetDateStr) {
   const countdownEl = document.getElementById("countdownCard");
   if (!countdownEl) return;
+
+  // If reveal is already completed in this session, skip countdown completely
+  if (isRevealCompleted() && !window.location.search.includes("reveal=true")) {
+    showPermanentHeroImmediately();
+    return;
+  }
 
   const target = targetDateStr || countdownEl.getAttribute("data-target") || "2026-09-14T06:00:00+05:30";
   const targetTime = new Date(target).getTime();
@@ -237,11 +291,14 @@ function initCountdown(targetDateStr) {
     if (diff <= 0) {
       if (countdownTimerInterval) {
         clearInterval(countdownTimerInterval);
+        countdownTimerInterval = null;
       }
       const label = document.getElementById("countdownLabelText");
       if (label) label.textContent = "శ్రీ లక్ష్మీ గణపతి స్వామి మహోత్సవాలు ప్రారంభమైనవి! 🕉️";
 
-      if (!ganeshRevealStarted) {
+      if (isRevealCompleted() && !window.location.search.includes("reveal=true")) {
+        showPermanentHeroImmediately();
+      } else if (!ganeshRevealStarted) {
         ganeshRevealStarted = true;
         startGaneshReveal();
       }
@@ -250,9 +307,12 @@ function initCountdown(targetDateStr) {
 
   if (countdownTimerInterval) {
     clearInterval(countdownTimerInterval);
+    countdownTimerInterval = null;
   }
   update();
-  countdownTimerInterval = setInterval(update, 1000);
+  if (!isRevealCompleted() || window.location.search.includes("reveal=true")) {
+    countdownTimerInterval = setInterval(update, 1000);
+  }
 
   // Allow immediate verification via ?reveal=true or by clicking the countdown card
   const urlParams = new URLSearchParams(window.location.search);
@@ -276,45 +336,62 @@ function initCountdown(targetDateStr) {
 // --------------------------------------------------------------------------
 // 6. DEVOTIONAL MUSIC PLAYER (Volume set to 0.5)
 // --------------------------------------------------------------------------
+function updateMusicUI(playing) {
+  const musicBtn = document.getElementById("musicBtn");
+  const musicIcon = document.getElementById("musicIcon");
+  const musicLabel = document.getElementById("musicLabel");
+  isDevotionalMusicPlaying = playing;
+  if (!musicBtn) return;
+
+  if (playing) {
+    musicBtn.classList.add("playing");
+    if (musicIcon) musicIcon.textContent = "⏸";
+    if (musicLabel) musicLabel.textContent = "సంగీతం ఆపండి";
+  } else {
+    musicBtn.classList.remove("playing");
+    if (musicIcon) musicIcon.textContent = "▶";
+    if (musicLabel) musicLabel.textContent = "భక్తి సంగీతం";
+  }
+}
+
 function initMusicPlayer() {
   const musicBtn = document.getElementById("musicBtn");
   const audioEl = document.getElementById("devotionalAudio");
-  const musicIcon = document.getElementById("musicIcon");
-  const musicLabel = document.getElementById("musicLabel");
-
   if (!musicBtn || !audioEl) return;
 
   // Set default audio volume to 0.5
   audioEl.volume = 0.5;
-  let isPlaying = false;
-
-  function updateUI(playing) {
-    isPlaying = playing;
-    if (playing) {
-      musicBtn.classList.add("playing");
-      if (musicIcon) musicIcon.textContent = "⏸";
-      if (musicLabel) musicLabel.textContent = "సంగీతం ఆపండి";
-      sessionStorage.setItem("devotional_music_active", "true");
-    } else {
-      musicBtn.classList.remove("playing");
-      if (musicIcon) musicIcon.textContent = "▶";
-      if (musicLabel) musicLabel.textContent = "భక్తి సంగీతం";
-      sessionStorage.setItem("devotional_music_active", "false");
-    }
-  }
 
   musicBtn.addEventListener("click", function () {
-    if (isPlaying) {
+    if (isDevotionalMusicPlaying) {
       audioEl.pause();
-      updateUI(false);
+      updateMusicUI(false);
+      try {
+        sessionStorage.setItem("devotional_music_active", "false");
+      } catch (e) {}
     } else {
-      audioEl.play().then(() => updateUI(true)).catch(() => updateUI(false));
+      audioEl.play().then(() => {
+        updateMusicUI(true);
+        try {
+          sessionStorage.setItem("devotional_music_active", "true");
+        } catch (e) {}
+      }).catch(() => {
+        updateMusicUI(false);
+        try {
+          sessionStorage.setItem("devotional_music_active", "false");
+        } catch (e) {}
+      });
     }
   });
 
-  const shouldAutoplay = sessionStorage.getItem("devotional_music_active");
-  if (shouldAutoplay === "true") {
-    audioEl.play().then(() => updateUI(true)).catch(() => updateUI(false));
+  // Music does NOT autoplay automatically on return from gallery or page navigation.
+  let shouldAutoplay = false;
+  try {
+    shouldAutoplay = sessionStorage.getItem("devotional_music_active") === "true";
+  } catch (e) {}
+
+  if (shouldAutoplay) {
+    audioEl.play().then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
   }
 }
 
@@ -580,10 +657,17 @@ function playReveal() {
   // Force browser reflow
   void scene.offsetWidth;
 
-  // Optional: Start devotional audio if present and paused
+  // Play devotional song by default when animation opens (using existing HTMLAudioElement)
   const audioEl = document.getElementById("devotionalAudio");
-  if (audioEl && audioEl.paused) {
-    audioEl.play().catch(() => {});
+  if (audioEl) {
+    audioEl.volume = 0.5;
+    audioEl.currentTime = 0;
+    audioEl.play().then(() => {
+      updateMusicUI(true);
+    }).catch(() => {
+      // Graceful error handling: if browser blocks unprompted autoplay, keep Play button ready
+      updateMusicUI(false);
+    });
   }
 
   /* ---------------------------------------
@@ -601,19 +685,21 @@ function playReveal() {
   }, 900);
 
   /* ---------------------------------------
-     PHASE 3 (2900ms) - Divine darshan
+     PHASE 3 (2900ms) - Divine darshan (2026 Ganesh appears)
   --------------------------------------- */
   setTimeout(() => {
     scene.classList.add("revealed");
   }, 2900);
 
   /* ---------------------------------------
-     PHASE 4 (6200ms) - Transition to Permanent Hero
+     PHASE 4 (6200ms) - Transition to Permanent Hero & Stop Music
      IMPORTANT: Scene NEVER closes or disappears!
   --------------------------------------- */
   setTimeout(() => {
     scene.classList.remove("fullscreen-mode");
     scene.classList.add("permanent-hero");
+    document.documentElement.classList.add("reveal-already-completed");
+    document.documentElement.classList.add("reveal-already-played");
 
     const initialHero = document.getElementById("heroInitialWrap");
     if (initialHero) {
@@ -622,6 +708,20 @@ function playReveal() {
 
     // Restore normal body scrolling
     document.body.style.overflow = "";
+
+    // Devotional music automatically STOPS when reveal animation completes
+    if (audioEl) {
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      updateMusicUI(false);
+    }
+
+    // Mark reveal as completed in sessionStorage (NOT localStorage)
+    try {
+      sessionStorage.setItem("ganeshRevealCompleted", "true");
+      sessionStorage.setItem("ganesh_reveal_played", "true");
+      sessionStorage.setItem("devotional_music_active", "false");
+    } catch (e) {}
   }, 6200);
 }
 

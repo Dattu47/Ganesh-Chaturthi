@@ -28,6 +28,7 @@
   // 2. STATIC PROJECT BACKUP MANIFEST (All 21 Historical Festival Years)
   // Ensures 100% offline & instantaneous rendering on GitHub / Cloudflare Pages / Local
   const STATIC_BACKUP_GALLERY = [
+    { id: 34, year: "2026", title: "2026 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2026 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2026/2026.jpeg", filename: "2026.jpeg", backup_required: true, published: true },
     { id: 33, year: "2025", title: "2025 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2025 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2025/2025.jpeg", filename: "2025.jpeg", backup_required: true, published: true },
     { id: 32, year: "2024", title: "2024 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2024 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2024/2024.jpeg", filename: "2024.jpeg", backup_required: true, published: true },
     { id: 31, year: "2023", title: "2023 శ్రీ లక్ష్మీ గణపతి స్వామి దివ్యాలంకరణ", description: "గాంధీబొమ్మ సెంటర్ నందు 2023 వినాయక చవితి మహోత్సవాల దివ్య దర్శనం.", media_type: "photo", file_url: "https://mcaizlxahzlncqnygwuh.supabase.co/storage/v1/object/public/gallery/2023/2023.jpeg", filename: "2023.jpeg", backup_required: true, published: true },
@@ -314,7 +315,7 @@
     }
 
     const bannerTitle = isAll
-      ? `శ్రీ లక్ష్మీ గణపతి స్వామి వారి చారిత్రక ఉత్సవ దర్శనం (1963 – ${availableYears[0] || "2025"})`
+      ? `శ్రీ లక్ష్మీ గణపతి స్వామి వారి చారిత్రక ఉత్సవ దర్శనం (1963 – ${availableYears[0] || "2026"})`
       : `${filterYear} వినాయక చవితి ఉత్సవ ఫోటోలు`;
     const bannerCount = `${allPhotos.length} దివ్య ఛాయాచిత్రాలు${allVideos.length ? ` • ${allVideos.length} వీడియోలు` : ""}`;
 

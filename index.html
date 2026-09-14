@@ -10,6 +10,15 @@
     content="శ్రీ లక్ష్మీ గణపతి స్వామి వార్షిక వినాయక చవితి ఉత్సవాలు. Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu. పూజా కార్యక్రమాలు, ఉత్సవ గ్యాలరీ, సంపూర్ణ పూజా విధానం మరియు సంస్కృతి.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/logo/committee-logo.jpeg" type="image/jpeg">
+  <!-- Prevent opening animation replay if already completed in this browsing session -->
+  <script>
+    try {
+      if ((sessionStorage.getItem("ganeshRevealCompleted") === "true" || sessionStorage.getItem("ganesh_reveal_played") === "true") && !window.location.search.includes("reveal=true")) {
+        document.documentElement.classList.add("reveal-already-completed");
+        document.documentElement.classList.add("reveal-already-played");
+      }
+    } catch (e) {}
+  </script>
   <!-- Supabase JS Client v2 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -309,7 +318,7 @@
         </div>
 
         <div class="portal-tags-row">
-          <span class="portal-tag">📅 24+ సంవత్సరాల ఉత్సవాలు (1963 - 2025)</span>
+          <span class="portal-tag">📅 25+ సంవత్సరాల ఉత్సవాలు (1963 - 2026)</span>
           <span class="portal-tag">🖼️ అపురూప చారిత్రక చిత్రాలు</span>
           <span class="portal-tag">🪔 దివ్యాలంకరణల దర్శనం</span>
         </div>
