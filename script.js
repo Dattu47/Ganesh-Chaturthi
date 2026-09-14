@@ -216,6 +216,7 @@ function showPermanentHeroImmediately() {
     sessionStorage.setItem("ganesh_reveal_played", "true");
   } catch (e) {}
 
+  document.documentElement.classList.remove("reveal-in-progress");
   document.documentElement.classList.add("reveal-already-completed");
   document.documentElement.classList.add("reveal-already-played");
   scene.classList.remove("fullscreen-mode");
@@ -591,10 +592,17 @@ function makeEffects() {
   if (!effects) return;
   effects.innerHTML = "";
 
+  const isMobile = window.innerWidth <= 768;
+  const sparkCount = isMobile ? 24 : 85;
+  const petalCount = isMobile ? 18 : 65;
+  const goldCount = isMobile ? 22 : 80;
+
+  const fragment = document.createDocumentFragment();
+
   /* ---------------------------------------
      1. GOLDEN FLOATING SPARKS (Infinite)
   --------------------------------------- */
-  for (let i = 0; i < 95; i++) {
+  for (let i = 0; i < sparkCount; i++) {
     const s = document.createElement("i");
     s.className = "spark";
     if (Math.random() > 0.86) {
@@ -604,58 +612,74 @@ function makeEffects() {
     s.style.top = (25 + Math.random() * 75) + "%";
     s.style.setProperty("--d", (2.5 + Math.random() * 5) + "s");
     s.style.animationDelay = Math.random() * 4 + "s";
-    effects.appendChild(s);
+    fragment.appendChild(s);
   }
 
   /* ---------------------------------------
      2. FLOWER PETALS
   --------------------------------------- */
-  for (let i = 0; i < 70; i++) {
+  for (let i = 0; i < petalCount; i++) {
     const p = document.createElement("i");
     p.className = "petal";
     p.style.left = Math.random() * 100 + "%";
-    p.style.setProperty("--drift", (Math.random() * 280 - 140) + "px");
+    const driftMax = isMobile ? 120 : 280;
+    p.style.setProperty("--drift", (Math.random() * driftMax - driftMax / 2) + "px");
     p.style.setProperty("--d", (4 + Math.random() * 5) + "s");
     p.style.animationDelay = Math.random() * 2.5 + "s";
-    effects.appendChild(p);
+    fragment.appendChild(p);
   }
 
   /* ---------------------------------------
      3. GOLD DUST CONVERGING TOWARD IDOL
   --------------------------------------- */
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < goldCount; i++) {
     const g = document.createElement("i");
     g.className = "gold";
-    const x = (Math.random() * 100 - 50) * 8;
-    const y = (Math.random() * 100 - 50) * 7;
+    const scale = isMobile ? 4 : 8;
+    const x = (Math.random() * 100 - 50) * scale;
+    const y = (Math.random() * 100 - 50) * (scale * 0.85);
     g.style.left = "50%";
     g.style.top = "48%";
     g.style.setProperty("--sx", x + "px");
     g.style.setProperty("--sy", y + "px");
     g.style.setProperty("--d", (1.5 + Math.random() * 3) + "s");
     g.style.animationDelay = (Math.random() * 2) + "s";
-    effects.appendChild(g);
+    fragment.appendChild(g);
   }
+
+  effects.appendChild(fragment);
 }
 
 function playReveal() {
   const scene = document.getElementById("ganeshAgamanReveal");
   if (!scene) return;
 
-  // Scroll to top instantly and lock body scroll during reveal presentation
-  window.scrollTo({ top: 0, behavior: "instant" });
-  document.body.style.overflow = "hidden";
+  const isMobile = window.innerWidth <= 768;
+
+  // On desktop, lock body scroll during reveal; on mobile keep normal flow to prevent address-bar height jumping
+  if (!isMobile) {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    document.body.style.overflow = "hidden";
+  } else {
+    // Smooth scroll to top of hero if user was scrolled
+    if (window.scrollY > 80) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  // Hide initial countdown hero immediately so there is no layout collision or flash
+  const initialHero = document.getElementById("heroInitialWrap");
+  if (initialHero) {
+    initialHero.style.display = "none";
+  }
 
   // Reset classes and activate fullscreen mode
   scene.classList.remove("playing", "opening", "revealed", "permanent-hero");
   scene.classList.add("fullscreen-mode");
   scene.setAttribute("aria-hidden", "false");
 
-  // Create sacred particles
+  // Create sacred particles efficiently
   makeEffects();
-
-  // Force browser reflow
-  void scene.offsetWidth;
 
   // Play devotional song by default when animation opens (using existing HTMLAudioElement)
   const audioEl = document.getElementById("devotionalAudio");
@@ -696,18 +720,20 @@ function playReveal() {
      IMPORTANT: Scene NEVER closes or disappears!
   --------------------------------------- */
   setTimeout(() => {
-    scene.classList.remove("fullscreen-mode");
     scene.classList.add("permanent-hero");
+    scene.classList.remove("fullscreen-mode");
+    document.documentElement.classList.remove("reveal-in-progress");
     document.documentElement.classList.add("reveal-already-completed");
     document.documentElement.classList.add("reveal-already-played");
 
-    const initialHero = document.getElementById("heroInitialWrap");
     if (initialHero) {
       initialHero.style.display = "none";
     }
 
-    // Restore normal body scrolling
-    document.body.style.overflow = "";
+    // Restore normal body scrolling on desktop
+    if (!isMobile) {
+      document.body.style.overflow = "";
+    }
 
     // Devotional music automatically STOPS when reveal animation completes
     if (audioEl) {

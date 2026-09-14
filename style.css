@@ -4,8 +4,6 @@
    Devotional Design System (static/style.css)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@400;600;700&display=swap');
-
 /* --- Devotional Color Palette & Design Tokens --- */
 :root {
   --primary: #520f18;          /* Sacred Temple Maroon */
@@ -5336,8 +5334,8 @@ html.reveal-already-played .scene .smoke {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { transform: translate(-50%, -50%) scale(.92); }
-  50% { transform: translate(-50%, -50%) scale(1.08); }
+  0%, 100% { transform: translate3d(-50%, -50%, 0) scale(.92); }
+  50% { transform: translate3d(-50%, -50%, 0) scale(1.08); }
 }
 
 /* Halo */
@@ -5348,7 +5346,7 @@ html.reveal-already-played .scene .smoke {
   top: 45%;
   width: min(80vw, 840px);
   aspect-ratio: 1;
-  transform: translate(-50%, -50%) scale(.65);
+  transform: translate3d(-50%, -50%, 0) scale(.65);
   border-radius: 50%;
   opacity: 0;
   background:
@@ -5365,17 +5363,18 @@ html.reveal-already-played .scene .smoke {
     );
   filter: drop-shadow(0 0 25px #ffb52e);
   transition: opacity 2s, transform 4s cubic-bezier(.15,.8,.1,1);
+  will-change: transform;
 }
 
 .scene.revealed .halo,
 .scene.permanent-hero .halo {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate3d(-50%, -50%, 0) scale(1);
   animation: haloSpin 35s linear infinite;
 }
 
 @keyframes haloSpin {
-  to { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+  to { transform: translate3d(-50%, -50%, 0) scale(1) rotate(360deg); }
 }
 
 /* Rays */
@@ -5386,7 +5385,7 @@ html.reveal-already-played .scene .smoke {
   top: 44%;
   width: 200vmax;
   height: 200vmax;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   background:
     repeating-conic-gradient(
       from 0deg,
@@ -5396,6 +5395,7 @@ html.reveal-already-played .scene .smoke {
   mask-image: radial-gradient(circle, #000 0 18%, transparent 67%);
   -webkit-mask-image: radial-gradient(circle, #000 0 18%, transparent 67%);
   opacity: 0;
+  will-change: transform;
 }
 
 .scene.revealed .rays,
@@ -5405,7 +5405,7 @@ html.reveal-already-played .scene .smoke {
 }
 
 @keyframes spin {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
 }
 
 /* Central Light Shaft */
@@ -5416,7 +5416,7 @@ html.reveal-already-played .scene .smoke {
   top: -15%;
   width: 36%;
   height: 130%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   background:
     linear-gradient(
       90deg,
@@ -5429,6 +5429,7 @@ html.reveal-already-played .scene .smoke {
   filter: blur(22px);
   opacity: 0;
   transition: opacity 2s;
+  will-change: transform;
 }
 
 .scene.playing .lightshaft,
@@ -5438,8 +5439,8 @@ html.reveal-already-played .scene .smoke {
 }
 
 @keyframes shaft {
-  from { transform: translateX(-50%) scaleX(.7); }
-  to { transform: translateX(-50%) scaleX(1.15); }
+  from { transform: translate3d(-50%, 0, 0) scaleX(.7); }
+  to { transform: translate3d(-50%, 0, 0) scaleX(1.15); }
 }
 
 /* Mandala */
@@ -5450,9 +5451,10 @@ html.reveal-already-played .scene .smoke {
   top: 46%;
   width: min(72vw, 750px);
   aspect-ratio: 1;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   opacity: 0;
   transition: opacity 2s;
+  will-change: transform;
 }
 
 .scene.revealed .mandala,
@@ -5475,7 +5477,7 @@ html.reveal-already-played .scene .smoke {
 .scene .mandala i:nth-child(5) { transform: rotate(75deg) scale(.56); }
 
 @keyframes mandalaRotate {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
 }
 
 /* Idol */
@@ -5489,10 +5491,13 @@ html.reveal-already-played .scene .smoke {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translate(-50%, -50%) scale(.76);
+  transform: translate3d(-50%, -50%, 0) scale(.76);
   opacity: 0;
   filter: brightness(.08) saturate(.6) contrast(1.1) drop-shadow(0 30px 50px rgba(0,0,0,.9));
   transition: opacity 2.5s, transform 5s cubic-bezier(.12,.78,.08,1), filter 3s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .scene .idol img {
@@ -5502,6 +5507,9 @@ html.reveal-already-played .scene .smoke {
   border-radius: 16px;
   box-shadow: 0 0 35px rgba(255, 186, 58, 0.28);
   filter: drop-shadow(0 20px 30px rgba(0,0,0,.9)) drop-shadow(0 0 35px rgba(255,186,58,.38));
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .scene.opening .idol {
@@ -5512,7 +5520,7 @@ html.reveal-already-played .scene .smoke {
 .scene.revealed .idol,
 .scene.permanent-hero .idol {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(.99);
+  transform: translate3d(-50%, -50%, 0) scale(.99);
   filter: brightness(1.06) saturate(1.14) contrast(1.06) drop-shadow(0 25px 45px rgba(0,0,0,.85)) drop-shadow(0 0 32px rgba(255,190,65,.45));
 }
 
@@ -5541,29 +5549,36 @@ html.reveal-already-played .scene .smoke {
     inset 0 0 60px #030100,
     0 0 90px #000;
   transition: transform 4.5s cubic-bezier(.1,.72,.06,1), filter 3s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .scene .door.left {
   left: -1%;
   transform-origin: 7% 50%;
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+  transform: perspective(1300px) rotateY(0deg) translate3d(0, 0, 0);
 }
 
 .scene .door.right {
   right: -1%;
   transform-origin: 93% 50%;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
+  transform: perspective(1300px) rotateY(0deg) translate3d(0, 0, 0);
 }
 
 .scene.opening .door.left,
 .scene.permanent-hero .door.left {
-  transform: perspective(1300px) rotateY(-82deg) translateX(-4%);
+  transform: perspective(1300px) rotateY(-82deg) translate3d(-4%, 0, 0);
   filter: brightness(.62);
 }
 
 .scene.opening .door.right,
 .scene.permanent-hero .door.right {
-  transform: perspective(1300px) rotateY(82deg) translateX(4%);
+  transform: perspective(1300px) rotateY(82deg) translate3d(4%, 0, 0);
   filter: brightness(.62);
 }
 
@@ -5705,10 +5720,10 @@ html.reveal-already-played .scene .smoke {
 }
 
 @keyframes spark {
-  0%, 100% { opacity: 0; transform: translateY(15vh) scale(.3); }
+  0%, 100% { opacity: 0; transform: translate3d(0, 15vh, 0) scale(.3); }
   30% { opacity: 1; }
   70% { opacity: .7; }
-  100% { transform: translateY(-18vh) scale(1.1); }
+  100% { transform: translate3d(0, -18vh, 0) scale(1.1); }
 }
 
 @keyframes fall {
@@ -5716,9 +5731,9 @@ html.reveal-already-played .scene .smoke {
 }
 
 @keyframes goldFloat {
-  0% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(.2); }
+  0% { opacity: 0; transform: translate3d(var(--sx), var(--sy), 0) scale(.2); }
   20% { opacity: 1; }
-  100% { opacity: 0; transform: translate(calc(var(--sx) * .15), calc(var(--sy) * .15)) scale(1.5); }
+  100% { opacity: 0; transform: translate3d(calc(var(--sx) * .15), calc(var(--sy) * .15), 0) scale(1.5); }
 }
 
 /* Smoke / Atmosphere */
@@ -5729,11 +5744,12 @@ html.reveal-already-played .scene .smoke {
   bottom: -15%;
   width: 70%;
   height: 60%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   background: radial-gradient(ellipse, rgba(255,225,170,.12), transparent 68%);
   filter: blur(35px);
   opacity: 0;
   animation: smokeMove 8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .scene.playing .smoke,
@@ -5742,8 +5758,8 @@ html.reveal-already-played .scene .smoke {
 }
 
 @keyframes smokeMove {
-  0%, 100% { transform: translateX(-50%) scale(.85) translateY(20px); }
-  50% { transform: translateX(-50%) scale(1.15) translateY(-30px); }
+  0%, 100% { transform: translate3d(-50%, 20px, 0) scale(.85); }
+  50% { transform: translate3d(-50%, -30px, 0) scale(1.15); }
 }
 
 /* Divine Light Flash */
@@ -5885,10 +5901,78 @@ html.reveal-already-played .scene .smoke {
 }
 
 /* Responsive Mobile Rules */
-@media(max-width: 600px) {
-  .scene.permanent-hero {
-    min-height: 880px !important;
-    height: 880px !important;
+@media(max-width: 768px) {
+  .scene.permanent-hero,
+  html.reveal-already-completed .scene,
+  html.reveal-already-played .scene,
+  html.reveal-in-progress .scene {
+    min-height: 100svh !important;
+    min-height: 100dvh !important;
+    height: auto !important;
+    padding-bottom: 2rem !important;
+  }
+  .scene.fullscreen-mode {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 10 !important;
+    min-height: 100svh !important;
+    min-height: 100dvh !important;
+    height: auto !important;
+    padding-bottom: 2rem !important;
+  }
+  .scene .door {
+    box-shadow: inset 0 0 0 4px #321005, 0 0 25px #000 !important;
+    transition: transform 4s cubic-bezier(.1,.72,.06,1) !important;
+  }
+  .scene.opening .door.left {
+    transform: perspective(900px) rotateY(-80deg) translate3d(-4%, 0, 0) !important;
+    filter: none !important;
+    opacity: 0.75 !important;
+  }
+  .scene.opening .door.right {
+    transform: perspective(900px) rotateY(80deg) translate3d(4%, 0, 0) !important;
+    filter: none !important;
+    opacity: 0.75 !important;
+  }
+  .scene .smoke {
+    filter: none !important;
+    background: radial-gradient(ellipse, rgba(255,225,170,.16) 0%, rgba(255,190,100,.05) 45%, transparent 68%) !important;
+    will-change: transform, opacity;
+  }
+  .scene .rays {
+    width: 110vmax !important;
+    height: 110vmax !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    background: radial-gradient(circle, rgba(255,239,176,.25) 0%, rgba(255,200,80,.12) 35%, transparent 65%) !important;
+    animation: pulseRaysMobile 6s ease-in-out infinite alternate !important;
+  }
+  @keyframes pulseRaysMobile {
+    0% { transform: translate3d(-50%, -50%, 0) scale(0.92); opacity: 0.6; }
+    100% { transform: translate3d(-50%, -50%, 0) scale(1.08); opacity: 0.95; }
+  }
+  .scene .idol {
+    width: 94vw !important;
+    height: 56vh !important;
+    max-height: 480px !important;
+    top: 47% !important;
+    filter: brightness(1.05) saturate(1.1) drop-shadow(0 15px 30px rgba(0,0,0,.85)) !important;
+  }
+  .scene .effects .spark,
+  .scene .effects .petal,
+  .scene .effects .gold {
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .scene .effects .spark {
+    box-shadow: 0 0 4px #fff, 0 0 10px #ffd35a !important;
+  }
+  .scene .effects .petal {
+    filter: none !important;
+  }
+  .scene .effects .gold {
+    box-shadow: 0 0 4px #ffc33c !important;
   }
   .scene .arch {
     width: 135vw;
@@ -5916,12 +6000,6 @@ html.reveal-already-played .scene .smoke {
   }
   .scene .header p {
     font-size: 11px;
-  }
-  .scene .idol {
-    width: 96vw;
-    height: 60vh;
-    max-height: 520px;
-    top: 48%;
   }
   .scene .message {
     width: 94%;

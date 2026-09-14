@@ -8,17 +8,40 @@
     Center, Velivennu</title>
   <meta name="description"
     content="శ్రీ లక్ష్మీ గణపతి స్వామి వార్షిక వినాయక చవితి ఉత్సవాలు. Lakshmi Ganapathi Utsava Committee – Gandhibomma Center, Velivennu. పూజా కార్యక్రమాలు, ఉత్సవ గ్యాలరీ, సంపూర్ణ పూజా విధానం మరియు సంస్కృతి.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="assets/logo/committee-logo.jpeg" type="image/jpeg">
-  <!-- Prevent opening animation replay if already completed in this browsing session -->
+  <!-- Critical Anti-Flicker: Apply session state and countdown check before any style parsing -->
   <script>
     try {
-      if ((sessionStorage.getItem("ganeshRevealCompleted") === "true" || sessionStorage.getItem("ganesh_reveal_played") === "true") && !window.location.search.includes("reveal=true")) {
-        document.documentElement.classList.add("reveal-already-completed");
-        document.documentElement.classList.add("reveal-already-played");
+      var isRevealDone = (sessionStorage.getItem("ganeshRevealCompleted") === "true" || sessionStorage.getItem("ganesh_reveal_played") === "true") && !window.location.search.includes("reveal=true");
+      var targetDate = new Date("2026-09-14T06:00:00+05:30").getTime();
+      var isCountdownOver = Date.now() >= targetDate && !window.location.search.includes("countdown=true");
+
+      if (isRevealDone) {
+        document.documentElement.classList.add("reveal-already-completed", "reveal-already-played");
+      } else if (isCountdownOver) {
+        document.documentElement.classList.add("reveal-in-progress");
       }
     } catch (e) {}
   </script>
+  <style>
+    /* Critical Anti-Flicker: instantaneously hide pre-reveal hero when already revealed or festival started */
+    html.reveal-already-completed #heroInitialWrap,
+    html.reveal-already-played #heroInitialWrap,
+    html.reveal-in-progress #heroInitialWrap {
+      display: none !important;
+    }
+    html.reveal-in-progress .scene {
+      display: block !important;
+    }
+  </style>
+
+  <!-- Google Fonts Preconnect & Optimized Parallel Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700;800&family=Noto+Serif+Telugu:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/logo/committee-logo.jpeg" type="image/jpeg">
+
   <!-- Supabase JS Client v2 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -82,7 +105,7 @@
     <!-- Initial Pre-Reveal Hero (Active while countdown runs) -->
     <div class="hero-initial-wrap" id="heroInitialWrap">
       <!-- Devotional Hero Background (NOT the committee logo) -->
-      <img src="assets/hero.jpg?v=2026-darshan" alt="శ్రీ లక్ష్మీ గణపతి స్వామి ఆలయం మరియు దివ్య శోభ" class="hero-bg">
+      <img src="assets/hero.jpg?v=2026-darshan" alt="శ్రీ లక్ష్మీ గణపతి స్వామి ఆలయం మరియు దివ్య శోభ" class="hero-bg" loading="eager" fetchpriority="high" decoding="async">
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
@@ -189,7 +212,7 @@
 
       <!-- THE 2026 GANESH IDOL -->
       <div class="idol">
-        <img src="assets/gallery/2026/ganapathi-2026.jpeg?v=2026-darshan" alt="శ్రీ లక్ష్మీ గణపతి స్వామివారు" onerror="if(this.src.indexOf('2026.jpeg')===-1){this.src='assets/gallery/2026/2026.jpeg';}">
+        <img src="assets/gallery/2026/ganapathi-2026.jpeg?v=2026-darshan" alt="శ్రీ లక్ష్మీ గణపతి స్వామివారు" loading="eager" fetchpriority="high" decoding="async" onerror="if(this.src.indexOf('2026.jpeg')===-1){this.src='assets/gallery/2026/2026.jpeg';}">
       </div>
 
       <!-- TOP DEVOTIONAL HEADER -->
